@@ -1,1 +1,10 @@
 C:\Users\user\Source\Repos\ProyectoVisual\ProyectoFacturación\ProyectoFacturación\bin\Debug\ProyectoFacturación.exe.config
+C:\Users\user\Source\Repos\ProyectoVisual\ProyectoFacturación\ProyectoFacturación\bin\Debug\ProyectoFacturación.exe
+C:\Users\user\Source\Repos\ProyectoVisual\ProyectoFacturación\ProyectoFacturación\bin\Debug\ProyectoFacturación.pdb
+C:\Users\user\Source\Repos\ProyectoVisual\ProyectoFacturación\ProyectoFacturación\bin\Debug\ProyectoFacturación.xml
+C:\Users\user\Source\Repos\ProyectoVisual\ProyectoFacturación\ProyectoFacturación\obj\Debug\ProyectoFacturación.vbprojResolveAssemblyReference.cache
+C:\Users\user\Source\Repos\ProyectoVisual\ProyectoFacturación\ProyectoFacturación\obj\Debug\ProyectoFacturación.Resources.resources
+C:\Users\user\Source\Repos\ProyectoVisual\ProyectoFacturación\ProyectoFacturación\obj\Debug\ProyectoFacturación.vbproj.GenerateResource.Cache
+C:\Users\user\Source\Repos\ProyectoVisual\ProyectoFacturación\ProyectoFacturación\obj\Debug\ProyectoFacturación.exe
+C:\Users\user\Source\Repos\ProyectoVisual\ProyectoFacturación\ProyectoFacturación\obj\Debug\ProyectoFacturación.xml
+C:\Users\user\Source\Repos\ProyectoVisual\ProyectoFacturación\ProyectoFacturación\obj\Debug\ProyectoFacturación.pdb
