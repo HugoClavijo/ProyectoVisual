@@ -35,10 +35,11 @@
 
     Public Function ValidarUsuario(usuario As String, pass As String)
         Dim id As String = "No existe"
-
+        Dim tipo As String = "Ninguno"
         For Each user As Usuario In arregloUsuarios
             If user.Usuario = usuario And user.Password = pass Then
                 id = user.Id
+                tipo = user.TipoUser
             End If
         Next
 
@@ -48,7 +49,7 @@
         End If
 
         If id <> "No existe" Then
-            Console.WriteLine("Usuario Logeado...")
+            Console.WriteLine("Usuario Logeado... " & tipo)
         End If
 
 
