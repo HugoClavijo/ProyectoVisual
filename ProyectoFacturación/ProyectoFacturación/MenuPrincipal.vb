@@ -47,7 +47,7 @@
             Console.ReadLine()
         End If
 
-        If id <> "No Existe" Then
+        If id <> "No existe" Then
             Console.WriteLine("Usuario Logeado...")
         End If
 
