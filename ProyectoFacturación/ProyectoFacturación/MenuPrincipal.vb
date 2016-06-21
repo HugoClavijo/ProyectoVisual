@@ -90,7 +90,7 @@
         Next
 
         If id = "No existe" Then
-            Console.WriteLine("Usuario y/o contraseña incorrectos, presione ENTER para volver a intentar.")
+            Console.WriteLine("Usuario y/o contraseña incorrectos, vuelva a intentarlo.")
             Console.ReadLine()
         End If
 
