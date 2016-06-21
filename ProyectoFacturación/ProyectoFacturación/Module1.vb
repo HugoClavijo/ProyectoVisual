@@ -9,6 +9,7 @@
         Dim vendedor As Vendedor = New Vendedor("02", "Juan Carlos Carrera", "juank", "spiderman")
 
         arregloUsers.Add(admin)
+
         arregloUsers.Add(vendedor)
 
         Dim menu As MenuPrincipal = New MenuPrincipal(arregloUsers)

@@ -18,6 +18,8 @@
     Public Sub Iniciar()
 
         Dim user, pass, idAux As String
+        Dim activo As Usuario
+        Dim opcion As Integer
 
         Do
             Console.Clear()
@@ -29,6 +31,45 @@
             idAux = ValidarUsuario(user, pass)
         Loop While idAux = "No existe"
 
+        activo = ObtenerIdUsuario(idAux)
+
+        Select Case activo.TipoUser
+            Case "administrador"
+                Do
+                    Console.Clear()
+                    Console.WriteLine("1.- Categorías")
+                    Console.WriteLine("2.- Artículos")
+                    Console.WriteLine("3.- IVA diferenciado")
+                    Console.WriteLine("4.- Provincia")
+                    Console.WriteLine("5.- Salir de la sesión")
+                    Console.WriteLine("6.- Salir del sistema")
+                    Console.Write("Ingrese una opción: ")
+                    opcion = Console.ReadLine()
+
+                    If opcion = "5" Then
+                        Iniciar()
+                    End If
+
+                Loop Until (opcion = "6")
+
+
+            Case "vendedor"
+
+                Do
+                    Console.Clear()
+                    Console.WriteLine("1.- Facturar")
+                    Console.WriteLine("2.- Salir de la sesión")
+                    Console.WriteLine("3.- Salir del sistema")
+                    Console.Write("Ingrese una opción: ")
+                    opcion = Console.ReadLine()
+
+                    If opcion = "2" Then
+                        Iniciar()
+                    End If
+
+                Loop Until (opcion = "3")
+
+        End Select
 
     End Sub
 
@@ -55,6 +96,17 @@
 
         Return id
     End Function
+
+
+    Public Function ObtenerIdUsuario(id As String) As Usuario
+        For Each user As Usuario In arregloUsuarios
+            If user.Id = id Then
+                Return user
+            End If
+        Next
+        Return Nothing
+    End Function
+
 
 
     Public Sub New(arreglo As ArrayList)
