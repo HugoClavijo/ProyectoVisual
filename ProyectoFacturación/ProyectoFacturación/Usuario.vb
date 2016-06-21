@@ -61,8 +61,4 @@
         Me._password = pass
     End Sub
 
-    Public Sub New()
-
-    End Sub
-
 End Class
