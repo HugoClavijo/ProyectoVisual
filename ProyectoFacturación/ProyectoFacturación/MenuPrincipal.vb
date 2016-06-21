@@ -37,6 +37,7 @@
             Case "administrador"
                 Do
                     Console.Clear()
+                    Console.WriteLine("Usuario Administrador " & idAux & " Logeado... " & user & vbNewLine)
                     Console.WriteLine("1.- Categorías")
                     Console.WriteLine("2.- Artículos")
                     Console.WriteLine("3.- IVA diferenciado")
@@ -57,6 +58,7 @@
 
                 Do
                     Console.Clear()
+                    Console.WriteLine("Usuario Vendedor " & idAux & " Logeado... " & user & vbNewLine)
                     Console.WriteLine("1.- Facturar")
                     Console.WriteLine("2.- Salir de la sesión")
                     Console.WriteLine("3.- Salir del sistema")
@@ -77,10 +79,12 @@
     Public Function ValidarUsuario(usuario As String, pass As String)
         Dim id As String = "No existe"
         Dim tipo As String = "Ninguno"
+        Dim nombre As String = "Sin nombre"
         For Each user As Usuario In arregloUsuarios
             If user.Usuario = usuario And user.Password = pass Then
                 id = user.Id
                 tipo = user.TipoUser
+                nombre = user.Nombre
             End If
         Next
 
@@ -90,11 +94,12 @@
         End If
 
         If id <> "No existe" Then
-            Console.WriteLine("Usuario Logeado... " & tipo)
+            Console.WriteLine("Usuario Logeado... " & nombre & " - " & tipo)
         End If
 
 
         Return id
+
     End Function
 
 
