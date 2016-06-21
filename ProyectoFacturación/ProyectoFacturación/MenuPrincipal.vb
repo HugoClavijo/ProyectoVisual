@@ -1,7 +1,7 @@
 ﻿Public Class MenuPrincipal
 
 
-    Dim arregloUsuarios As New ArrayList()
+    Protected arregloUsuarios As New ArrayList()
     Public Property Usuarios() As ArrayList
         Get
             Return arregloUsuarios
