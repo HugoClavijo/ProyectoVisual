@@ -34,6 +34,7 @@
         activo = ObtenerIdUsuario(idAux)
 
         Select Case activo.TipoUser
+
             Case "administrador"
                 Do
                     Console.Clear()
