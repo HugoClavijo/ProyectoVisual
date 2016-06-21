@@ -94,9 +94,9 @@
             Console.ReadLine()
         End If
 
-        If id <> "No existe" Then
-            Console.WriteLine("Usuario Logeado... " & nombre & " - " & tipo)
-        End If
+        'If id <> "No existe" Then
+        '    Console.WriteLine("Usuario Logeado... " & nombre & " - " & tipo)
+        'End If
 
 
         Return id
