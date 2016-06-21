@@ -1,6 +1,34 @@
 ﻿Public Class Categoria
 
     Protected _id As String
+    Protected _nombre As String
+    Protected _productos As ArrayList
+
+
+    Public Sub New(id As String, nombre As String)
+        Me._id = id
+        Me._nombre = nombre
+        Me._productos = New ArrayList
+    End Sub
+
+
+    Public Sub New(nombre As String)
+        Me._nombre = nombre
+        Me._productos = New ArrayList
+    End Sub
+
+
+    Public Sub New(id As String, nombre As String, products As ArrayList)
+        Me._id = id
+        Me._nombre = nombre
+        Me._productos = products
+    End Sub
+
+
+
+
+
+
     Public Property Id() As String
         Get
             Return _id
@@ -10,7 +38,7 @@
         End Set
     End Property
 
-    Protected _nombre As String
+
     Public Property Nombre() As String
         Get
             Return _nombre
@@ -20,7 +48,7 @@
         End Set
     End Property
 
-    Protected _productos As ArrayList
+
     Public Property Productos() As ArrayList
         Get
             Return _productos
@@ -32,17 +60,5 @@
 
 
 
-    Public Sub New(id As String, nombre As String)
-        Me._id = id
-        Me._nombre = nombre
-        Me._productos = New ArrayList
-    End Sub
-
-
-    Public Sub New(id As String, nombre As String, products As ArrayList)
-        Me._id = id
-        Me._nombre = nombre
-        Me._productos = products
-    End Sub
 
 End Class

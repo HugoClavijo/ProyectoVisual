@@ -15,7 +15,37 @@
         Dim menu As MenuPrincipal = New MenuPrincipal(arregloUsers)
         menu.Iniciar()
 
+
+
+
+
+
+
+        '------------------------------------------
+        'CATEGORIA---------------------------------
+        Dim hogar As New Categoria("hogar")
+        Dim deporte As New Categoria("deporte")
+        Dim cocina As New Categoria("cocina")
+        '------------------------------------------
+        'PRODUCTOS---------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         Console.ReadLine()
+
 
     End Sub
 

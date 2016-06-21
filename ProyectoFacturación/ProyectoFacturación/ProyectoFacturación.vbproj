@@ -85,6 +85,8 @@
   <ItemGroup>
     <Compile Include="Administrador.vb" />
     <Compile Include="Categoria.vb" />
+    <Compile Include="Cliente.vb" />
+    <Compile Include="Empresa.vb" />
     <Compile Include="Factura.vb" />
     <Compile Include="MenuPrincipal.vb" />
     <Compile Include="Module1.vb" />
