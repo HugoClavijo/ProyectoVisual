@@ -86,6 +86,7 @@
     <Compile Include="Administrador.vb" />
     <Compile Include="Categoria.vb" />
     <Compile Include="Cliente.vb" />
+    <Compile Include="Detalle.vb" />
     <Compile Include="Empresa.vb" />
     <Compile Include="Factura.vb" />
     <Compile Include="MenuPrincipal.vb" />

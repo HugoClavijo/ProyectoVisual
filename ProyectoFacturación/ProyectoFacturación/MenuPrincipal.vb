@@ -66,9 +66,16 @@
                     Console.Write("Ingrese una opción: ")
                     opcion = Console.ReadLine()
 
+
+
+
                     If opcion = "2" Then
+                        'Console.Clear()
+                        'Console.WriteLine("3.- Salir del sistema")
                         Iniciar()
+
                     End If
+
 
                 Loop Until (opcion = "3")
 

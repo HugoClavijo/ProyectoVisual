@@ -8,12 +8,12 @@
         Dim admin As Administrador = New Administrador("01", "Hugo Clavijo", "hugo", "batman")
         Dim vendedor As Vendedor = New Vendedor("02", "Juan Carlos Carrera", "juank", "spiderman")
 
-        arregloUsers.Add(admin)
+        'arregloUsers.Add(admin)
 
-        arregloUsers.Add(vendedor)
+        'arregloUsers.Add(vendedor)
 
-        Dim menu As MenuPrincipal = New MenuPrincipal(arregloUsers)
-        '  menu.Iniciar()
+        'Dim menu As MenuPrincipal = New MenuPrincipal(arregloUsers)
+        'menu.Iniciar()
 
 
 
@@ -39,11 +39,19 @@
         terror.Productos.Add(prod2)
 
 
+        'Console.WriteLine(terror.obtenerProducto(0))
+        'Console.WriteLine(terror.obtenerProducto(1))
+        Console.WriteLine("-------------------------")
 
-        Console.WriteLine(terror.obtenerProducto(0))
-        Console.WriteLine(terror.obtenerProducto(1))
 
-
+        'Vamos a hacer la factura---------------------------------
+        '1)Empresa
+        Dim empresa1 As New Empresa(1235846958001, "Huan S.A", "Batderman", "Cdla La Joya")
+        Dim cliente1 As New Cliente("Armando Paredes", "1234567891001")
+        Dim factura1 As New Factura("001", "001", "0012", "1234567890123456789012345678901234567890123456789", empresa1, cliente1)
+        factura1.agregarProducto(prod1)
+        factura1.agregarProducto(prod2)
+        factura1.mostrarFactura()
 
 
 
