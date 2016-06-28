@@ -13,7 +13,7 @@
         arregloUsers.Add(vendedor)
 
         Dim menu As MenuPrincipal = New MenuPrincipal(arregloUsers)
-        menu.Iniciar()
+        '  menu.Iniciar()
 
 
 
@@ -26,14 +26,22 @@
         Dim hogar As New Categoria("hogar")
         Dim deporte As New Categoria("deporte")
         Dim cocina As New Categoria("cocina")
+        Dim comedia As New Categoria("comedia")
+        Dim terror As New Categoria("terror")
         '------------------------------------------
         'PRODUCTOS---------------------------------
 
 
+        Dim prod1 As New Producto("Silent hill", 35.55)
+        Dim prod2 As New Producto("resident evil", 40.1)
+
+        terror.Productos.Add(prod1)
+        terror.Productos.Add(prod2)
 
 
 
-
+        Console.WriteLine(terror.obtenerProducto(0))
+        Console.WriteLine(terror.obtenerProducto(1))
 
 
 

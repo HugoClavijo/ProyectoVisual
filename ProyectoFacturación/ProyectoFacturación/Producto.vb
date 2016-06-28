@@ -33,15 +33,6 @@
     End Property
 
 
-    Protected _categoria As Categoria
-    Public Property Categoria() As Categoria
-        Get
-            Return _categoria
-        End Get
-        Set(ByVal value As Categoria)
-            _categoria = value
-        End Set
-    End Property
 
 
     Protected _precio As Double
@@ -55,11 +46,16 @@
     End Property
 
 
-    Public Sub New(id As String, nombre As String, descripcion As String, categoria As Categoria)
-        Me._id = id
+    Public Sub New(nombre As String, precio As Double)
         Me._nombre = nombre
-        Me._descripcion = descripcion
-        Me._categoria = categoria
+        Me._precio = precio
+
     End Sub
+
+
+    Public Overrides Function ToString() As String
+        Return "Producto: " & Me._nombre & vbTab &
+         " Costo :" & Me._precio
+    End Function
 
 End Class

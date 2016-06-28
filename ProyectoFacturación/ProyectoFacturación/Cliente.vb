@@ -1,6 +1,8 @@
 ﻿Public Class Cliente
     Protected _nombre As String
-    Protected _cedula As Integer
+    Protected _ruc_Cedula As String
+    Private _direccion As String
+
 
     Public Sub New(Nombre As String)
         Me._nombre = Nombre
@@ -8,9 +10,9 @@
     End Sub
 
 
-    Public Sub New(Nombre As String, cedula As Integer)
+    Public Sub New(Nombre As String, ruc_Cedula As String)
         Me._nombre = Nombre
-        Me._cedula = cedula
+        Me._ruc_Cedula = ruc_Cedula
     End Sub
 
 
@@ -25,12 +27,21 @@
 
 
 
-    Public Property Cedula() As Integer
+    Public Property Ruc_Cedula() As String
         Get
-            Return _cedula
+            Return _ruc_Cedula
         End Get
-        Set(ByVal value As Integer)
-            _cedula = value
+        Set(ByVal value As String)
+            _ruc_Cedula = value
+        End Set
+    End Property
+
+    Public Property Direccion() As String
+        Get
+            Return _direccion
+        End Get
+        Set(ByVal value As String)
+            _direccion = value
         End Set
     End Property
 

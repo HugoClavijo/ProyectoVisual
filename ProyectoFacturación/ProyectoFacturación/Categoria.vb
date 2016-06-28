@@ -59,6 +59,11 @@
     End Property
 
 
+    Public Function obtenerProducto(num As Integer)
+
+        Return Productos(num).ToString
+    End Function
+
 
 
 End Class
