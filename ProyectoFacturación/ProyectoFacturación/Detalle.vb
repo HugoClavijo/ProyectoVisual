@@ -3,8 +3,15 @@
     Private _descripcion As String
     Private _precioUnitario As Double
     Private _precioTotal As Double
+    Private _producto As Producto
 
 
+    Public Sub New(cantidad As Integer, descripcion As String, precioUnit As Double, precioTotal As Double)
+        Me._cantidad = cantidad
+        Me._descripcion = descripcion
+        Me._precioUnitario = precioUnit
+        Me._precioTotal = precioTotal
+    End Sub
 
 
     Public Property Cantidad As Integer
@@ -45,17 +52,29 @@
     End Property
 
 
+    Public Property Producto() As Producto
+        Get
+            Return _producto
+        End Get
+        Set(ByVal value As Producto)
+            _producto = value
+        End Set
+    End Property
 
 
 
-    Public Function ValorTotal(cantidadDeProductos As Integer, precioUnitario As Double)
+
+    Public Function CalcularValorTotal(cantidadDeProductos As Integer, precioUnitario As Double)
         Dim valtotal As Double
         valtotal = cantidadDeProductos * precioUnitario
         Return valtotal
     End Function
 
 
-
+    Public Overrides Function ToString() As String
+        Return "   " & Cantidad & vbTab & "          " & Descripcion & "  " & vbTab &
+            "           " & PrecioUnitario & "       " & vbTab & PrecioTotal
+    End Function
 
 
 

@@ -1,7 +1,18 @@
-﻿Public Class Cliente
+﻿Imports ProyectoFacturación
+
+Public Class Cliente
     Protected _nombre As String
     Protected _ruc_Cedula As String
     Private _direccion As String
+    Private _producto As Producto
+    Public Property Producto() As Producto
+        Get
+            Return _producto
+        End Get
+        Set(ByVal value As Producto)
+            _producto = value
+        End Set
+    End Property
 
 
     'Public Sub New(Nombre As String)
@@ -45,4 +56,7 @@
         End Set
     End Property
 
+    Public Sub comprar(cantidad As Integer, prod As Producto)
+
+    End Sub
 End Class

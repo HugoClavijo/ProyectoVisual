@@ -189,7 +189,8 @@ Public Class Factura
 
 
         Console.WriteLine("CANTIDAD" & vbTab & " DESCRIPCION     " & vbTab & "P.UNITARIO" & vbTab & " P.TOTAL ")
-        Console.WriteLine()
+        Dim detalle1 As New Detalle(1, "mario bros", 30.74, 30.74) 'no va
+        Console.WriteLine(detalle1.ToString()) 'no va
         Console.WriteLine()
         Console.WriteLine(vbTab & vbTab & vbTab & vbTab & vbTab & "SUBTOTAL 14%:")
         Console.WriteLine(vbTab & vbTab & vbTab & vbTab & vbTab & " SUBTOTAL 0%:")

@@ -48,7 +48,10 @@
         '1)Empresa
         Dim empresa1 As New Empresa(1235846958001, "Huan S.A", "Batderman", "Cdla La Joya")
         Dim cliente1 As New Cliente("Armando Paredes", "1234567891001")
+
+
         Dim factura1 As New Factura("001", "001", "0012", "1234567890123456789012345678901234567890123456789", empresa1, cliente1)
+        factura1.Cliente.comprar(3, prod1)
         factura1.agregarProducto(prod1)
         factura1.agregarProducto(prod2)
         factura1.mostrarFactura()
