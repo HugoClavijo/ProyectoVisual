@@ -8,12 +8,12 @@
         Dim admin As Administrador = New Administrador("01", "Hugo Clavijo", "hugo", "batman")
         Dim vendedor As Vendedor = New Vendedor("02", "Juan Carlos Carrera", "juank", "spiderman")
 
-        'arregloUsers.Add(admin)
+        arregloUsers.Add(admin)
 
-        'arregloUsers.Add(vendedor)
+        arregloUsers.Add(vendedor)
 
-        'Dim menu As MenuPrincipal = New MenuPrincipal(arregloUsers)
-        'menu.Iniciar()
+        Dim menu As MenuPrincipal = New MenuPrincipal(arregloUsers)
+        menu.Iniciar()
 
 
 
@@ -31,17 +31,21 @@
         '------------------------------------------
         'PRODUCTOS---------------------------------
 
+        Dim vectorProductos As New VectorProductos() 'carga 9 archivos
+        ' Console.WriteLine(vectorProductos.ArrayProductos(0).ToString)
 
-        Dim prod1 As New Producto("Silent hill", 35.55)
-        Dim prod2 As New Producto("resident evil", 40.1)
 
-        terror.Productos.Add(prod1)
-        terror.Productos.Add(prod2)
+
+        terror.Productos.Add(vectorProductos.ArrayProductos(0))
+        terror.Productos.Add(vectorProductos.ArrayProductos(1))
 
 
         'Console.WriteLine(terror.obtenerProducto(0))
         'Console.WriteLine(terror.obtenerProducto(1))
-        Console.WriteLine("-------------------------")
+
+
+
+        'Console.WriteLine("-------------------------")
 
 
         'Vamos a hacer la factura---------------------------------
@@ -51,10 +55,14 @@
 
 
         Dim factura1 As New Factura("001", "001", "0012", "1234567890123456789012345678901234567890123456789", empresa1, cliente1)
-        factura1.Cliente.comprar(3, prod1)
-        factura1.agregarProducto(prod1)
-        factura1.agregarProducto(prod2)
-        factura1.mostrarFactura()
+        Dim total1 As Double
+        Dim total2 As Double
+        'total1 = factura1.Cliente.comprar(2, prod1)
+        'total2 = factura1.Cliente.comprar(1, prod1)
+
+        'factura1.agregarProducto(prod1)
+        'factura1.agregarProducto(prod2)
+        'factura1.mostrarFactura()
 
 
 

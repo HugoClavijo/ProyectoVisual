@@ -56,7 +56,21 @@ Public Class Cliente
         End Set
     End Property
 
-    Public Sub comprar(cantidad As Integer, prod As Producto)
+    Public Function comprar(cantidad As Integer, prod As Producto)
 
-    End Sub
+        If prod.CantidadStock >= cantidad Then
+            prod.CantidadStock = prod.CantidadStock - cantidad
+            Console.WriteLine("El total a pagar es de: " & "$" & cantidad * prod.Precio)
+
+        End If
+        Return cantidad * prod.Precio
+    End Function
+
+
+
+
+
+
+
+
 End Class

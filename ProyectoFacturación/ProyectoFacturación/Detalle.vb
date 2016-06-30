@@ -4,6 +4,8 @@
     Private _precioUnitario As Double
     Private _precioTotal As Double
     Private _producto As Producto
+    Private _productosArray As ArrayList
+
 
 
     Public Sub New(cantidad As Integer, descripcion As String, precioUnit As Double, precioTotal As Double)
@@ -11,6 +13,7 @@
         Me._descripcion = descripcion
         Me._precioUnitario = precioUnit
         Me._precioTotal = precioTotal
+        _productosArray = New ArrayList()
     End Sub
 
 
@@ -62,13 +65,21 @@
     End Property
 
 
+    Public Property ProductosArray() As ArrayList
+        Get
+            Return _productosArray
+        End Get
+        Set(ByVal value As ArrayList)
+            _productosArray = value
+        End Set
+    End Property
 
 
-    Public Function CalcularValorTotal(cantidadDeProductos As Integer, precioUnitario As Double)
-        Dim valtotal As Double
-        valtotal = cantidadDeProductos * precioUnitario
-        Return valtotal
-    End Function
+    'Public Function CalcularValorTotal(cantidadDeProductos As Integer, precioUnitario As Double)
+    '    Dim valtotal As Double
+    '    valtotal = cantidadDeProductos * precioUnitario
+    '    Return valtotal
+    'End Function
 
 
     Public Overrides Function ToString() As String
@@ -76,7 +87,9 @@
             "           " & PrecioUnitario & "       " & vbTab & PrecioTotal
     End Function
 
-
+    Public Sub añadirProducto(prod As Producto)
+        ProductosArray.Add(prod)
+    End Sub
 
 
 

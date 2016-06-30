@@ -13,7 +13,20 @@ Public Class Factura
     Private _detalleArray As ArrayList
     Private _autSRI As String
     Private _fechaEmision As String
+    Private _detalle As Detalle
 
+
+
+
+
+    Public Property Detalle() As Detalle
+        Get
+            Return _detalle
+        End Get
+        Set(ByVal value As Detalle)
+            _detalle = value
+        End Set
+    End Property
 
 
     Public Property FechaEmision() As String
@@ -152,9 +165,7 @@ Public Class Factura
         End Set
     End Property
 
-    Public Sub agregarProducto(producto As Producto)
-        DetalleArray.Add(producto)
-    End Sub
+
 
     Public Function detalleProd(NumProd As Integer)
         Dim lineaDetalle As String = ""
