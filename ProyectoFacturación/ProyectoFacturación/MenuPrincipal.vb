@@ -2,6 +2,7 @@
     Protected vectorProductos As VectorProductos
     Protected vectorFacturas As VectorFacturas
     Protected arregloUsuarios As New ArrayList()
+    Dim detallesArray As New ArrayList
     Public Property Usuarios() As ArrayList
         Get
             Return arregloUsuarios
@@ -93,10 +94,21 @@
         Dim siono As String
         Dim nombre As String
         Dim ruc_ci As String
+        Dim cantidads As String = ""
         Dim cantidad As Integer
         Dim descripcion As String
+        Dim vunitario As Double = 0
+        Dim vtotal As Double = 0
+        Dim subtotal As Double = 0
+        Dim iva As Double = 0.14
+        Dim totalFactura As Double = 0
+
+
         Dim cliente As Cliente
         Dim producto As Producto
+        Dim posx As Integer = 0
+        Dim posy As Integer = 0
+
 
 
 
@@ -117,15 +129,32 @@
             cliente = New Cliente(nombre, ruc_ci)
 
 
-            Do While siono = "s" Or siono = "S"
-                Console.Clear()
+            Console.Clear()
 
-                Console.WriteLine("CANTIDAD           PRODUCTO      ValorUnit     ValorTotal     ")
-                cantidad = Console.ReadLine()
+            Console.WriteLine("CANTIDAD           PRODUCTO      ValorUnit     ValorTotal     ")
+            Do While siono = "S" Or siono = "s"
+                posx = 2
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+
+
+                cantidads = Console.ReadLine()
+                If cantidads = "" Then
+                    Exit Do
+
+                Else
+                    cantidad = CInt(cantidads)
+                End If
+
+                posx += 19
+
+
+
 
                 'Console.Write("CANTIDAD: ")
                 Console.WriteLine("")
-                Console.SetCursorPosition(19, 1)
+
+                Console.SetCursorPosition(posx, posy)
                 descripcion = Console.ReadLine()
                 Console.WriteLine("")
 
@@ -135,13 +164,23 @@
                 'Console.SetCursorPosition(35, 2)
 
                 producto = ValidarProducto(cantidad, descripcion)
-                Console.SetCursorPosition(35, 1)
-                Console.WriteLine(producto.Precio)
+                posx += 16
+                Console.SetCursorPosition(posx, posy)
+                vunitario = producto.Precio
+                Console.WriteLine(vunitario)
                 Console.WriteLine("")
-                Console.SetCursorPosition(49, 1)
-                Console.WriteLine("$" & producto.Precio * cantidad)
-                Console.Write("DESEA INGRESAR UN NUEVO PRODUCTO? S/N:  ")
-                siono = Console.ReadLine()
+                posx += 14
+                Console.SetCursorPosition(posx, posy)
+                vtotal = producto.Precio * cantidad
+                Console.WriteLine("$" & vtotal)
+
+                Dim detalle As New Detalle(cantidad, descripcion, vunitario, vtotal) 'esto debe ir a factura
+                detallesArray.Add(detalle)
+
+                Console.WriteLine("")
+                Console.Write("")
+                'Console.Write("DESEA INGRESAR UN NUEVO PRODUCTO? S/N:  ")
+                'siono = Console.ReadLine()
 
 
 
@@ -150,10 +189,32 @@
 
 
 
-            If siono = "f" Or siono = "F" Then
-                Console.Clear()
-                Console.Write("Ya nos vamos")
+            'If siono = "f" Or siono = "F" Then
+            '    Console.Clear()
+            '    Console.Write("Ya nos vamos")
+            'End If
+            If cantidads = "" Then
+                posx = 40
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+                Console.Write("-----------------------")
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+                For Each d As Detalle In detallesArray
+                    subtotal += d.PrecioTotal
+                Next
+
+                Console.Write("SUBTOTAL: $" & subtotal)
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+                iva = iva * subtotal
+                Console.Write(" IVA 14%: $" & iva)
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+                totalFactura = iva + subtotal
+                Console.Write("   TOTAL: $" & totalFactura)
             End If
+
 
             'Console.SetCursorPosition(35, 2)
             'Console.Write(" V.Unitario: ")
@@ -227,23 +288,23 @@
 
     Public Function ValidarProducto(cantidad As Integer, nombProd As String)
         Dim stock As Integer = 0
-        Dim name As String = "no existe"
+        Dim name As String = nombProd
         Dim prod As Producto
         For Each producto As Producto In vectorProductos.ArrayProductos
-            If producto.CantidadStock > cantidad And nombProd = producto.Nombre Then
-                Console.WriteLine("Producto Comprado con exito :)")
-                Console.WriteLine("Teniamos en stock: " & producto.CantidadStock)
+            If name = producto.Nombre And producto.CantidadStock > cantidad Then
+
                 prod = producto
                 producto.CantidadStock -= cantidad
-                Console.WriteLine("Ahora tenemos:  " & producto.CantidadStock)
-                Exit For
+                'Console.WriteLine("Ahora tenemos:  " & producto.CantidadStock)
+
             ElseIf (producto.CantidadStock < cantidad And nombProd = producto.Nombre) Then
-                Console.WriteLine("*Lo sentimos*")
-                Console.WriteLine("Tenemos un stock de: " & producto.CantidadStock)
-                Exit For
+                'Console.WriteLine("*Lo sentimos*")
+                'Console.WriteLine("Tenemos un stock de: " & producto.CantidadStock)
+
             ElseIf nombProd IsNot producto.Nombre Then
-                Console.WriteLine("No tenemos ese producto")
-                Exit For
+                'Console.WriteLine(vectorProductos.ArrayProductos.Count)'obtengo la cantidad de  productos
+
+
             End If
         Next
 
