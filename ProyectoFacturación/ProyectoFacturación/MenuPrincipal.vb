@@ -102,7 +102,8 @@
         Dim subtotal As Double = 0
         Dim iva As Double = 0.14
         Dim totalFactura As Double = 0
-
+        Dim efectivo As Double = 0
+        Dim cambio As Double = 0
 
         Dim cliente As Cliente
         Dim producto As Producto
@@ -129,9 +130,9 @@
             cliente = New Cliente(nombre, ruc_ci)
 
 
-            Console.Clear()
 
             Console.WriteLine("CANTIDAD           PRODUCTO      ValorUnit     ValorTotal     ")
+            posy = 2
             Do While siono = "S" Or siono = "s"
                 posx = 2
                 posy += 1
@@ -151,7 +152,6 @@
 
 
 
-                'Console.Write("CANTIDAD: ")
                 Console.WriteLine("")
 
                 Console.SetCursorPosition(posx, posy)
@@ -159,9 +159,6 @@
                 Console.WriteLine("")
 
 
-                'Console.Write("PRODUCTO: ")
-                'descripcion = Console.ReadLine()
-                'Console.SetCursorPosition(35, 2)
 
                 producto = ValidarProducto(cantidad, descripcion)
                 posx += 16
@@ -177,22 +174,17 @@
                 Dim detalle As New Detalle(cantidad, descripcion, vunitario, vtotal) 'esto debe ir a factura
                 detallesArray.Add(detalle)
 
+
+
                 Console.WriteLine("")
                 Console.Write("")
-                'Console.Write("DESEA INGRESAR UN NUEVO PRODUCTO? S/N:  ")
-                'siono = Console.ReadLine()
+
 
 
 
 
             Loop
 
-
-
-            'If siono = "f" Or siono = "F" Then
-            '    Console.Clear()
-            '    Console.Write("Ya nos vamos")
-            'End If
             If cantidads = "" Then
                 posx = 40
                 posy += 1
@@ -213,15 +205,24 @@
                 Console.SetCursorPosition(posx, posy)
                 totalFactura = iva + subtotal
                 Console.Write("   TOTAL: $" & totalFactura)
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+                Console.Write("EFECTIVO: $")
+                efectivo = Console.ReadLine()
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+                cambio = (efectivo - totalFactura)
+                Format(cambio, “##,##0.00”)
+                Console.Write("CAMBIO  : $" & cambio)
+
+                Dim factura As New Factura(cliente, detallesArray, subtotal, iva, totalFactura, efectivo, cambio)
+                factura.mostrarFactura()
+                Console.ReadLine()
+                Iniciar()
             End If
 
 
-            'Console.SetCursorPosition(35, 2)
-            'Console.Write(" V.Unitario: ")
 
-            'Console.Write(" $10.00")
-            'Console.Write("    V.Total: ")
-            'Console.Write(" $10.00 ")
 
             Console.ReadLine()
 

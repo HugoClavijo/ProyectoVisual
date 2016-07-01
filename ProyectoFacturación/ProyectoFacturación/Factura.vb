@@ -1,30 +1,82 @@
 ﻿Imports ProyectoFacturación
 
 Public Class Factura
-    Private _stab As String
-    Private _ptoEmi As String
-    Private _secuencial As String
+    Private _stab As String = "001"
+    Private _ptoEmi As String = "001"
+    Private _secuencial As String = "00001"
 
     Private _empresa As Empresa
     Private _cliente As Cliente
     Private _subtotal As Double
+    Private _totalFactura As Double
+    Private _efectivo As Double
+    Private _cambio As Double
+
+
     Private _impuesto As Double
     Private _formaDePago As String
     Private _detalleArray As ArrayList
-    Private _autSRI As String
+    Private _autSRI As String = "1234567890123456789012345678901234567890123456789"
     Private _fechaEmision As String
-    Private _detalle As Detalle
+
+
+
+
+    'falta poner detalle de la factura
+
+    Public Sub New(Cliente As Cliente, arraydetalles As ArrayList, subtotal As Double, iva As Double, totalFactura As Double,
+                   efectivo As Double, cambio As Double)
+        informacionEmpresa()
+        Dim facturas As New VectorFacturas
+        Dim ultimaFact As Long = 0
+        For Each f As Factura In facturas.ArrayFacturas
+            ultimaFact = CLng(f.Secuencial)
+        Next
+        Me._secuencial = CStr(ultimaFact)
+        Me._cliente = Cliente
+        _detalleArray = New ArrayList
+        _detalleArray = arraydetalles
+        Me._subtotal = subtotal
+        Me._impuesto = iva
+        Me._totalFactura = totalFactura
+        Me._efectivo = efectivo
+        Me._cambio = cambio
+
+
+        '_fechaEmision = DateTime.Now().ToShortDateString()
+        _fechaEmision = Format(Now(), "Long Date")
+    End Sub
 
 
 
 
 
-    Public Property Detalle() As Detalle
+    Public Property Cambio() As Double
         Get
-            Return _detalle
+            Return _cambio
         End Get
-        Set(ByVal value As Detalle)
-            _detalle = value
+        Set(ByVal value As Double)
+            _cambio = value
+        End Set
+    End Property
+
+
+    Public Property Efectivo() As Double
+        Get
+            Return _efectivo
+        End Get
+        Set(ByVal value As Double)
+            _efectivo = value
+        End Set
+    End Property
+
+
+    Public Property TotalFactura() As Double
+        Get
+            Return _totalFactura
+        End Get
+        Set(ByVal value As Double)
+            _totalFactura = value
         End Set
     End Property
 
@@ -37,25 +89,6 @@ Public Class Factura
             _fechaEmision = value
         End Set
     End Property
-
-
-    'falta poner detalle de la factura
-
-    Public Sub New(stab As String, PtoEmi As String, Secuencial As String, autorizacionSri As String, Empresa As Empresa, Cliente As Cliente)
-        Me._stab = stab
-        Me._ptoEmi = PtoEmi
-        Me._secuencial = Secuencial
-        Me._autSRI = autorizacionSri
-        Me._empresa = Empresa
-        Me._cliente = Cliente
-        _detalleArray = New ArrayList
-        '_fechaEmision = DateTime.Now().ToShortDateString()
-        _fechaEmision = Format(Now(), "Long Date")
-    End Sub
-
-
-
-
 
 
 
@@ -185,6 +218,8 @@ Public Class Factura
 
 
     Public Sub mostrarFactura()
+        Console.WriteLine("")
+        Console.WriteLine("-------------------------------------------------------------------------------------")
         Console.WriteLine("Ruc: " & Empresa.Ruc)
         Console.WriteLine("" & Empresa.Razonsocial)
         Console.WriteLine("" & Empresa.NombreComercial)
@@ -197,28 +232,34 @@ Public Class Factura
         Console.WriteLine("R.U.C./C.I: " & Cliente.Ruc_Cedula)
         Console.WriteLine("FECHA EMISION: " & FechaEmision)
 
+        Console.WriteLine("")
 
+        Console.WriteLine("CANTIDAD       PRODUCTO      ValorUnit     ValorTotal      ")
+        For Each d As Detalle In DetalleArray
+            Console.WriteLine("  " & d.Cantidad & vbTab & "        " & d.Descripcion & vbTab & "        " & d.PrecioUnitario & "      " & vbTab & d.PrecioTotal & "")
+        Next
 
-        Console.WriteLine("CANTIDAD" & vbTab & " DESCRIPCION     " & vbTab & "P.UNITARIO" & vbTab & " P.TOTAL ")
-        Dim detalle1 As New Detalle(1, "mario bros", 30.74, 30.74) 'no va
-        Console.WriteLine(detalle1.ToString()) 'no va
-        Console.WriteLine()
-        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & vbTab & "SUBTOTAL 14%:")
-        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & vbTab & " SUBTOTAL 0%:")
-        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & vbTab & "   DESCUENTO:")
-        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & vbTab & "     IVA 14%:")
-        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & vbTab & " VALOR TOTAL:")
-        Console.WriteLine("Empresa: " & _empresa.Razonsocial)
+        Console.WriteLine("")
 
+        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "-----------------------")
+        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "SUBTOTAL 14%: $" & _subtotal)
+        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & " SUBTOTAL 0%: $0.00")
+        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "   DESCUENTO: $0.00")
+        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "     IVA 14%: $" & _impuesto)
+        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & " VALOR TOTAL: $" & _totalFactura)
 
-
-        Console.WriteLine("Cliente: " & _cliente.Nombre & vbNewLine)
+        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "    EFECTIVO: $" & _efectivo)
+        Format(_cambio, “##,##0.00”)
+        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "      CAMBIO: $" & _cambio)
+        Console.WriteLine("-------------------------------------------------------------------------------------")
 
 
     End Sub
 
 
-
+    Public Sub informacionEmpresa()
+        Empresa = New Empresa(1235846958001, "Proyecto Visual S.A.", "Proyecto", "Campus Espol, EDCOM - Guayaquil,Ecuador")
+    End Sub
 
 
 

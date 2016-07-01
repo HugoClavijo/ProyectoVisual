@@ -18,4 +18,24 @@
             _ArrayFacturas = value
         End Set
     End Property
+
+
+
+
+
+
+    Public Sub cargarFacturas()
+        'Dim fact1 As New Factura()
+    End Sub
+
+
+
+
+
+
+
+
+
+
+
 End Class
