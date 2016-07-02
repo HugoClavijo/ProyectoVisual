@@ -13,6 +13,7 @@
     Public Sub New()
         cargarProductos()
     End Sub
+
     Public Sub cargarProductos()
         prod1 = New Producto(100, "a", 40.0)
         prod2 = New Producto(200, "b", 50.0)
@@ -39,14 +40,29 @@
 
     End Sub
 
+    Public Sub AñadirProducto(cantidad As Integer, nombre As String, precio As Double)
+        ArrayProductos.Add(New Producto(cantidad, nombre, precio))
+    End Sub
 
+    Public Sub BorrarProducto(cantidad As Integer, nombre As String)
+        'Dim contador = 0
+        If cantidad > 0 Then
+            For Each producto As Producto In ArrayProductos
+                If producto.Nombre = nombre Then
+                    producto.CantidadStock -= cantidad
+                    If cantidad < 0 Then
+                        producto.CantidadStock = 0
+                    End If
+                    'ArrayProductos.Remove(producto)
+                    'contador += 1
+                    'If contador = cantidad Then
+                    '    Exit For
+                    'End If
+                End If
+            Next
+        End If
 
-
-
-
-
-
-
+    End Sub
 
 
     Public Property ArrayProductos() As ArrayList

@@ -17,7 +17,8 @@
 
         Dim user, pass, idAux As String
         Dim activo As Usuario
-        Dim opcion As Integer
+
+
 
         Do
             Console.Clear()
@@ -31,64 +32,126 @@
 
         activo = ObtenerIdUsuario(idAux)
 
+
         Select Case activo.TipoUser
-
             Case "administrador"
-                Do
-                    Console.Clear()
-                    Console.WriteLine("Usuario Administrador " & idAux & " Logeado... " & user & vbNewLine)
-                    Console.WriteLine("1.- Categorías")
-                    Console.WriteLine("2.- Artículos")
-                    Console.WriteLine("3.- IVA diferenciado")
-                    Console.WriteLine("4.- Provincia")
-                    Console.WriteLine("5.- Salir de la sesión")
-                    Console.WriteLine("6.- Salir del sistema")
-                    Console.Write("Ingrese una opción: ")
-                    opcion = Console.ReadLine()
-
-                    If opcion = "5" Then
-                        Iniciar()
-                    End If
-
-                Loop Until (opcion = "6")
-
+                MenuAdministrador(user, pass, idAux)
 
             Case "vendedor"
-
-
-                Console.Clear()
-                    Console.WriteLine("Usuario Vendedor " & idAux & " Logeado... " & user & vbNewLine)
-                    Console.WriteLine("1.- Facturar")
-                    Console.WriteLine("2.- Salir de la sesión")
-                    Console.WriteLine("3.- Salir del sistema")
-                    Console.Write("Ingrese una opción: ")
-                    opcion = Console.ReadLine()
-
-
-                If opcion = "1" Then
-
-                    facturar()
-
-
-
-                ElseIf opcion = "2" Then
-                    'Console.Clear()
-                    'Console.WriteLine("3.- Salir del sistema")
-                    Iniciar()
-
-
-
-                ElseIf opcion = "3" Then
-
-
-
-
-                End If
-
+                MenuVendedor(user, pass, idAux)
 
         End Select
 
     End Sub
+
+
+    Public Sub MenuAdministrador(user As String, pass As String, idAux As String)
+        Dim opcionAdmin As Integer
+        Dim opcionProductos As Integer
+        Dim auxCantidad As Integer
+        Dim auxNombre As String
+        Dim auxPrecio As Double
+
+
+        Do
+            Console.Clear()
+            Console.WriteLine("Usuario Administrador " & idAux & " Logeado... " & user & vbNewLine)
+            Console.WriteLine("1.- Categorías")
+            Console.WriteLine("2.- Productos")
+            Console.WriteLine("3.- IVA diferenciado")
+            Console.WriteLine("4.- Provincia")
+            Console.WriteLine("5.- Salir de la sesión")
+            Console.WriteLine("6.- Salir del sistema")
+            Console.Write("Ingrese una opción: ")
+            opcionAdmin = Console.ReadLine()
+
+            Select Case opcionAdmin
+                Case "1"
+                            'Administrador de categorias
+                Case "2"
+                    Console.Clear()
+                    Console.WriteLine("1.- Añadir producto")
+                    Console.WriteLine("2.- Borrar producto")
+                    Console.WriteLine("3.- Regresar")
+                    Console.WriteLine("4.- Salir del sistema")
+                    Console.Write("Ingrese una opción: ")
+                    opcionProductos = Console.ReadLine()
+
+                    Select Case opcionProductos
+                        Case "1"
+                            Console.Clear()
+                            Console.WriteLine("Ingrese cantidad que desea añadir: ")
+                            auxCantidad = Console.ReadLine()
+                            Console.WriteLine("Ingrese Nombre del producto: ")
+                            auxNombre = Console.ReadLine()
+                            Console.WriteLine("Ingrese precio del producto: ")
+                            auxPrecio = Console.ReadLine()
+
+                            vectorProductos.AñadirProducto(auxCantidad, auxNombre, auxPrecio)
+                            MenuAdministrador(user, pass, idAux)
+                        Case "2"
+                            Console.Clear()
+                            Console.WriteLine("Ingrese cantidad que desea Borrar: ")
+                            auxCantidad = Console.ReadLine()
+                            Console.WriteLine("Ingrese Nombre del producto: ")
+                            auxNombre = Console.ReadLine()
+                            Console.WriteLine("Ingrese precio del producto: ")
+                            auxPrecio = Console.ReadLine()
+
+                            vectorProductos.BorrarProducto(auxCantidad, auxNombre)
+                            MenuAdministrador(user, pass, idAux)
+                        Case "3"
+                            MenuAdministrador(user, pass, idAux)
+                        Case "4"
+                            Environment.Exit(0)
+                    End Select
+
+                Case "3"
+                    'Iva diferenciado
+                Case "5"
+                    Iniciar()
+                    'Case "6"
+                    '    Environment.Exit(0)
+            End Select
+        Loop Until (opcionAdmin = "6")
+
+    End Sub
+
+    Public Sub MenuVendedor(user As String, pass As String, idAux As String)
+        Dim opcionVendedor As Integer
+        Console.Clear()
+        Console.WriteLine("Usuario Vendedor " & idAux & " Logeado... " & user & vbNewLine)
+        Console.WriteLine("1.- Facturar")
+        Console.WriteLine("2.- Salir de la sesión")
+        Console.WriteLine("3.- Salir del sistema")
+        Console.Write("Ingrese una opción: ")
+        opcionVendedor = Console.ReadLine()
+
+        Select Case opcionVendedor
+            Case "1"
+                facturar()
+            Case "2"
+                Iniciar()
+            Case "3"
+                Environment.Exit(0)
+        End Select
+
+        'If opcionVendedor = "1" Then
+
+        '        facturar()
+
+
+
+        '    ElseIf opcionVendedor = "2" Then
+        '        'Console.Clear()
+        '        'Console.WriteLine("3.- Salir del sistema")
+        '        Iniciar()
+
+        '    ElseIf opcionVendedor = "3" Then
+
+        'End If
+    End Sub
+
 
     Public Sub facturar()
         Dim siono As String
@@ -241,6 +304,7 @@
 
 
     End Sub
+
     Public Function ValidarUsuario(usuario As String, pass As String)
         Dim id As String = "No existe"
         Dim tipo As String = "Ninguno"
@@ -281,8 +345,8 @@
 
     Public Sub New(arreglo As ArrayList)
         Me.Usuarios = arreglo
-        vectorProductos = New VectorProductos
-        vectorFacturas = New VectorFacturas
+        Me.vectorProductos = New VectorProductos
+        Me.vectorFacturas = New VectorFacturas
     End Sub
 
 

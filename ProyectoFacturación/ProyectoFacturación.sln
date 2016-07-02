@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ProyectoFacturación", "ProyectoFacturación\ProyectoFacturación.vbproj", "{CC4670C0-0AC1-4F06-AE2A-F3C68BBC6BD6}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ProyectoFacturacion", "ProyectoFacturación\ProyectoFacturacion.vbproj", "{CC4670C0-0AC1-4F06-AE2A-F3C68BBC6BD6}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CorrecionLeccion", "..\..\..\Visual Studio 2015\Projects\CorrecionLeccion\CorrecionLeccion\CorrecionLeccion.vbproj", "{C1D55B89-E428-4243-A154-0B136B086D37}"
 EndProject
