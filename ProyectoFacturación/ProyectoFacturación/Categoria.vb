@@ -66,7 +66,7 @@
 
 
     Public Sub AñadirProducto(cantidad As Integer, nombre As String, precio As Double)
-        Productos.Add(New Producto(cantidad, nombre, precio))
+        Productos.Add(New Producto(cantidad, nombre, precio, Me.Nombre))
     End Sub
 
     Public Sub BorrarProducto(cantidad As Integer, nombre As String)

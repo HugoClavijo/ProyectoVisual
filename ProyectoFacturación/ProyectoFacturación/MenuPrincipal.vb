@@ -71,9 +71,8 @@
             Console.WriteLine("1.- Categorías")
             Console.WriteLine("2.- Productos")
             Console.WriteLine("3.- IVA diferenciado")
-            Console.WriteLine("4.- Provincia")
-            Console.WriteLine("5.- Salir de la sesión")
-            Console.WriteLine("6.- Salir del sistema")
+            Console.WriteLine("4.- Salir de la sesión")
+            Console.WriteLine("5.- Salir del sistema")
             Console.Write("Ingrese una opción: ")
             opcionAdmin = Console.ReadLine()
 
@@ -201,14 +200,15 @@
 
                     'Iva diferenciado
 
-                Case "5"
+                Case "4"
 
                     Iniciar()
-                Case "6"
+
+                Case "5"
                     Environment.Exit(0)
             End Select
 
-        Loop Until (opcionAdmin = "6")
+        Loop Until (opcionAdmin = "5")
 
     End Sub
 
