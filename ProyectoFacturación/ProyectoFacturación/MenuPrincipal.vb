@@ -3,6 +3,10 @@
     Protected vectorProductos As VectorProductos
     Protected vectorFacturas As VectorFacturas
     Protected arregloUsuarios As New ArrayList()
+    Dim auxImpuesto As Double = 0.14
+    Dim auxEspecial As Double = 0.12
+    Dim auxTarjeta As Double = 0.01
+    Dim auxElectronico As Double = 0.04
     Dim detallesArray As New ArrayList
 
     Public Property Usuarios() As ArrayList
@@ -60,11 +64,11 @@
         Dim opcionAdmin As Integer
         Dim opcionProductos As Integer
         Dim opcionCategorias As Integer
+        Dim opcionIva As Integer
         Dim auxCategoria As String
         Dim auxCantidad As Integer
         Dim auxNombre As String
         Dim auxPrecio As Double
-
 
         Do
             Console.Clear()
@@ -78,6 +82,7 @@
             opcionAdmin = Console.ReadLine()
 
             Select Case opcionAdmin
+
                 Case "1"
                     'Administrador de categorias
                     Console.Clear()
@@ -197,9 +202,45 @@
 
                     End Select
 
+
                 Case "3"
 
                     'Iva diferenciado
+                    Console.Clear()
+                    Console.WriteLine("1.- Ingresar IVA por provincia")
+                    Console.WriteLine("2.- Ingresar Valor Devuelto por tipo de pago")
+                    Console.WriteLine("3.- Regresar")
+                    Console.WriteLine("4.- Salir del sistema")
+                    Console.Write("Ingrese una opción: ")
+                    opcionIva = Console.ReadLine()
+
+                    Select Case opcionIva
+                        Case "1"
+                            Console.Clear()
+                            Console.WriteLine("IVA Especial: 0.12 (Manabí - Esmeraldas) - IVA Normal: 0.14 (Resto del Ecuador)" & vbNewLine)
+                            Console.WriteLine("Ingrese Iva Normal: ")
+                            auxImpuesto = Console.ReadLine()
+                            Console.WriteLine("Ingrese Iva Especial: ")
+                            auxEspecial = Console.ReadLine()
+                            MenuAdministrador(user, pass, idAux)
+
+                        Case "2"
+                            Console.Clear()
+                            Console.WriteLine("Valor Devuelto: 0 (Efectivo)" & "-" & auxTarjeta & "(Tarjeta De Credito)" & "-" & auxElectronico & "(Dinero Electronico)" & vbNewLine)
+                            Console.WriteLine("Ingrese Valor Devuelto (Tarjeta De Credito) :   ")
+                            auxTarjeta = Console.ReadLine()
+                            Console.WriteLine("Ingrese Valor Devuelto (Dinero Electronico): ")
+                            auxElectronico = Console.ReadLine()
+                            MenuAdministrador(user, pass, idAux)
+
+                        Case "3"
+                            MenuAdministrador(user, pass, idAux)
+
+                        Case "4"
+                            Environment.Exit(0)
+
+                    End Select
+
 
                 Case "4"
 
