@@ -54,6 +54,7 @@
         ''total1 = factura1.Cliente.comprar(2, prod1)
         ''total2 = factura1.Cliente.comprar(1, prod1)
 
+
         ''factura1.agregarProducto(prod1)
         ''factura1.agregarProducto(prod2)
         ''factura1.mostrarFactura()

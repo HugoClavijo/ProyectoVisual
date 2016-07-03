@@ -75,9 +75,10 @@
         If cantidad > 0 Then
             For Each producto As Producto In Productos
                 If producto.Nombre = nombre Then
-                    producto.CantidadStock -= cantidad
-                    If cantidad < 0 Then
+                    If producto.CantidadStock < cantidad Then
                         producto.CantidadStock = 0
+                    Else
+                        producto.CantidadStock -= cantidad
                     End If
                     'ArrayProductos.Remove(producto)
                     'contador += 1
