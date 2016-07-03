@@ -1,4 +1,5 @@
 ﻿Public Class MenuPrincipal
+
     Protected vectorProductos As VectorProductos
     Protected vectorFacturas As VectorFacturas
     Protected arregloUsuarios As New ArrayList()
