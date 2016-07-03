@@ -10,6 +10,12 @@ Public Class Factura
     Private _subtotal As Double
     Private _totalFactura As Double
     Private _efectivo As Double
+    Private _tarjetaCredito As Double
+
+    Private _dineroElectronico As Double
+
+
+
     Private _cambio As Double
 
 
@@ -19,13 +25,14 @@ Public Class Factura
     Private _autSRI As String = "1234567890123456789012345678901234567890123456789"
     Private _fechaEmision As String
 
+    Private _ahorroFactura As Double
 
 
 
     'falta poner detalle de la factura
 
     Public Sub New(Cliente As Cliente, arraydetalles As ArrayList, subtotal As Double, iva As Double, totalFactura As Double,
-                   efectivo As Double, cambio As Double)
+                   efectivo As Double, tarjeta As Double, dineroElectronico As Double, cambio As Double, ahorro As Double)
         informacionEmpresa()
         Dim facturas As New VectorFacturas
         Dim ultimaFact As Long = 0
@@ -40,8 +47,10 @@ Public Class Factura
         Me._impuesto = iva
         Me._totalFactura = totalFactura
         Me._efectivo = efectivo
+        Me._tarjetaCredito = tarjeta
+        Me._dineroElectronico = dineroElectronico
         Me._cambio = cambio
-
+        Me._ahorroFactura = ahorro
 
         '_fechaEmision = DateTime.Now().ToShortDateString()
         _fechaEmision = Format(Now(), "Long Date")
@@ -49,7 +58,14 @@ Public Class Factura
 
 
 
-
+    Public Property AhorroFactura() As Double
+        Get
+            Return _ahorroFactura
+        End Get
+        Set(ByVal value As Double)
+            _ahorroFactura = value
+        End Set
+    End Property
 
     Public Property Cambio() As Double
         Get
@@ -67,6 +83,27 @@ Public Class Factura
         End Get
         Set(ByVal value As Double)
             _efectivo = value
+        End Set
+    End Property
+    Public Property TarjetaCredito() As Double
+        Get
+            Return _tarjetaCredito
+        End Get
+        Set(ByVal value As Double)
+            _tarjetaCredito = value
+        End Set
+    End Property
+
+
+
+
+
+    Public Property DineroElectronico() As Double
+        Get
+            Return _dineroElectronico
+        End Get
+        Set(ByVal value As Double)
+            _dineroElectronico = value
         End Set
     End Property
 
@@ -249,8 +286,12 @@ Public Class Factura
         Console.WriteLine(vbTab & vbTab & vbTab & vbTab & " VALOR TOTAL: $" & _totalFactura)
 
         Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "    EFECTIVO: $" & _efectivo)
-        Format(_cambio, “##,##0.00”)
+        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "    TCREDITO: $" & _tarjetaCredito)
+        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "  D.ELECTRON: $" & _dineroElectronico)
+        Console.WriteLine("")
         Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "      CAMBIO: $" & _cambio)
+        Console.WriteLine("")
+        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "      AHORRO: $" & _ahorroFactura)
         Console.WriteLine("-------------------------------------------------------------------------------------")
 
 

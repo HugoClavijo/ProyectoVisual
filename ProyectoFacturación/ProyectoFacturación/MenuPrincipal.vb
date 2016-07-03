@@ -7,6 +7,7 @@
     Dim auxEspecial As Double = 0.12
     Dim auxTarjeta As Double = 0.01
     Dim auxElectronico As Double = 0.04
+    Dim auxResta As Double = 0
     Dim detallesArray As New ArrayList
     Protected arregloCategorias As ArrayList
 
@@ -19,8 +20,6 @@
             arregloUsuarios = value
         End Set
     End Property
-
-
 
 
     Public Property Categorias() As ArrayList
@@ -314,7 +313,11 @@
         Dim iva As Double = 0.14
         Dim totalFactura As Double = 0
         Dim efectivo As Double = 0
+        Dim tarjeta As Double = 0
+        Dim dineroElect As Double = 0
         Dim cambio As Double = 0
+
+        Dim formaPago As Integer = 0
 
         Dim cliente As Cliente
         Dim producto As Producto
@@ -416,18 +419,62 @@
                 Console.SetCursorPosition(posx, posy)
                 totalFactura = iva + subtotal
                 Console.Write("   TOTAL: $" & totalFactura)
+
+
+
+
                 posy += 1
                 Console.SetCursorPosition(posx, posy)
                 Console.Write("EFECTIVO: $")
                 efectivo = Console.ReadLine()
                 posy += 1
                 Console.SetCursorPosition(posx, posy)
-                cambio = (efectivo - totalFactura)
-                Format(cambio, “##,##0.00”)
-                Console.Write("CAMBIO  : $" & cambio)
+                Console.Write("TCREDITO: $")
+                tarjeta = Console.ReadLine()
+                Dim auxta As Double = 0
+                If tarjeta > 0 Then
+                    auxta = auxTarjeta * totalFactura
 
-                Dim factura As New Factura(cliente, detallesArray, subtotal, iva, totalFactura, efectivo, cambio)
-                factura.mostrarFactura()
+                End If
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+                Console.Write("D.ELECTR: $")
+                dineroElect = Console.ReadLine()
+                Dim auxel As Double = 0
+                If dineroElect > 0 Then
+                    auxel = auxElectronico * subtotal
+                End If
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+                'operacion(14%      -   4%    -      1%)
+                cambio = ((efectivo + tarjeta + dineroElect) - totalFactura)
+                'cambiar formato de cambio
+                Console.Write("CAMBIO  : $" & cambio)
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+                Console.Write("--------------------")
+                posy += 1
+
+                auxResta = ((efectivo + tarjeta + dineroElect) - totalFactura) - auxel - auxta
+                Console.SetCursorPosition(posx, posy)
+                If efectivo > totalFactura Then
+                    auxResta = 0
+                End If
+                Console.Write("Te ahorras: $" & auxResta)
+
+
+
+                Dim factura As New Factura(cliente, detallesArray, subtotal, iva, totalFactura, efectivo, tarjeta, dineroElect, cambio, auxResta)
+                vectorFacturas.ArrayFacturas.Add(factura)
+
+                For Each fact As Factura In vectorFacturas.ArrayFacturas
+                    fact.mostrarFactura()
+                Next
+
+
+
+                'factura.mostrarFactura()
+                detallesArray.Clear()
                 Console.ReadLine()
                 Iniciar()
             End If
