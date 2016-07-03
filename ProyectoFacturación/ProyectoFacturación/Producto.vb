@@ -53,12 +53,6 @@
 
 
 
-
-
-
-
-
-
     Public Property Precio() As Double
         Get
             Return _precio
