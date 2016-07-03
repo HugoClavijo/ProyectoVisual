@@ -152,7 +152,7 @@
 
                             For Each cat As Categoria In Categorias
                                 If auxCategoria = cat.Nombre Then
-                                    cat.AñadirProducto(auxCantidad, auxNombre, auxPrecio)
+                                    cat.AñadirProducto(auxCantidad, auxNombre, auxPrecio, auxCategoria)
                                 End If
                             Next
 
@@ -205,7 +205,9 @@
                     Iniciar()
 
                 Case "5"
+
                     Environment.Exit(0)
+
             End Select
 
         Loop Until (opcionAdmin = "5")
@@ -232,20 +234,6 @@
                 Environment.Exit(0)
         End Select
 
-        'If opcionVendedor = "1" Then
-
-        '        facturar()
-
-
-
-        '    ElseIf opcionVendedor = "2" Then
-        '        'Console.Clear()
-        '        'Console.WriteLine("3.- Salir del sistema")
-        '        Iniciar()
-
-        '    ElseIf opcionVendedor = "3" Then
-
-        'End If
     End Sub
 
 
@@ -482,10 +470,53 @@
     End Function
 
 
+
+    Public Sub CargarProductos()
+        Dim prod1 As Producto = New Producto(100, "a", 40.0, "Accion")
+        Dim prod2 As Producto = New Producto(200, "b", 50.0, "Accion")
+        Dim prod3 As Producto = New Producto(300, "c", 60.0, "Accion")
+
+        For Each cat As Categoria In arregloCategorias
+            If cat.Nombre = "Accion" Then
+                cat.Productos.Add(prod1)
+                cat.Productos.Add(prod2)
+                cat.Productos.Add(prod2)
+            End If
+        Next
+
+        Dim prod4 As Producto = New Producto(400, "d", 70.0, "Aventura")
+        Dim prod5 As Producto = New Producto(500, "e", 80.0, "Aventura")
+        Dim prod6 As Producto = New Producto(600, "f", 90.0, "Aventura")
+
+        For Each cat As Categoria In arregloCategorias
+            If cat.Nombre = "Aventura" Then
+                cat.Productos.Add(prod4)
+                cat.Productos.Add(prod5)
+                cat.Productos.Add(prod6)
+            End If
+        Next
+
+        Dim prod7 As Producto = New Producto(700, "g", 100.0, "Terror")
+        Dim prod8 As Producto = New Producto(800, "h", 110.0, "Terror")
+        Dim prod9 As Producto = New Producto(900, "i", 120.0, "Terror")
+
+        For Each cat As Categoria In arregloCategorias
+            If cat.Nombre = "Terror" Then
+                cat.Productos.Add(prod7)
+                cat.Productos.Add(prod8)
+                cat.Productos.Add(prod9)
+            End If
+        Next
+
+    End Sub
+
+
+
     Public Sub New(arreglo As ArrayList)
         Me.Usuarios = arreglo
         Me.Categorias = New ArrayList
         CargarCategorias()
+        CargarProductos()
         Me.vectorProductos = New VectorProductos
         Me.vectorFacturas = New VectorFacturas
     End Sub

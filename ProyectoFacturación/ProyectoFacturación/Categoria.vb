@@ -65,9 +65,10 @@
     End Function
 
 
-    Public Sub AñadirProducto(cantidad As Integer, nombre As String, precio As Double)
-        Productos.Add(New Producto(cantidad, nombre, precio, Me.Nombre))
+    Public Sub AñadirProducto(cantidad As Integer, nombre As String, precio As Double, categoria As String)
+        Productos.Add(New Producto(cantidad, nombre, precio, categoria))
     End Sub
+
 
     Public Sub BorrarProducto(cantidad As Integer, nombre As String)
         'Dim contador = 0
