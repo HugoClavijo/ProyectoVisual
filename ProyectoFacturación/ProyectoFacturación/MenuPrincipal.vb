@@ -3,6 +3,7 @@
     Protected vectorFacturas As VectorFacturas
     Protected arregloUsuarios As New ArrayList()
     Dim detallesArray As New ArrayList
+
     Public Property Usuarios() As ArrayList
         Get
             Return arregloUsuarios
@@ -13,12 +14,21 @@
     End Property
 
 
+    Protected arregloCategorias As ArrayList
+    Public Property Categorias() As ArrayList
+        Get
+            Return arregloCategorias
+        End Get
+        Set(ByVal value As ArrayList)
+            arregloCategorias = value
+        End Set
+    End Property
+
+
     Public Sub Iniciar()
 
         Dim user, pass, idAux As String
         Dim activo As Usuario
-
-
 
         Do
             Console.Clear()
@@ -48,6 +58,8 @@
     Public Sub MenuAdministrador(user As String, pass As String, idAux As String)
         Dim opcionAdmin As Integer
         Dim opcionProductos As Integer
+        Dim opcionCategorias As Integer
+        Dim auxCategoria As String
         Dim auxCantidad As Integer
         Dim auxNombre As String
         Dim auxPrecio As Double
@@ -67,55 +79,139 @@
 
             Select Case opcionAdmin
                 Case "1"
-                            'Administrador de categorias
-                Case "2"
+                    'Administrador de categorias
                     Console.Clear()
-                    Console.WriteLine("1.- Añadir producto")
-                    Console.WriteLine("2.- Borrar producto")
+                    Console.WriteLine("1.- Añadir categoria")
+                    Console.WriteLine("2.- Borrar categoria")
                     Console.WriteLine("3.- Regresar")
                     Console.WriteLine("4.- Salir del sistema")
                     Console.Write("Ingrese una opción: ")
-                    opcionProductos = Console.ReadLine()
+                    opcionCategorias = Console.ReadLine()
+
+                    Select Case opcionCategorias
+                        Case "1"
+
+                            Console.Clear()
+                            Console.WriteLine("Ingrese la categoria (añadir):  ")
+                            auxCategoria = Console.ReadLine()
+                            Categorias.Add(New Categoria(auxCategoria))
+
+                            MenuAdministrador(user, pass, idAux)
+
+                        Case "2"
+
+                            Console.Clear()
+                            Console.WriteLine("Ingrese la categoria (borrar): ")
+                            auxCategoria = Console.ReadLine()
+
+                            For Each cat As Categoria In Categorias
+                                If cat.Nombre = auxCategoria Then
+                                    Categorias.Remove(cat)
+                                End If
+                            Next
+
+                            MenuAdministrador(user, pass, idAux)
+
+                        Case "3"
+
+                            MenuAdministrador(user, pass, idAux)
+
+                        Case "4"
+
+                            Environment.Exit(0)
+
+                    End Select
+
+
+                Case "2"
+                    'Administrador de productos
+                    Console.Clear()
+                    Console.WriteLine("1.- Añadir productos")
+                    Console.WriteLine("2.- Borrar productos")
+                    Console.WriteLine("3.- Regresar")
+                    Console.WriteLine("4.- Salir del sistema")
+                    Console.Write("Ingrese una opción: ")
+                    opcionCategorias = Console.ReadLine()
 
                     Select Case opcionProductos
                         Case "1"
                             Console.Clear()
-                            Console.WriteLine("Ingrese cantidad que desea añadir: ")
+                            Console.WriteLine("Ingrese la categoria del producto: ")
+
+                            For Each cat As Categoria In Categorias
+                                Console.WriteLine(cat.Nombre)
+                            Next
+
+                            Console.WriteLine()
+                            auxCategoria = Console.ReadLine()
+                            Console.WriteLine(vbNewLine & "Ingrese cantidad que desea añadir: " & vbNewLine)
                             auxCantidad = Console.ReadLine()
-                            Console.WriteLine("Ingrese Nombre del producto: ")
+                            Console.WriteLine(vbNewLine & "Ingrese Nombre del producto: " & vbNewLine)
                             auxNombre = Console.ReadLine()
-                            Console.WriteLine("Ingrese precio del producto: ")
+                            Console.WriteLine(vbNewLine & "Ingrese precio del producto: " & vbNewLine)
                             auxPrecio = Console.ReadLine()
 
-                            vectorProductos.AñadirProducto(auxCantidad, auxNombre, auxPrecio)
+                            For Each cat As Categoria In Categorias
+                                If auxCategoria = cat.Nombre Then
+                                    cat.AñadirProducto(auxCantidad, auxNombre, auxPrecio)
+                                End If
+                            Next
+
+                            'vectorProductos.AñadirProducto(auxCantidad, auxNombre, auxPrecio)
                             MenuAdministrador(user, pass, idAux)
+
                         Case "2"
                             Console.Clear()
-                            Console.WriteLine("Ingrese cantidad que desea Borrar: ")
+                            Console.WriteLine("Ingrese la categoria del producto: ")
+
+                            For Each cat As Categoria In Categorias
+                                Console.WriteLine(cat.Nombre)
+                            Next
+
+                            Console.WriteLine()
+                            auxCategoria = Console.ReadLine()
+                            Console.WriteLine(vbNewLine & "Ingrese cantidad que desea Borrar: " & vbNewLine)
                             auxCantidad = Console.ReadLine()
-                            Console.WriteLine("Ingrese Nombre del producto: ")
+                            Console.WriteLine(vbNewLine & "Ingrese Nombre del producto: " & vbNewLine)
                             auxNombre = Console.ReadLine()
-                            Console.WriteLine("Ingrese precio del producto: ")
+                            Console.WriteLine(vbNewLine & "Ingrese precio del producto: " & vbNewLine)
                             auxPrecio = Console.ReadLine()
 
-                            vectorProductos.BorrarProducto(auxCantidad, auxNombre)
+                            For Each cat As Categoria In Categorias
+                                If auxCategoria = cat.Nombre Then
+                                    cat.BorrarProducto(auxCantidad, auxNombre)
+                                End If
+                            Next
+
+                            'vectorProductos.BorrarProducto(auxCantidad, auxNombre)
+
                             MenuAdministrador(user, pass, idAux)
+
                         Case "3"
+
                             MenuAdministrador(user, pass, idAux)
+
                         Case "4"
+
                             Environment.Exit(0)
+
                     End Select
 
                 Case "3"
+
                     'Iva diferenciado
+
                 Case "5"
+
                     Iniciar()
-                    'Case "6"
-                    '    Environment.Exit(0)
+                Case "6"
+                    Environment.Exit(0)
             End Select
+
         Loop Until (opcionAdmin = "6")
 
     End Sub
+
 
     Public Sub MenuVendedor(user As String, pass As String, idAux As String)
         Dim opcionVendedor As Integer
@@ -342,13 +438,19 @@
     End Function
 
 
-
-    Public Sub New(arreglo As ArrayList)
-        Me.Usuarios = arreglo
-        Me.vectorProductos = New VectorProductos
-        Me.vectorFacturas = New VectorFacturas
+    Public Sub CargarCategorias()
+        Dim accion As Categoria = New Categoria("Accion")
+        Dim aventura As Categoria = New Categoria("Aventura")
+        Dim terror As Categoria = New Categoria("Terror")
+        Categorias.Add(accion)
+        Categorias.Add(aventura)
+        Categorias.Add(terror)
     End Sub
 
+
+    Public Sub AñadirCategoria(categoria As Categoria)
+        Categorias.Add(categoria)
+    End Sub
 
 
     Public Function ValidarProducto(cantidad As Integer, nombProd As String)
@@ -378,5 +480,14 @@
 
         Return prod
     End Function
+
+
+    Public Sub New(arreglo As ArrayList)
+        Me.Usuarios = arreglo
+        Me.Categorias = New ArrayList
+        CargarCategorias()
+        Me.vectorProductos = New VectorProductos
+        Me.vectorFacturas = New VectorFacturas
+    End Sub
 
 End Class

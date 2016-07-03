@@ -65,5 +65,28 @@
     End Function
 
 
+    Public Sub AñadirProducto(cantidad As Integer, nombre As String, precio As Double)
+        Productos.Add(New Producto(cantidad, nombre, precio))
+    End Sub
+
+    Public Sub BorrarProducto(cantidad As Integer, nombre As String)
+        'Dim contador = 0
+        If cantidad > 0 Then
+            For Each producto As Producto In Productos
+                If producto.Nombre = nombre Then
+                    producto.CantidadStock -= cantidad
+                    If cantidad < 0 Then
+                        producto.CantidadStock = 0
+                    End If
+                    'ArrayProductos.Remove(producto)
+                    'contador += 1
+                    'If contador = cantidad Then
+                    '    Exit For
+                    'End If
+                End If
+            Next
+        End If
+
+    End Sub
 
 End Class
