@@ -20,6 +20,7 @@
 
 
     Protected arregloCategorias As ArrayList
+
     Public Property Categorias() As ArrayList
         Get
             Return arregloCategorias
@@ -49,10 +50,13 @@
 
 
         Select Case activo.TipoUser
+
             Case "administrador"
+
                 MenuAdministrador(user, pass, idAux)
 
             Case "vendedor"
+
                 MenuVendedor(user, pass, idAux)
 
         End Select
