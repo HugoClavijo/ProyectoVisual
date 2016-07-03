@@ -140,6 +140,7 @@
 
                     Select Case opcionProductos
                         Case "1"
+
                             Console.Clear()
                             Console.WriteLine("Ingrese la categoria del producto: ")
 
@@ -166,6 +167,7 @@
                             MenuAdministrador(user, pass, idAux)
 
                         Case "2"
+
                             Console.Clear()
                             Console.WriteLine("Ingrese la categoria del producto: ")
 
@@ -215,7 +217,9 @@
                     opcionIva = Console.ReadLine()
 
                     Select Case opcionIva
+
                         Case "1"
+
                             Console.Clear()
                             Console.WriteLine("IVA Especial: 0.12 (Manabí - Esmeraldas) - IVA Normal: 0.14 (Resto del Ecuador)" & vbNewLine)
                             Console.WriteLine("Ingrese Iva Normal: ")
@@ -225,6 +229,7 @@
                             MenuAdministrador(user, pass, idAux)
 
                         Case "2"
+
                             Console.Clear()
                             Console.WriteLine("Valor Devuelto: 0 (Efectivo)" & "-" & auxTarjeta & "(Tarjeta De Credito)" & "-" & auxElectronico & "(Dinero Electronico)" & vbNewLine)
                             Console.WriteLine("Ingrese Valor Devuelto (Tarjeta De Credito) :   ")
@@ -234,9 +239,11 @@
                             MenuAdministrador(user, pass, idAux)
 
                         Case "3"
+
                             MenuAdministrador(user, pass, idAux)
 
                         Case "4"
+
                             Environment.Exit(0)
 
                     End Select
@@ -258,7 +265,9 @@
 
 
     Public Sub MenuVendedor(user As String, pass As String, idAux As String)
+
         Dim opcionVendedor As Integer
+
         Console.Clear()
         Console.WriteLine("Usuario Vendedor " & idAux & " Logeado... " & user & vbNewLine)
         Console.WriteLine("1.- Facturar")
@@ -268,12 +277,19 @@
         opcionVendedor = Console.ReadLine()
 
         Select Case opcionVendedor
+
             Case "1"
+
                 facturar()
+
             Case "2"
+
                 Iniciar()
+
             Case "3"
+
                 Environment.Exit(0)
+
         End Select
 
     End Sub
