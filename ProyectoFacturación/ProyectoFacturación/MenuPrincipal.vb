@@ -1,6 +1,6 @@
 ﻿Public Class MenuPrincipal
 
-    Protected vectorProductos As VectorProductos
+
     Protected vectorFacturas As VectorFacturas
     Protected arregloUsuarios As New ArrayList()
     Dim auxImpuesto As Double = 0.14
@@ -8,6 +8,8 @@
     Dim auxTarjeta As Double = 0.01
     Dim auxElectronico As Double = 0.04
     Dim detallesArray As New ArrayList
+    Protected arregloCategorias As ArrayList
+
 
     Public Property Usuarios() As ArrayList
         Get
@@ -19,7 +21,7 @@
     End Property
 
 
-    Protected arregloCategorias As ArrayList
+
 
     Public Property Categorias() As ArrayList
         Get
@@ -507,23 +509,56 @@
         Dim stock As Integer = 0
         Dim name As String = nombProd
         Dim prod As Producto
-        For Each producto As Producto In vectorProductos.ArrayProductos
-            If name = producto.Nombre And producto.CantidadStock > cantidad Then
-
-                prod = producto
-                producto.CantidadStock -= cantidad
-                'Console.WriteLine("Ahora tenemos:  " & producto.CantidadStock)
-
-            ElseIf (producto.CantidadStock < cantidad And nombProd = producto.Nombre) Then
-                'Console.WriteLine("*Lo sentimos*")
-                'Console.WriteLine("Tenemos un stock de: " & producto.CantidadStock)
-
-            ElseIf nombProd IsNot producto.Nombre Then
-                'Console.WriteLine(vectorProductos.ArrayProductos.Count)'obtengo la cantidad de  productos
 
 
-            End If
+        For Each cat As Categoria In arregloCategorias
+            Dim aux As Integer = 0
+
+
+            For Each producto As Producto In cat.Productos
+
+                producto = cat.obtenerProducto(aux)
+                If name = producto.Nombre And producto.CantidadStock > cantidad Then
+
+                    prod = producto
+                    producto.CantidadStock -= cantidad
+                    'Console.WriteLine("Ahora tenemos:  " & producto.CantidadStock)
+
+                ElseIf (producto.CantidadStock < cantidad And nombProd = producto.Nombre) Then
+                    'Console.WriteLine("*Lo sentimos*")
+                    'Console.WriteLine("Tenemos un stock de: " & producto.CantidadStock)
+
+                ElseIf nombProd IsNot producto.Nombre Then
+                    'Console.WriteLine(vectorProductos.ArrayProductos.Count)'obtengo la cantidad de  productos
+
+
+                End If
+                aux += 1
+            Next
+
         Next
+
+
+
+
+
+        'For Each producto As Producto In vectorProductos.ArrayProductos
+        '    If name = producto.Nombre And producto.CantidadStock > cantidad Then
+
+        '        prod = producto
+        '        producto.CantidadStock -= cantidad
+        '        'Console.WriteLine("Ahora tenemos:  " & producto.CantidadStock)
+
+        '    ElseIf (producto.CantidadStock < cantidad And nombProd = producto.Nombre) Then
+        '        'Console.WriteLine("*Lo sentimos*")
+        '        'Console.WriteLine("Tenemos un stock de: " & producto.CantidadStock)
+
+        '    ElseIf nombProd IsNot producto.Nombre Then
+        '        'Console.WriteLine(vectorProductos.ArrayProductos.Count)'obtengo la cantidad de  productos
+
+
+        '    End If
+        'Next
 
 
 
@@ -542,7 +577,7 @@
             If cat.Nombre = "Accion" Then
                 cat.Productos.Add(prod1)
                 cat.Productos.Add(prod2)
-                cat.Productos.Add(prod2)
+                cat.Productos.Add(prod3)
             End If
         Next
 
@@ -579,7 +614,7 @@
         Me.Categorias = New ArrayList
         CargarCategorias()
         CargarProductos()
-        Me.vectorProductos = New VectorProductos
+
         Me.vectorFacturas = New VectorFacturas
     End Sub
 

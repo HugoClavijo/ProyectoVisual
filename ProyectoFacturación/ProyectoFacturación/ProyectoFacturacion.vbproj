@@ -109,7 +109,6 @@
     <Compile Include="Producto.vb" />
     <Compile Include="Usuario.vb" />
     <Compile Include="VectorFacturas.vb" />
-    <Compile Include="VectorProductos.vb" />
     <Compile Include="Vendedor.vb" />
   </ItemGroup>
   <ItemGroup>

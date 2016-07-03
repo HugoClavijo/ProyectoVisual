@@ -1,13 +1,12 @@
 ﻿Public Class VectorFacturas
 
+
+
     Private _ArrayFacturas As ArrayList
-
-
 
     Public Sub New()
         ArrayFacturas = New ArrayList()
     End Sub
-
 
 
     Public Property ArrayFacturas() As ArrayList
@@ -20,14 +19,9 @@
     End Property
 
 
-
-
-
-
     Public Sub cargarFacturas()
-        'Dim fact1 As New Factura()
+        'Dim fact1 As New Factura() 
     End Sub
-
 
 
 

@@ -61,7 +61,7 @@
 
     Public Function obtenerProducto(num As Integer)
 
-        Return Productos(num).ToString
+        Return Productos(num)
     End Function
 
 
