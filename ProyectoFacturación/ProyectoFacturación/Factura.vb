@@ -3,7 +3,7 @@
 Public Class Factura
     Private _stab As String = "001"
     Private _ptoEmi As String = "001"
-    Private _secuencial As String = "00001"
+    Private _secuencial As Long = 1001
 
     Private _empresa As Empresa
     Private _cliente As Cliente
@@ -31,15 +31,12 @@ Public Class Factura
 
     'falta poner detalle de la factura
 
-    Public Sub New(Cliente As Cliente, arraydetalles As ArrayList, subtotal As Double, iva As Double, totalFactura As Double,
+    Public Sub New(numSecuencial As Long, Cliente As Cliente, arraydetalles As ArrayList, subtotal As Double, iva As Double, totalFactura As Double,
                    efectivo As Double, tarjeta As Double, dineroElectronico As Double, cambio As Double, ahorro As Double)
         informacionEmpresa()
-        Dim facturas As New VectorFacturas
-        Dim ultimaFact As Long = 0
-        For Each f As Factura In facturas.ArrayFacturas
-            ultimaFact = CLng(f.Secuencial)
-        Next
-        Me._secuencial = CStr(ultimaFact)
+
+
+        Me._secuencial = numSecuencial
         Me._cliente = Cliente
         _detalleArray = New ArrayList
         _detalleArray = arraydetalles
@@ -149,11 +146,11 @@ Public Class Factura
     End Property
 
 
-    Public Property Secuencial() As String
+    Public Property Secuencial() As Long
         Get
             Return _secuencial
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As Long)
             _secuencial = value
         End Set
     End Property
@@ -296,6 +293,8 @@ Public Class Factura
 
 
     End Sub
+
+
 
 
     Public Sub informacionEmpresa()

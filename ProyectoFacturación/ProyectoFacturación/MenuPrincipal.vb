@@ -306,6 +306,7 @@
         Dim ruc_ci As String
         Dim cantidads As String = ""
         Dim cantidad As Integer
+        Dim auxSecuencial As Long = 1001
         Dim descripcion As String
         Dim vunitario As Double = 0
         Dim vtotal As Double = 0
@@ -343,6 +344,10 @@
 
             cliente = New Cliente(nombre, ruc_ci)
 
+            For Each f As Factura In vectorFacturas.ArrayFacturas
+                auxSecuencial = f.Secuencial + 1
+
+            Next
 
 
             Console.WriteLine("CANTIDAD           PRODUCTO      ValorUnit     ValorTotal     ")
@@ -464,7 +469,7 @@
 
 
 
-                Dim factura As New Factura(cliente, detallesArray, subtotal, iva, totalFactura, efectivo, tarjeta, dineroElect, cambio, auxResta)
+                Dim factura As New Factura(auxSecuencial, cliente, detallesArray, subtotal, iva, totalFactura, efectivo, tarjeta, dineroElect, cambio, auxResta)
                 vectorFacturas.ArrayFacturas.Add(factura)
 
                 For Each fact As Factura In vectorFacturas.ArrayFacturas
@@ -487,11 +492,159 @@
 
         ElseIf siono = "n" Or siono = "N" Then
             'Console.WriteLine("Sr(es): Usuario final")
-            Console.Write("CANTIDAD: ")
-            cantidad = Console.ReadLine()
-            Console.Write("PRODUCTO: ")
-            descripcion = Console.ReadLine()
-            ValidarProducto(cantidad, descripcion)
+
+            Console.Clear()
+            Console.WriteLine("Sr(es):  Usuario final")
+            nombre = "Usuario final"
+
+
+            cliente = New Cliente(nombre)
+
+            For Each f As Factura In vectorFacturas.ArrayFacturas
+                auxSecuencial = f.Secuencial + 1
+
+            Next
+
+
+            Console.WriteLine("CANTIDAD           PRODUCTO      ValorUnit     ValorTotal     ")
+            posy = 2
+            Do While siono = "n" Or siono = "N"
+                posx = 2
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+
+
+                cantidads = Console.ReadLine()
+                If cantidads = "" Then
+                    Exit Do
+
+                Else
+                    cantidad = CInt(cantidads)
+                End If
+
+                posx += 19
+
+
+
+
+                Console.WriteLine("")
+
+                Console.SetCursorPosition(posx, posy)
+                descripcion = Console.ReadLine()
+                Console.WriteLine("")
+
+
+
+                producto = ValidarProducto(cantidad, descripcion)
+                posx += 16
+                Console.SetCursorPosition(posx, posy)
+                vunitario = producto.Precio
+                Console.WriteLine(vunitario)
+                Console.WriteLine("")
+                posx += 14
+                Console.SetCursorPosition(posx, posy)
+                vtotal = producto.Precio * cantidad
+                Console.WriteLine("$" & vtotal)
+
+                Dim detalle As New Detalle(cantidad, descripcion, vunitario, vtotal) 'esto debe ir a factura
+                detallesArray.Add(detalle)
+
+
+
+                Console.WriteLine("")
+                Console.Write("")
+
+
+
+
+
+            Loop
+
+            If cantidads = "" Then
+                posx = 40
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+                Console.Write("-----------------------")
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+                For Each d As Detalle In detallesArray
+                    subtotal += d.PrecioTotal
+                Next
+
+                Console.Write("SUBTOTAL: $" & subtotal)
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+                iva = iva * subtotal
+                Console.Write(" IVA 14%: $" & iva)
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+                totalFactura = iva + subtotal
+                Console.Write("   TOTAL: $" & totalFactura)
+
+
+
+
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+                Console.Write("EFECTIVO: $")
+                efectivo = Console.ReadLine()
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+                Console.Write("TCREDITO: $")
+                tarjeta = Console.ReadLine()
+                Dim auxta As Double = 0
+                If tarjeta > 0 Then
+                    auxta = auxTarjeta * totalFactura
+
+                End If
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+                Console.Write("D.ELECTR: $")
+                dineroElect = Console.ReadLine()
+                Dim auxel As Double = 0
+                If dineroElect > 0 Then
+                    auxel = auxElectronico * subtotal
+                End If
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+                'operacion(14%      -   4%    -      1%)
+                cambio = ((efectivo + tarjeta + dineroElect) - totalFactura)
+                'cambiar formato de cambio
+                Console.Write("CAMBIO  : $" & cambio)
+                posy += 1
+                Console.SetCursorPosition(posx, posy)
+                Console.Write("--------------------")
+                posy += 1
+
+                auxResta = ((efectivo + tarjeta + dineroElect) - totalFactura) - auxel - auxta
+                Console.SetCursorPosition(posx, posy)
+                If efectivo > totalFactura Then
+                    auxResta = 0
+                End If
+                Console.Write("Te ahorras: $" & auxResta)
+
+
+
+                Dim factura As New Factura(auxSecuencial, cliente, detallesArray, subtotal, iva, totalFactura, efectivo, tarjeta, dineroElect, cambio, auxResta)
+                vectorFacturas.ArrayFacturas.Add(factura)
+
+                For Each fact As Factura In vectorFacturas.ArrayFacturas
+                    fact.mostrarFactura()
+                Next
+
+
+
+                'factura.mostrarFactura()
+                detallesArray.Clear()
+                Console.ReadLine()
+                Iniciar()
+            End If
+
+
+
+
+            Console.ReadLine()
+
 
         End If
 
@@ -613,7 +766,13 @@
         Return prod
     End Function
 
-
+    Public Sub buscarFactura(secuencial As Long) ' esto  va en el menu administrador 
+        For Each f As Factura In vectorFacturas.ArrayFacturas
+            If secuencial = f.Secuencial Then
+                f.mostrarFactura()
+            End If
+        Next
+    End Sub
 
     Public Sub CargarProductos()
         Dim prod1 As Producto = New Producto(100, "a", 40.0, "Accion")

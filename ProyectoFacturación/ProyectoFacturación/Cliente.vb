@@ -15,10 +15,10 @@ Public Class Cliente
     End Property
 
 
-    'Public Sub New(Nombre As String)
-    '    Me._nombre = Nombre
+    Public Sub New(Nombre As String)
+        Me._nombre = Nombre
 
-    'End Sub
+    End Sub
 
 
     Public Sub New(Nombre As String, ruc_Cedula As String)
