@@ -66,29 +66,48 @@
 
 
     Public Sub AñadirProducto(cantidad As Integer, nombre As String, precio As Double, categoria As String)
-        Productos.Add(New Producto(cantidad, nombre, precio, categoria))
+        Dim auxProducto As String = Nothing
+        If cantidad > 0 Then
+            For Each producto As Producto In Productos
+                If producto.Nombre = nombre Then
+                    producto.CantidadStock += cantidad
+                    auxProducto = producto.Nombre
+                End If
+            Next
+
+            If auxProducto = Nothing Then
+                Productos.Add(New Producto(cantidad, nombre, precio, categoria))
+            End If
+        End If
+
     End Sub
 
 
     Public Sub BorrarProducto(cantidad As Integer, nombre As String)
         'Dim contador = 0
+        Dim indexProducto As Integer = 0
+
         If cantidad > 0 Then
             For Each producto As Producto In Productos
                 If producto.Nombre = nombre Then
                     If producto.CantidadStock < cantidad Then
                         producto.CantidadStock = 0
+                        indexProducto = Productos.IndexOf(producto)
                     Else
                         producto.CantidadStock -= cantidad
                     End If
-                    'ArrayProductos.Remove(producto)
-                    'contador += 1
-                    'If contador = cantidad Then
-                    '    Exit For
-                    'End If
                 End If
             Next
-        End If
 
+            If Not indexProducto = 0 Then
+                Productos.RemoveAt(indexProducto)
+            End If
+        End If
     End Sub
+
+    Public Sub BorrarTodosProductos()
+        Productos.Clear()
+    End Sub
+
 
 End Class

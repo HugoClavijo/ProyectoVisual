@@ -156,10 +156,11 @@
                 Case "2"
                     'Administrador de productos
                     Console.Clear()
-                    Console.WriteLine("1.- Añadir productos")
-                    Console.WriteLine("2.- Borrar productos")
-                    Console.WriteLine("3.- Regresar")
-                    Console.WriteLine("4.- Salir del sistema")
+                    Console.WriteLine("1.- Añadir Productos")
+                    Console.WriteLine("2.- Borrar Productos")
+                    Console.WriteLine("3.- Borrar Todos Los Productos")
+                    Console.WriteLine("4.- Regresar")
+                    Console.WriteLine("5.- Salir Del Sistema")
                     Console.Write("Ingrese una opción: ")
                     opcionProductos = Console.ReadLine()
 
@@ -175,6 +176,7 @@
 
                             Console.WriteLine()
                             auxCategoria = Console.ReadLine()
+
                             Console.WriteLine(vbNewLine & "Ingrese cantidad que desea añadir: " & vbNewLine)
                             auxCantidad = Console.ReadLine()
                             Console.WriteLine(vbNewLine & "Ingrese Nombre del producto: " & vbNewLine)
@@ -185,11 +187,7 @@
                             For Each cat As Categoria In Categorias
                                 If auxCategoria = cat.Nombre Then
                                     cat.AñadirProducto(auxCantidad, auxNombre, auxPrecio, auxCategoria)
-                                Else
-                                    'Console.Clear()
-                                    'Console.WriteLine("Datos Incorrectos, La categoria " & auxCategoria & " no existe... ")
-                                    'Console.ReadLine()
-                                    'MenuAdministrador(user, pass, idAux)
+                                    Console.WriteLine(vbNewLine & "El producto " & auxNombre & " se ha agregado en " & auxCategoria & "...")
                                 End If
                             Next
                             Console.ReadLine()
@@ -219,7 +217,7 @@
                             Next
 
                             Console.Clear()
-                            Console.WriteLine("El Producto " & auxNombre & " ha sido borrado")
+                            Console.WriteLine("El producto " & auxNombre & " ha sido borrado")
                             Console.WriteLine(" ")
 
                             'vectorProductos.BorrarProducto(auxCantidad, auxNombre)
@@ -228,9 +226,30 @@
 
                         Case "3"
 
+                            Dim auxx As Integer = 0
+                            Console.Clear()
+                            Console.WriteLine("Ingrese la categoria de los productos que seran borrados...")
+                            auxCategoria = Console.ReadLine()
+
+                            For Each cat As Categoria In Categorias
+                                If auxCategoria = cat.Nombre Then
+                                    auxx = Categorias.IndexOf(cat)
+                                End If
+                            Next
+
+                            If Not auxx = 0 Then
+                                Categorias.RemoveAt(auxx)
+                            End If
+
+                            Console.WriteLine(vbNewLine & "Los productos de " & auxCategoria & " han sido borrados")
+                            Console.ReadLine()
                             MenuAdministrador(user, pass, idAux)
 
                         Case "4"
+
+                            MenuAdministrador(user, pass, idAux)
+
+                        Case "5"
 
                             Environment.Exit(0)
 
