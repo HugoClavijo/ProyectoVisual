@@ -74,7 +74,7 @@
         Dim auxCantidad As Integer
         Dim auxNombre As String
         Dim auxPrecio As Double
-
+        Dim indexArreglo As Integer
         Do
             Console.Clear()
             Console.WriteLine("Usuario Administrador " & idAux & " Logeado... " & user & vbNewLine)
@@ -106,20 +106,40 @@
                             auxCategoria = Console.ReadLine()
                             Categorias.Add(New Categoria(auxCategoria))
 
+                            For Each cat As Categoria In Categorias
+                                Console.WriteLine(cat.Nombre)
+                            Next
+
+                            Console.WriteLine("")
                             MenuAdministrador(user, pass, idAux)
 
                         Case "2"
 
                             Console.Clear()
                             Console.WriteLine("Ingrese la categoria (borrar): ")
+                            For Each cat As Categoria In Categorias
+                                Console.WriteLine(cat.Nombre)
+                            Next
+
                             auxCategoria = Console.ReadLine()
 
-                            For Each cat As Categoria In Categorias
-                                If cat.Nombre = auxCategoria Then
-                                    Categorias.Remove(cat)
+                            Console.Clear()
+                            Console.WriteLine("La categoria " & auxCategoria & " ha sido borrada")
+                            Console.WriteLine(" ")
+
+                            For Each cate As Categoria In arregloCategorias
+                                If cate.Nombre = auxCategoria Then
+                                    indexArreglo = arregloCategorias.IndexOf(cate)
                                 End If
                             Next
 
+                            arregloCategorias.RemoveAt(indexArreglo)
+
+                            For Each cat As Categoria In Categorias
+                                Console.WriteLine(cat.Nombre)
+                            Next
+
+                            Console.ReadLine()
                             MenuAdministrador(user, pass, idAux)
 
                         Case "3"
@@ -141,7 +161,7 @@
                     Console.WriteLine("3.- Regresar")
                     Console.WriteLine("4.- Salir del sistema")
                     Console.Write("Ingrese una opción: ")
-                    opcionCategorias = Console.ReadLine()
+                    opcionProductos = Console.ReadLine()
 
                     Select Case opcionProductos
                         Case "1"
@@ -165,9 +185,14 @@
                             For Each cat As Categoria In Categorias
                                 If auxCategoria = cat.Nombre Then
                                     cat.AñadirProducto(auxCantidad, auxNombre, auxPrecio, auxCategoria)
+                                Else
+                                    'Console.Clear()
+                                    'Console.WriteLine("Datos Incorrectos, La categoria " & auxCategoria & " no existe... ")
+                                    'Console.ReadLine()
+                                    'MenuAdministrador(user, pass, idAux)
                                 End If
                             Next
-
+                            Console.ReadLine()
                             'vectorProductos.AñadirProducto(auxCantidad, auxNombre, auxPrecio)
                             MenuAdministrador(user, pass, idAux)
 
@@ -186,8 +211,6 @@
                             auxCantidad = Console.ReadLine()
                             Console.WriteLine(vbNewLine & "Ingrese Nombre del producto: " & vbNewLine)
                             auxNombre = Console.ReadLine()
-                            Console.WriteLine(vbNewLine & "Ingrese precio del producto: " & vbNewLine)
-                            auxPrecio = Console.ReadLine()
 
                             For Each cat As Categoria In Categorias
                                 If auxCategoria = cat.Nombre Then
@@ -195,8 +218,12 @@
                                 End If
                             Next
 
-                            'vectorProductos.BorrarProducto(auxCantidad, auxNombre)
+                            Console.Clear()
+                            Console.WriteLine("El Producto " & auxNombre & " ha sido borrado")
+                            Console.WriteLine(" ")
 
+                            'vectorProductos.BorrarProducto(auxCantidad, auxNombre)
+                            Console.ReadLine()
                             MenuAdministrador(user, pass, idAux)
 
                         Case "3"
@@ -691,9 +718,9 @@
 
 
     Public Sub CargarCategorias()
-        Dim accion As Categoria = New Categoria("Accion")
-        Dim aventura As Categoria = New Categoria("Aventura")
-        Dim terror As Categoria = New Categoria("Terror")
+        Dim accion As Categoria = New Categoria("accion")
+        Dim aventura As Categoria = New Categoria("aventura")
+        Dim terror As Categoria = New Categoria("terror")
         Categorias.Add(accion)
         Categorias.Add(aventura)
         Categorias.Add(terror)
@@ -780,7 +807,7 @@
         Dim prod3 As Producto = New Producto(300, "c", 60.0, "Accion")
 
         For Each cat As Categoria In arregloCategorias
-            If cat.Nombre = "Accion" Then
+            If cat.Nombre = "accion" Then
                 cat.Productos.Add(prod1)
                 cat.Productos.Add(prod2)
                 cat.Productos.Add(prod3)
@@ -792,7 +819,7 @@
         Dim prod6 As Producto = New Producto(600, "f", 90.0, "Aventura")
 
         For Each cat As Categoria In arregloCategorias
-            If cat.Nombre = "Aventura" Then
+            If cat.Nombre = "aventura" Then
                 cat.Productos.Add(prod4)
                 cat.Productos.Add(prod5)
                 cat.Productos.Add(prod6)
@@ -804,7 +831,7 @@
         Dim prod9 As Producto = New Producto(900, "i", 120.0, "Terror")
 
         For Each cat As Categoria In arregloCategorias
-            If cat.Nombre = "Terror" Then
+            If cat.Nombre = "terror" Then
                 cat.Productos.Add(prod7)
                 cat.Productos.Add(prod8)
                 cat.Productos.Add(prod9)
