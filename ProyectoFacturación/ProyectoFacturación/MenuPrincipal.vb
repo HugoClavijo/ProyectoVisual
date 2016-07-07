@@ -87,6 +87,8 @@
         Dim auxCantidad As Integer
         Dim auxNombre As String
         Dim auxPrecio As Double
+        Dim auxRating As String
+        Dim auxConsola As String
         Dim indexArreglo As Integer
         Do
             Console.Clear()
@@ -233,16 +235,20 @@
                             Console.WriteLine()
                             auxCategoria = Console.ReadLine()
 
-                            Console.WriteLine(vbNewLine & "Ingrese cantidad que desea añadir: " & vbNewLine)
+                            Console.WriteLine(vbNewLine & "Ingrese Cantidad que desea añadir: " & vbNewLine)
                             auxCantidad = Console.ReadLine()
                             Console.WriteLine(vbNewLine & "Ingrese Nombre del producto: " & vbNewLine)
                             auxNombre = Console.ReadLine()
-                            Console.WriteLine(vbNewLine & "Ingrese precio del producto: " & vbNewLine)
+                            Console.WriteLine(vbNewLine & "Ingrese Precio del producto: " & vbNewLine)
                             auxPrecio = Console.ReadLine()
+                            Console.WriteLine(vbNewLine & "Ingrese Rating del producto: " & vbNewLine)
+                            auxRating = Console.ReadLine()
+                            Console.WriteLine(vbNewLine & "Ingrese Consola del producto: " & vbNewLine)
+                            auxConsola = Console.ReadLine()
 
                             For Each cat As Categoria In Categorias
                                 If auxCategoria = cat.Nombre Then
-                                    cat.AñadirProducto(auxCantidad, auxNombre, auxPrecio, auxCategoria)
+                                    cat.AñadirProducto(auxCantidad, auxNombre, auxPrecio, auxCategoria, auxRating, auxConsola)
                                     Console.WriteLine(vbNewLine & "El producto " & auxNombre & " se ha agregado en " & auxCategoria & "...")
                                 End If
                             Next
@@ -917,9 +923,9 @@
     End Sub
 
     Public Sub CargarProductos()
-        Dim prod1 As Producto = New Producto(100, "a", 40.0, "Accion")
-        Dim prod2 As Producto = New Producto(200, "b", 50.0, "Accion")
-        Dim prod3 As Producto = New Producto(300, "c", 60.0, "Accion")
+        Dim prod1 As Producto = New Producto(100, "Counter Strike", 40.0, "accion", "pg", "playstation 4")
+        Dim prod2 As Producto = New Producto(200, "Call of duty 4: Modern Warfare", 35.5, "accion", "pg", "playstation 4")
+        Dim prod3 As Producto = New Producto(300, "Call of duty 3", 25.5, "accion", "pg", "Xbox One")
 
         For Each cat As Categoria In arregloCategorias
             If cat.Nombre = "accion" Then
@@ -929,9 +935,9 @@
             End If
         Next
 
-        Dim prod4 As Producto = New Producto(400, "d", 70.0, "Aventura")
-        Dim prod5 As Producto = New Producto(500, "e", 80.0, "Aventura")
-        Dim prod6 As Producto = New Producto(600, "f", 90.0, "Aventura")
+        Dim prod4 As Producto = New Producto(400, "Pokemon Gold", 20.5, "aventura", "pg", "game boy")
+        Dim prod5 As Producto = New Producto(500, "Pokemon Silver", 20.6, "aventura", "pg", "game boy")
+        Dim prod6 As Producto = New Producto(600, "Pokemon GO", 30.5, "aventura", "pg", "pc")
 
         For Each cat As Categoria In arregloCategorias
             If cat.Nombre = "aventura" Then
@@ -941,9 +947,9 @@
             End If
         Next
 
-        Dim prod7 As Producto = New Producto(700, "g", 100.0, "Terror")
-        Dim prod8 As Producto = New Producto(800, "h", 110.0, "Terror")
-        Dim prod9 As Producto = New Producto(900, "i", 120.0, "Terror")
+        Dim prod7 As Producto = New Producto(700, "Silent hill", 32.3, "terror", "pg", "playstation 3")
+        Dim prod8 As Producto = New Producto(800, "Silent hill: 2", 42.3, "terror", "r", "playstation 4")
+        Dim prod9 As Producto = New Producto(900, "Silent hill: 3", 120.0, "terror", "r", "playstation 4")
 
         For Each cat As Categoria In arregloCategorias
             If cat.Nombre = "terror" Then
@@ -964,6 +970,7 @@
     Public Sub CargarEmpresa()
         Empresa = New Empresa(1235846958001, "Proyecto Visual S.A.", "Proyecto", "Campus Espol, EDCOM - Guayaquil,Ecuador", "Guayas")
     End Sub
+
 
     Public Sub MostrarEmpresa()
         Console.Clear()

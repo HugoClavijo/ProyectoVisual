@@ -65,7 +65,7 @@
     End Function
 
 
-    Public Sub AñadirProducto(cantidad As Integer, nombre As String, precio As Double, categoria As String)
+    Public Sub AñadirProducto(cantidad As Integer, nombre As String, precio As Double, categoria As String, rating As String, console As String)
         Dim auxProducto As String = Nothing
         If cantidad > 0 Then
             For Each producto As Producto In Productos
@@ -76,7 +76,7 @@
             Next
 
             If auxProducto = Nothing Then
-                Productos.Add(New Producto(cantidad, nombre, precio, categoria))
+                Productos.Add(New Producto(cantidad, nombre, precio, categoria, rating, console))
             End If
         End If
 
