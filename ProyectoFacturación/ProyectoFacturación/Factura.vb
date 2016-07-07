@@ -18,6 +18,8 @@ Public Class Factura
 
     Private _cambio As Double
 
+    Private _ivaIngresado As Double
+
 
     Private _impuesto As Double
     Private _formaDePago As String
@@ -31,11 +33,12 @@ Public Class Factura
 
     'falta poner detalle de la factura
 
-    Public Sub New(numSecuencial As Long, Cliente As Cliente, arraydetalles As ArrayList, subtotal As Double, iva As Double, totalFactura As Double,
+    Public Sub New(ivaUsado As Double, empresa As Empresa, numSecuencial As Long, Cliente As Cliente, arraydetalles As ArrayList, subtotal As Double, iva As Double, totalFactura As Double,
                    efectivo As Double, tarjeta As Double, dineroElectronico As Double, cambio As Double, ahorro As Double)
         informacionEmpresa()
 
-
+        Me._empresa = empresa
+        Me._ivaIngresado = ivaUsado
         Me._secuencial = numSecuencial
         Me._cliente = Cliente
         _detalleArray = New ArrayList
@@ -54,6 +57,15 @@ Public Class Factura
     End Sub
 
 
+
+    Public Property IvaIngresado() As Double
+        Get
+            Return _ivaIngresado
+        End Get
+        Set(ByVal value As Double)
+            _ivaIngresado = value
+        End Set
+    End Property
 
     Public Property AhorroFactura() As Double
         Get
@@ -269,17 +281,22 @@ Public Class Factura
         Console.WriteLine("")
 
         Console.WriteLine("CANTIDAD       PRODUCTO      ValorUnit     ValorTotal      ")
+
         For Each d As Detalle In DetalleArray
             Console.WriteLine("  " & d.Cantidad & vbTab & "        " & d.Descripcion & vbTab & "        " & d.PrecioUnitario & "      " & vbTab & d.PrecioTotal & "")
         Next
 
+
+
+
+
         Console.WriteLine("")
 
         Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "-----------------------")
-        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "SUBTOTAL 14%: $" & _subtotal)
+        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "SUBTOTAL " & IvaIngresado & "%: $" & _subtotal)
         Console.WriteLine(vbTab & vbTab & vbTab & vbTab & " SUBTOTAL 0%: $0.00")
         Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "   DESCUENTO: $0.00")
-        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "     IVA 14%: $" & _impuesto)
+        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "     IVA" & IvaIngresado & "%: $" & _impuesto)
         Console.WriteLine(vbTab & vbTab & vbTab & vbTab & " VALOR TOTAL: $" & _totalFactura)
 
         Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "    EFECTIVO: $" & _efectivo)
@@ -288,7 +305,7 @@ Public Class Factura
         Console.WriteLine("")
         Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "      CAMBIO: $" & _cambio)
         Console.WriteLine("")
-        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "      AHORRO: $" & _ahorroFactura)
+        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & " V. DEVUELTO: $" & _ahorroFactura)
         Console.WriteLine("-------------------------------------------------------------------------------------")
 
 
@@ -297,7 +314,7 @@ Public Class Factura
 
 
 
-    Public Sub informacionEmpresa()
+    Public Sub informacionEmpresa() 'informacion de la empresa por default
         Empresa = New Empresa(1235846958001, "Proyecto Visual S.A.", "Proyecto", "Campus Espol, EDCOM - Guayaquil,Ecuador", "Guayas")
     End Sub
 

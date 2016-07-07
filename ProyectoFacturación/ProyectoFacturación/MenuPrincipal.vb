@@ -9,7 +9,8 @@
     Dim auxTarjeta As Double = 0.01
     Dim auxElectronico As Double = 0.04
     Dim auxResta As Double = 0
-    Dim detallesArray As New ArrayList
+    Dim detallesArray As ArrayList
+
     Protected arregloCategorias As ArrayList
 
 
@@ -511,7 +512,7 @@
         Dim posx As Integer = 0
         Dim posy As Integer = 0
 
-
+        detallesArray = New ArrayList()
 
 
         Console.Clear()
@@ -604,8 +605,8 @@
                 Console.Write("SUBTOTAL: $" & subtotal)
                 posy += 1
                 Console.SetCursorPosition(posx, posy)
-                iva = iva * subtotal
-                Console.Write(" IVA 14%: $" & iva)
+                iva = auxImpuesto * subtotal
+                Console.Write(" IVA " & auxImpuesto & "%: $" & iva)
                 posy += 1
                 Console.SetCursorPosition(posx, posy)
                 totalFactura = iva + subtotal
@@ -651,11 +652,11 @@
                 If efectivo > totalFactura Then
                     auxResta = 0
                 End If
-                Console.Write("Te ahorras: $" & auxResta)
+                Console.Write("Valor devuelto: $" & auxResta)
 
 
 
-                Dim factura As New Factura(auxSecuencial, cliente, detallesArray, subtotal, iva, totalFactura, efectivo, tarjeta, dineroElect, cambio, auxResta)
+                Dim factura As New Factura(auxImpuesto, Empresa, auxSecuencial, cliente, detallesArray, subtotal, iva, totalFactura, efectivo, tarjeta, dineroElect, cambio, auxResta)
                 vectorFacturas.ArrayFacturas.Add(factura)
 
                 For Each fact As Factura In vectorFacturas.ArrayFacturas
@@ -665,7 +666,7 @@
 
 
                 'factura.mostrarFactura()
-                detallesArray.Clear()
+
                 Console.ReadLine()
                 Iniciar()
             End If
@@ -761,7 +762,7 @@
                 posy += 1
                 Console.SetCursorPosition(posx, posy)
                 iva = iva * subtotal
-                Console.Write(" IVA 14%: $" & iva)
+                Console.Write(" IVA " & auxImpuesto & "%: $" & iva)
                 posy += 1
                 Console.SetCursorPosition(posx, posy)
                 totalFactura = iva + subtotal
@@ -807,11 +808,11 @@
                 If efectivo > totalFactura Then
                     auxResta = 0
                 End If
-                Console.Write("Te ahorras: $" & auxResta)
+                Console.Write("Valor devuelto: $" & auxResta)
 
 
 
-                Dim factura As New Factura(auxSecuencial, cliente, detallesArray, subtotal, iva, totalFactura, efectivo, tarjeta, dineroElect, cambio, auxResta)
+                Dim factura As New Factura(auxImpuesto, Empresa, auxSecuencial, cliente, detallesArray, subtotal, iva, totalFactura, efectivo, tarjeta, dineroElect, cambio, auxResta)
                 vectorFacturas.ArrayFacturas.Add(factura)
 
                 For Each fact As Factura In vectorFacturas.ArrayFacturas
@@ -821,7 +822,7 @@
 
 
                 'factura.mostrarFactura()
-                detallesArray.Clear()
+
                 Console.ReadLine()
                 Iniciar()
             End If
@@ -1034,6 +1035,7 @@
         ValidarImpuesto()
         CargarCategorias()
         CargarProductos()
+
         Me.vectorFacturas = New VectorFacturas
     End Sub
 
