@@ -335,6 +335,7 @@
 
                             Select Case opcionEmpresa
                                 Case "1"
+                                    Console.Clear()
                                     Console.WriteLine("Ingrese Nuevo % IVA: (1 - 100)")
                                     opcionIv = Console.ReadLine()
 
