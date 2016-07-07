@@ -109,5 +109,10 @@
         Productos.Clear()
     End Sub
 
+    Public Sub MostrarProductos()
+        For Each prod As Producto In Productos
+            prod.MostrarProducto()
+        Next
+    End Sub
 
 End Class

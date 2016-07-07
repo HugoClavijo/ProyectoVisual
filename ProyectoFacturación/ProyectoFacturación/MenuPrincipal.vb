@@ -77,6 +77,7 @@
 
 
     Public Sub MenuAdministrador(user As String, pass As String, idAux As String)
+
         Dim opcionAdmin As Integer
         Dim opcionProductos As Integer
         Dim opcionCategorias As Integer
@@ -90,6 +91,8 @@
         Dim auxRating As String
         Dim auxConsola As String
         Dim indexArreglo As Integer
+        Dim auxNumFact As Long
+
         Do
             Console.Clear()
             Console.WriteLine("Usuario Administrador " & idAux & " Logeado... " & user & vbNewLine)
@@ -97,8 +100,9 @@
             Console.WriteLine("2.- Categorías")
             Console.WriteLine("3.- Productos")
             Console.WriteLine("4.- IVA")
-            Console.WriteLine("5.- Salir de la sesión")
-            Console.WriteLine("6.- Salir del sistema")
+            Console.WriteLine("5.- Buscar Factura")
+            Console.WriteLine("6.- Salir de la sesión")
+            Console.WriteLine("7.- Salir del sistema")
             Console.Write("Ingrese una opción: ")
             opcionAdmin = Console.ReadLine()
 
@@ -252,6 +256,13 @@
                                     Console.WriteLine(vbNewLine & "El producto " & auxNombre & " se ha agregado en " & auxCategoria & "...")
                                 End If
                             Next
+
+                            For Each cate As Categoria In Categorias
+                                If auxCategoria = cate.Nombre Then
+                                    cate.MostrarProductos()
+                                End If
+                            Next
+
                             Console.ReadLine()
                             'vectorProductos.AñadirProducto(auxCantidad, auxNombre, auxPrecio)
                             MenuAdministrador(user, pass, idAux)
@@ -269,6 +280,15 @@
                             auxCategoria = Console.ReadLine()
                             Console.WriteLine(vbNewLine & "Ingrese cantidad que desea Borrar: " & vbNewLine)
                             auxCantidad = Console.ReadLine()
+                            Console.WriteLine(vbNewLine & "Productos con categoria " & auxCategoria)
+
+                            For Each cat1 As Categoria In Categorias
+                                If auxCategoria = cat1.Nombre Then
+                                    cat1.MostrarProductos()
+                                End If
+                            Next
+
+                            Console.WriteLine(vbNewLine)
                             Console.WriteLine(vbNewLine & "Ingrese Nombre del producto: " & vbNewLine)
                             auxNombre = Console.ReadLine()
 
@@ -279,9 +299,15 @@
                             Next
 
                             Console.Clear()
-                            Console.WriteLine("El producto " & auxNombre & " ha sido borrado")
-                            Console.WriteLine(" ")
 
+                            For Each cate As Categoria In Categorias
+                                If auxCategoria = cate.Nombre Then
+                                    cate.MostrarProductos()
+                                End If
+                            Next
+
+                            Console.WriteLine(vbNewLine)
+                            Console.WriteLine("El producto " & auxNombre & " ha sido borrado")
                             'vectorProductos.BorrarProducto(auxCantidad, auxNombre)
                             Console.ReadLine()
                             MenuAdministrador(user, pass, idAux)
@@ -407,15 +433,24 @@
 
                 Case "5"
 
-                    Iniciar()
+                    Console.Clear()
+                    Console.WriteLine("Ingrese Número de Factura: ")
+                    auxNumFact = Console.ReadLine()
+                    buscarFactura(auxNumFact)
+                    Console.ReadLine()
+                    MenuAdministrador(user, pass, idAux)
 
                 Case "6"
+
+                    Iniciar()
+
+                Case "7"
 
                     Environment.Exit(0)
 
             End Select
 
-        Loop Until (opcionAdmin = "6")
+        Loop Until (opcionAdmin = "7")
 
     End Sub
 
@@ -914,6 +949,7 @@
         Return prod
     End Function
 
+
     Public Sub buscarFactura(secuencial As Long) ' esto  va en el menu administrador 
         For Each f As Factura In vectorFacturas.ArrayFacturas
             If secuencial = f.Secuencial Then
@@ -922,9 +958,10 @@
         Next
     End Sub
 
+
     Public Sub CargarProductos()
         Dim prod1 As Producto = New Producto(100, "Counter Strike", 40.0, "accion", "pg", "playstation 4")
-        Dim prod2 As Producto = New Producto(200, "Call of duty 4: Modern Warfare", 35.5, "accion", "pg", "playstation 4")
+        Dim prod2 As Producto = New Producto(200, "Call of duty 4 Modern Warfare", 35.5, "accion", "pg", "playstation 4")
         Dim prod3 As Producto = New Producto(300, "Call of duty 3", 25.5, "accion", "pg", "Xbox One")
 
         For Each cat As Categoria In arregloCategorias
@@ -980,6 +1017,7 @@
         Console.WriteLine("IVA: " & auxImpuesto & vbNewLine & vbNewLine)
     End Sub
 
+
     Public Sub ValidarImpuesto()
         If Empresa.Provincia = "Manabí" Or Empresa.Provincia = "Esmeraldas" Or Empresa.Provincia = "esmeraldas" Or Empresa.Provincia = "manabí" Then
             auxImpuesto = 0.12
@@ -987,6 +1025,7 @@
             auxImpuesto = 0.14
         End If
     End Sub
+
 
     Public Sub New(arreglo As ArrayList)
         Me.Usuarios = arreglo

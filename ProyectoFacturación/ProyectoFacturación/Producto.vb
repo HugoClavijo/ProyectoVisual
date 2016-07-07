@@ -118,6 +118,11 @@
 
     End Sub
 
+    Public Sub MostrarProducto()
+        Console.WriteLine("----------------------------------------")
+        Console.WriteLine("Nombre: " & Nombre & " Categoria: " & Categoria & " Rating: " & Rating & " Consola: " & Consola)
+        Console.WriteLine("Stock: " & CantidadStock & " Precio: " & Precio)
+    End Sub
 
     Public Overrides Function ToString() As String
         Return "Producto: " & Me._nombre & vbTab &
