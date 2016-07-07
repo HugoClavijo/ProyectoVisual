@@ -298,7 +298,7 @@ Public Class Factura
 
 
     Public Sub informacionEmpresa()
-        Empresa = New Empresa(1235846958001, "Proyecto Visual S.A.", "Proyecto", "Campus Espol, EDCOM - Guayaquil,Ecuador")
+        Empresa = New Empresa(1235846958001, "Proyecto Visual S.A.", "Proyecto", "Campus Espol, EDCOM - Guayaquil,Ecuador", "Guayas")
     End Sub
 
 

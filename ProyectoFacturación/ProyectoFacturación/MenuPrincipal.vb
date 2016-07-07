@@ -3,8 +3,9 @@
 
     Protected vectorFacturas As VectorFacturas
     Protected arregloUsuarios As New ArrayList()
+    Protected _empresa As Empresa
     Dim auxImpuesto As Double = 0.14
-    Dim auxEspecial As Double = 0.12
+    Dim auxEfectivo As Double = 0
     Dim auxTarjeta As Double = 0.01
     Dim auxElectronico As Double = 0.04
     Dim auxResta As Double = 0
@@ -28,6 +29,16 @@
         End Get
         Set(ByVal value As ArrayList)
             arregloCategorias = value
+        End Set
+    End Property
+
+
+    Public Property Empresa() As Empresa
+        Get
+            Return _empresa
+        End Get
+        Set(ByVal value As Empresa)
+            _empresa = value
         End Set
     End Property
 
@@ -70,6 +81,8 @@
         Dim opcionProductos As Integer
         Dim opcionCategorias As Integer
         Dim opcionIva As Integer
+        Dim opcionEmpresa, opcionNuevaEmpresa As Integer
+        Dim opcionValorDevuelto As Integer
         Dim auxCategoria As String
         Dim auxCantidad As Integer
         Dim auxNombre As String
@@ -78,23 +91,58 @@
         Do
             Console.Clear()
             Console.WriteLine("Usuario Administrador " & idAux & " Logeado... " & user & vbNewLine)
-            Console.WriteLine("1.- Categorías")
-            Console.WriteLine("2.- Productos")
-            Console.WriteLine("3.- IVA diferenciado")
-            Console.WriteLine("4.- Salir de la sesión")
-            Console.WriteLine("5.- Salir del sistema")
+            Console.WriteLine("1.- Datos Empresa")
+            Console.WriteLine("2.- Categorías")
+            Console.WriteLine("3.- Productos")
+            Console.WriteLine("4.- IVA")
+            Console.WriteLine("5.- Salir de la sesión")
+            Console.WriteLine("6.- Salir del sistema")
             Console.Write("Ingrese una opción: ")
             opcionAdmin = Console.ReadLine()
 
             Select Case opcionAdmin
 
                 Case "1"
+                    Dim auxRuc As Long
+                    Dim auxRazon, name, dir, prov As String
+
+                    MostrarEmpresa()
+                    Console.WriteLine("Realizar...")
+                    Console.WriteLine("1.- Cambiar Datos Empresa")
+                    Console.WriteLine("2.- Salir")
+                    opcionNuevaEmpresa = Console.ReadLine()
+
+                    Select Case opcionNuevaEmpresa
+                        Case "1"
+                            Console.WriteLine("Ingrese RUC:")
+                            auxRuc = Console.ReadLine()
+                            Console.WriteLine("Ingrese Razón Social:")
+                            auxRazon = Console.ReadLine()
+                            Console.WriteLine("Ingrese Nombre Empresa:")
+                            name = Console.ReadLine()
+                            Console.WriteLine("Ingrese Dirección De La Empresa:")
+                            dir = Console.ReadLine()
+                            Console.WriteLine("Ingrese Provincia De La Empresa:")
+                            prov = Console.ReadLine()
+                            Console.WriteLine(vbNewLine & "Nuevos Datos Empresa...")
+                            InfoEmpresa(auxRuc, auxRazon, name, dir, prov)
+                            MostrarEmpresa()
+                            Console.ReadLine()
+                            MenuAdministrador(user, pass, idAux)
+
+                        Case "2"
+                            MenuAdministrador(user, pass, idAux)
+
+                    End Select
+
+                Case "2"
                     'Administrador de categorias
                     Console.Clear()
-                    Console.WriteLine("1.- Añadir categoria")
-                    Console.WriteLine("2.- Borrar categoria")
-                    Console.WriteLine("3.- Regresar")
-                    Console.WriteLine("4.- Salir del sistema")
+                    Console.WriteLine("1.- Añadir Categoria")
+                    Console.WriteLine("2.- Borrar Categoria")
+                    Console.WriteLine("3.- Borrar Todas Las Categorias")
+                    Console.WriteLine("4.- Regresar")
+                    Console.WriteLine("5.- Salir Del Sistema")
                     Console.Write("Ingrese una opción: ")
                     opcionCategorias = Console.ReadLine()
 
@@ -110,7 +158,7 @@
                                 Console.WriteLine(cat.Nombre)
                             Next
 
-                            Console.WriteLine("")
+                            Console.ReadLine()
                             MenuAdministrador(user, pass, idAux)
 
                         Case "2"
@@ -144,16 +192,24 @@
 
                         Case "3"
 
+                            Categorias.Clear()
+                            Console.Clear()
+                            Console.WriteLine("Todas las categorias han sido borradas")
+                            Console.ReadLine()
                             MenuAdministrador(user, pass, idAux)
 
                         Case "4"
+
+                            MenuAdministrador(user, pass, idAux)
+
+                        Case "5"
 
                             Environment.Exit(0)
 
                     End Select
 
 
-                Case "2"
+                Case "3"
                     'Administrador de productos
                     Console.Clear()
                     Console.WriteLine("1.- Añadir Productos")
@@ -256,12 +312,12 @@
                     End Select
 
 
-                Case "3"
+                Case "4"
 
                     'Iva diferenciado
                     Console.Clear()
-                    Console.WriteLine("1.- Ingresar IVA por provincia")
-                    Console.WriteLine("2.- Ingresar Valor Devuelto por tipo de pago")
+                    Console.WriteLine("1.- IVA")
+                    Console.WriteLine("2.- Tipo De Pago")
                     Console.WriteLine("3.- Regresar")
                     Console.WriteLine("4.- Salir del sistema")
                     Console.Write("Ingrese una opción: ")
@@ -270,24 +326,66 @@
                     Select Case opcionIva
 
                         Case "1"
+                            Dim opcionIv As Integer
+                            MostrarEmpresa()
+                            Console.WriteLine("Realizar...")
+                            Console.WriteLine("1.- Cambiar IVA")
+                            Console.WriteLine("2.- Salir")
+                            opcionEmpresa = Console.ReadLine()
 
-                            Console.Clear()
-                            Console.WriteLine("IVA Especial: 0.12 (Manabí - Esmeraldas) - IVA Normal: 0.14 (Resto del Ecuador)" & vbNewLine)
-                            Console.WriteLine("Ingrese Iva Normal: ")
-                            auxImpuesto = Console.ReadLine()
-                            Console.WriteLine("Ingrese Iva Especial: ")
-                            auxEspecial = Console.ReadLine()
-                            MenuAdministrador(user, pass, idAux)
+                            Select Case opcionEmpresa
+                                Case "1"
+                                    Console.WriteLine("Ingrese Nuevo % IVA: (1 - 100)")
+                                    opcionIv = Console.ReadLine()
+
+                                    If opcionIv >= 0 And opcionIv <= 100 Then
+                                        auxImpuesto = opcionIv / 100
+                                    End If
+
+                                    Console.Clear()
+                                    Console.WriteLine("El Nuevo IVA es: " & auxImpuesto)
+                                    Console.ReadLine()
+                                    MenuAdministrador(user, pass, idAux)
+
+                                Case "2"
+                                    MenuAdministrador(user, pass, idAux)
+                            End Select
 
                         Case "2"
 
-                            Console.Clear()
-                            Console.WriteLine("Valor Devuelto: 0 (Efectivo)" & "-" & auxTarjeta & "(Tarjeta De Credito)" & "-" & auxElectronico & "(Dinero Electronico)" & vbNewLine)
-                            Console.WriteLine("Ingrese Valor Devuelto (Tarjeta De Credito) :   ")
-                            auxTarjeta = Console.ReadLine()
-                            Console.WriteLine("Ingrese Valor Devuelto (Dinero Electronico): ")
-                            auxElectronico = Console.ReadLine()
-                            MenuAdministrador(user, pass, idAux)
+                            Dim opcionCreditCard, opcionElectronico As Integer
+                            MostrarEmpresa()
+                            Console.WriteLine("Realizar...")
+                            Console.WriteLine("1.- Cambiar Valores")
+                            Console.WriteLine("2.- Salir")
+                            opcionValorDevuelto = Console.ReadLine()
+
+                            Select Case opcionValorDevuelto
+                                Case "1"
+                                    Console.Clear()
+                                    Console.WriteLine("Ingrese Nuevo % Valor Devuelto (Tarjeta De Credito) : (1 - 100)")
+                                    opcionCreditCard = Console.ReadLine()
+
+                                    If opcionCreditCard >= 0 And opcionCreditCard <= 100 Then
+                                        auxTarjeta = opcionCreditCard / 100
+                                    End If
+
+                                    Console.WriteLine("Ingrese Nuevo Valor Devuelto (Dinero Electronico): (1 - 100)")
+                                    opcionElectronico = Console.ReadLine()
+
+                                    If opcionElectronico >= 0 And opcionElectronico <= 100 Then
+                                        auxElectronico = opcionElectronico / 100
+                                    End If
+
+                                    Console.Clear()
+                                    Console.WriteLine("Nuevo Valor Devuelto (Efectivo): " & auxEfectivo)
+                                    Console.WriteLine("Nuevo Valor Devuelto (Tarjeta De Credito): " & auxTarjeta)
+                                    Console.WriteLine("Nuevo Valor Devuelto (Dinero Electronico): " & auxElectronico & vbNewLine & vbNewLine)
+                                    Console.ReadLine()
+                                    MenuAdministrador(user, pass, idAux)
+
+                            End Select
+
 
                         Case "3"
 
@@ -300,17 +398,17 @@
                     End Select
 
 
-                Case "4"
+                Case "5"
 
                     Iniciar()
 
-                Case "5"
+                Case "6"
 
                     Environment.Exit(0)
 
             End Select
 
-        Loop Until (opcionAdmin = "5")
+        Loop Until (opcionAdmin = "6")
 
     End Sub
 
@@ -331,7 +429,7 @@
 
             Case "1"
 
-                facturar()
+                Facturar()
 
             Case "2"
 
@@ -346,7 +444,7 @@
     End Sub
 
 
-    Public Sub facturar()
+    Public Sub Facturar()
         Dim siono As String
         Dim nombre As String
         Dim ruc_ci As String
@@ -806,9 +904,6 @@
         '    End If
         'Next
 
-
-
-
         Return prod
     End Function
 
@@ -860,13 +955,38 @@
     End Sub
 
 
+    Public Sub InfoEmpresa(ruc As Long, razonS As String, nameEmpresa As String, dir As String, prov As String)
+        Empresa = New Empresa(ruc, razonS, nameEmpresa, dir, prov)
+    End Sub
+
+
+    Public Sub CargarEmpresa()
+        Empresa = New Empresa(1235846958001, "Proyecto Visual S.A.", "Proyecto", "Campus Espol, EDCOM - Guayaquil,Ecuador", "Guayas")
+    End Sub
+
+    Public Sub MostrarEmpresa()
+        Console.Clear()
+        Console.WriteLine("Empresa: " & Empresa.NombreComercial)
+        Console.WriteLine("Dirección (Sucursal): " & Empresa.DireccionEmpresa)
+        Console.WriteLine("Provincia: " & Empresa.Provincia)
+        Console.WriteLine("IVA: " & auxImpuesto & vbNewLine & vbNewLine)
+    End Sub
+
+    Public Sub ValidarImpuesto()
+        If Empresa.Provincia = "Manabí" Or Empresa.Provincia = "Esmeraldas" Or Empresa.Provincia = "esmeraldas" Or Empresa.Provincia = "manabí" Then
+            auxImpuesto = 0.12
+        Else
+            auxImpuesto = 0.14
+        End If
+    End Sub
 
     Public Sub New(arreglo As ArrayList)
         Me.Usuarios = arreglo
         Me.Categorias = New ArrayList
+        CargarEmpresa()
+        ValidarImpuesto()
         CargarCategorias()
         CargarProductos()
-
         Me.vectorFacturas = New VectorFacturas
     End Sub
 
