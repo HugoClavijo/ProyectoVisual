@@ -9,6 +9,7 @@
     </infoTributaria>
     <infoFactura>
       <fechaEmision>viernes, 08 de julio de 2016</fechaEmision>
+      <numeroFactura>1</numeroFactura>
       <provEstablecimiento>Guayas</provEstablecimiento>
       <dirEstablecimiento>Campus Espol, EDCOM - Guayaquil,Ecuador</dirEstablecimiento>
       <cliente>Juan</cliente>

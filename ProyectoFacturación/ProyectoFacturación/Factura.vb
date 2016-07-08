@@ -3,7 +3,7 @@
 Public Class Factura
     Private _stab As String = "001"
     Private _ptoEmi As String = "001"
-    Private _secuencial As Long = 1001
+    Private _secuencial As Long = 1
 
     Private _empresa As Empresa
     Private _cliente As Cliente

@@ -137,15 +137,70 @@ Public Class MenuPrincipal
                     Select Case opcionNuevaEmpresa
                         Case "1"
                             Console.WriteLine("Ingrese RUC:")
-                            auxRuc = Console.ReadLine()
+
+                            Dim rucString As String = Console.ReadLine()
+
+                            If String.IsNullOrEmpty(rucString) Then
+                                Console.Clear()
+                                Console.Write("Error, RUC: VACIO")
+                                Console.ReadLine()
+                                MenuAdministrador(user, pass, idAux)
+                            End If
+
+                            auxRuc = rucString
+
                             Console.WriteLine("Ingrese Razón Social:")
-                            auxRazon = Console.ReadLine()
+
+                            Dim razonString As String = Console.ReadLine()
+
+                            If String.IsNullOrEmpty(razonString) Then
+                                Console.Clear()
+                                Console.Write("Error, Razón Social: VACIO")
+                                Console.ReadLine()
+                                MenuAdministrador(user, pass, idAux)
+                            End If
+
+                            auxRazon = razonString
+
                             Console.WriteLine("Ingrese Nombre Empresa:")
-                            name = Console.ReadLine()
+
+                            Dim nameString As String = Console.ReadLine()
+
+                            If String.IsNullOrEmpty(nameString) Then
+                                Console.Clear()
+                                Console.Write("Error, Nombre Empresa: VACIO")
+                                Console.ReadLine()
+                                MenuAdministrador(user, pass, idAux)
+                            End If
+
+                            name = nameString
+
                             Console.WriteLine("Ingrese Dirección De La Empresa:")
-                            dir = Console.ReadLine()
+
+                            Dim dirString As String = Console.ReadLine()
+
+                            If String.IsNullOrEmpty(dirString) Then
+                                Console.Clear()
+                                Console.Write("Error, Dirección De La Empresa: VACIO")
+                                Console.ReadLine()
+                                MenuAdministrador(user, pass, idAux)
+                            End If
+
+                            dir = dirString
+
                             Console.WriteLine("Ingrese Provincia De La Empresa:")
-                            prov = Console.ReadLine()
+
+                            Dim provString As String = Console.ReadLine()
+
+                            If String.IsNullOrEmpty(provString) Then
+                                Console.Clear()
+                                Console.Write("Error, Provincia De La Empresa: VACIO")
+                                Console.ReadLine()
+                                MenuAdministrador(user, pass, idAux)
+                            End If
+
+                            prov = provString
+
                             Console.WriteLine(vbNewLine & "Nuevos Datos Empresa...")
                             InfoEmpresa(auxRuc, auxRazon, name, dir, prov)
                             MostrarEmpresa()
@@ -173,7 +228,18 @@ Public Class MenuPrincipal
 
                             Console.Clear()
                             Console.WriteLine("Ingrese la categoria (añadir):  ")
-                            auxCategoria = Console.ReadLine()
+
+                            Dim catString As String = Console.ReadLine()
+
+                            If String.IsNullOrEmpty(catString) Then
+                                Console.Clear()
+                                Console.Write("Error, Categoria (añadir): VACIO")
+                                Console.ReadLine()
+                                MenuAdministrador(user, pass, idAux)
+                            End If
+
+                            auxCategoria = catString
+
                             Categorias.Add(New Categoria(auxCategoria))
 
                             For Each cat As Categoria In Categorias
@@ -191,7 +257,16 @@ Public Class MenuPrincipal
                                 Console.WriteLine(cat.Nombre)
                             Next
 
-                            auxCategoria = Console.ReadLine()
+                            Dim catString As String = Console.ReadLine()
+
+                            If String.IsNullOrEmpty(catString) Then
+                                Console.Clear()
+                                Console.Write("Error, Categoria (borrar): VACIO")
+                                Console.ReadLine()
+                                MenuAdministrador(user, pass, idAux)
+                            End If
+
+                            auxCategoria = catString
 
                             Console.Clear()
                             Console.WriteLine("La categoria " & auxCategoria & " ha sido borrada")
@@ -253,18 +328,82 @@ Public Class MenuPrincipal
                             Next
 
                             Console.WriteLine()
-                            auxCategoria = Console.ReadLine()
+
+                            Dim catString As String = Console.ReadLine()
+
+                            If String.IsNullOrEmpty(catString) Then
+                                Console.Clear()
+                                Console.Write("Error, Categoria: VACIO")
+                                Console.ReadLine()
+                                MenuAdministrador(user, pass, idAux)
+                            End If
+
+                            auxCategoria = catString
 
                             Console.WriteLine(vbNewLine & "Ingrese Cantidad que desea añadir: " & vbNewLine)
-                            auxCantidad = Console.ReadLine()
+
+                            Dim canString As String = Console.ReadLine()
+
+                            If String.IsNullOrEmpty(canString) Then
+                                Console.Clear()
+                                Console.Write("Error, Cantidad: VACIO")
+                                Console.ReadLine()
+                                MenuAdministrador(user, pass, idAux)
+                            End If
+
+                            auxCantidad = canString
+
                             Console.WriteLine(vbNewLine & "Ingrese Nombre del producto: " & vbNewLine)
-                            auxNombre = Console.ReadLine()
+
+                            Dim nameString As String = Console.ReadLine()
+
+                            If String.IsNullOrEmpty(nameString) Then
+                                Console.Clear()
+                                Console.Write("Error, Nombre: VACIO")
+                                Console.ReadLine()
+                                MenuAdministrador(user, pass, idAux)
+                            End If
+
+                            auxNombre = nameString
+
                             Console.WriteLine(vbNewLine & "Ingrese Precio del producto: " & vbNewLine)
-                            auxPrecio = Console.ReadLine()
+
+                            Dim precioString As String = Console.ReadLine()
+
+                            If String.IsNullOrEmpty(nameString) Then
+                                Console.Clear()
+                                Console.Write("Error, Precio: VACIO")
+                                Console.ReadLine()
+                                MenuAdministrador(user, pass, idAux)
+                            End If
+
+                            auxPrecio = CDbl(precioString)
+
                             Console.WriteLine(vbNewLine & "Ingrese Rating del producto: " & vbNewLine)
-                            auxRating = Console.ReadLine()
+
+                            Dim ratString As String = Console.ReadLine()
+
+                            If String.IsNullOrEmpty(ratString) Then
+                                Console.Clear()
+                                Console.Write("Error, Precio: VACIO")
+                                Console.ReadLine()
+                                MenuAdministrador(user, pass, idAux)
+                            End If
+
+                            auxRating = ratString
+
                             Console.WriteLine(vbNewLine & "Ingrese Consola del producto: " & vbNewLine)
-                            auxConsola = Console.ReadLine()
+
+                            Dim conString As String = Console.ReadLine()
+
+                            If String.IsNullOrEmpty(conString) Then
+                                Console.Clear()
+                                Console.Write("Error, Consola: VACIO")
+                                Console.ReadLine()
+                                MenuAdministrador(user, pass, idAux)
+                            End If
+
+                            auxConsola = conString
 
                             For Each cat As Categoria In Categorias
                                 If auxCategoria = cat.Nombre Then
@@ -293,9 +432,23 @@ Public Class MenuPrincipal
                             Next
 
                             Console.WriteLine()
-                            auxCategoria = Console.ReadLine()
+
+                            Dim catString As String = Console.ReadLine()
+
+                            If String.IsNullOrEmpty(catString) Then
+                                Console.Clear()
+                                Console.Write("Error, Categoria: VACIO")
+                                Console.ReadLine()
+                                MenuAdministrador(user, pass, idAux)
+                            End If
+
+
+                            auxCategoria = catString
+
                             Console.WriteLine(vbNewLine & "Ingrese cantidad que desea Borrar: " & vbNewLine)
+
                             auxCantidad = Console.ReadLine()
+
                             Console.WriteLine(vbNewLine & "Productos con categoria " & auxCategoria)
 
                             For Each cat1 As Categoria In Categorias
@@ -306,7 +459,17 @@ Public Class MenuPrincipal
 
                             Console.WriteLine(vbNewLine)
                             Console.WriteLine(vbNewLine & "Ingrese Nombre del producto: " & vbNewLine)
-                            auxNombre = Console.ReadLine()
+
+                            Dim nameString As String = Console.ReadLine()
+
+                            If String.IsNullOrEmpty(nameString) Then
+                                Console.Clear()
+                                Console.Write("Error, Nombre: VACIO")
+                                Console.ReadLine()
+                                MenuAdministrador(user, pass, idAux)
+                            End If
+
+                            auxNombre = nameString
 
                             For Each cat As Categoria In Categorias
                                 If auxCategoria = cat.Nombre Then
@@ -385,7 +548,17 @@ Public Class MenuPrincipal
                                 Case "1"
                                     Console.Clear()
                                     Console.WriteLine("Ingrese Nuevo % IVA: (1 - 100)")
-                                    opcionIv = Console.ReadLine()
+
+                                    Dim ivaString As String = Console.ReadLine()
+
+                                    If String.IsNullOrEmpty(ivaString) Or CInt(ivaString) < 0 Or CInt(ivaString) > 100 Then
+                                        Console.Clear()
+                                        Console.Write("Error, IVA: MAL")
+                                        Console.ReadLine()
+                                        MenuAdministrador(user, pass, idAux)
+                                    End If
+
+                                    opcionIv = CInt(ivaString)
 
                                     If opcionIv >= 0 And opcionIv <= 100 Then
                                         auxImpuesto = opcionIv / 100
@@ -412,15 +585,35 @@ Public Class MenuPrincipal
                             Select Case opcionValorDevuelto
                                 Case "1"
                                     Console.Clear()
-                                    Console.WriteLine("Ingrese Nuevo % Valor Devuelto (Tarjeta De Credito) : (1 - 100)")
-                                    opcionCreditCard = Console.ReadLine()
+                                    Console.WriteLine("Ingrese Nuevo % Valor Devuelto (Tarjeta De Credito): (1 - 100)")
+
+                                    Dim tarString As String = Console.ReadLine()
+
+                                    If String.IsNullOrEmpty(tarString) Or CInt(tarString) < 0 Or CInt(tarString) > 100 Then
+                                        Console.Clear()
+                                        Console.Write("Error, % Valor Devuelto (Tarjeta De Credito): MAL")
+                                        Console.ReadLine()
+                                        MenuAdministrador(user, pass, idAux)
+                                    End If
+
+                                    opcionCreditCard = CInt(tarString)
 
                                     If opcionCreditCard >= 0 And opcionCreditCard <= 100 Then
                                         auxTarjeta = opcionCreditCard / 100
                                     End If
 
-                                    Console.WriteLine("Ingrese Nuevo Valor Devuelto (Dinero Electronico): (1 - 100)")
-                                    opcionElectronico = Console.ReadLine()
+                                    Console.WriteLine("Ingrese Nuevo % Valor Devuelto (Dinero Electronico): (1 - 100)")
+
+                                    Dim elecString As String = Console.ReadLine()
+
+                                    If String.IsNullOrEmpty(elecString) Or CInt(elecString) < 0 Or CInt(elecString) > 100 Then
+                                        Console.Clear()
+                                        Console.Write("Error, % Valor Devuelto (Dinero Electronico): MAL")
+                                        Console.ReadLine()
+                                        MenuAdministrador(user, pass, idAux)
+                                    End If
+
+                                    opcionElectronico = CInt(elecString)
 
                                     If opcionElectronico >= 0 And opcionElectronico <= 100 Then
                                         auxElectronico = opcionElectronico / 100
@@ -451,7 +644,18 @@ Public Class MenuPrincipal
 
                     Console.Clear()
                     Console.WriteLine("Ingrese Número de Factura: ")
-                    auxNumFact = Console.ReadLine()
+
+                    Dim numString As String = Console.ReadLine()
+
+                    If String.IsNullOrEmpty(numString) Then
+                        Console.Clear()
+                        Console.Write("Error, Número de Factura: MAL")
+                        Console.ReadLine()
+                        MenuAdministrador(user, pass, idAux)
+                    End If
+
+                    auxNumFact = CInt(numString)
+
                     buscarFactura(auxNumFact)
                     Console.ReadLine()
                     MenuAdministrador(user, pass, idAux)
@@ -1170,6 +1374,7 @@ Public Class MenuPrincipal
 
                 writer.WriteStartElement("infoFactura")
                 writer.WriteElementString("fechaEmision", fact.FechaEmision.ToString)
+                writer.WriteElementString("numeroFactura", fact.Secuencial.ToString)
                 writer.WriteElementString("provEstablecimiento", fact.Empresa.Provincia.ToString)
                 writer.WriteElementString("dirEstablecimiento", fact.Empresa.DireccionEmpresa.ToString)
                 writer.WriteElementString("cliente", fact.Cliente.Nombre.ToString)
@@ -1199,52 +1404,52 @@ Public Class MenuPrincipal
     End Sub
 
 
-    Public Sub GuardarFacturas()
-        Dim xmlDoc As XmlDocument = New XmlDocument()
-        xmlDoc.Load(_ruta)
+    'Public Sub GuardarFacturas()
+    '    Dim xmlDoc As XmlDocument = New XmlDocument()
+    '    xmlDoc.Load(_ruta)
 
-        'Dim newXMLNode As XmlNode = xmlDoc.SelectSingleNode("factura")
-        With xmlDoc.SelectSingleNode("facturas").CreateNavigator().AppendChild()
-            .WriteStartElement("factura")
-            For Each fact As Factura In vectorFacturas.ArrayFacturas
-                .WriteStartElement("infoTributaria")
-                .WriteElementString("razonSocial", fact.Empresa.Razonsocial.ToString)
-                .WriteElementString("nombreComercial", fact.Empresa.NombreComercial.ToString)
-                .WriteElementString("ruc", fact.Empresa.Ruc.ToString)
-                .WriteElementString("dirMatriz", fact.Empresa.DireccionEmpresa.ToString)
-                .WriteEndElement()
+    '    'Dim newXMLNode As XmlNode = xmlDoc.SelectSingleNode("factura")
+    '    With xmlDoc.SelectSingleNode("facturas").CreateNavigator().AppendChild()
+    '        .WriteStartElement("factura")
+    '        For Each fact As Factura In vectorFacturas.ArrayFacturas
+    '            .WriteStartElement("infoTributaria")
+    '            .WriteElementString("razonSocial", fact.Empresa.Razonsocial.ToString)
+    '            .WriteElementString("nombreComercial", fact.Empresa.NombreComercial.ToString)
+    '            .WriteElementString("ruc", fact.Empresa.Ruc.ToString)
+    '            .WriteElementString("dirMatriz", fact.Empresa.DireccionEmpresa.ToString)
+    '            .WriteEndElement()
 
 
-                .WriteStartElement("infoFactura")
-                .WriteElementString("fechaEmision", fact.FechaEmision.ToString)
-                .WriteElementString("provEstablecimiento", fact.Empresa.Provincia.ToString)
-                .WriteElementString("dirEstablecimiento", fact.Empresa.DireccionEmpresa.ToString)
-                .WriteElementString("cliente", fact.Cliente.Nombre.ToString)
-                .WriteElementString("totalSinImpuestos", fact.Subtotal.ToString)
-                .WriteElementString("impuesto", fact.Impuesto.ToString)
-                .WriteElementString("totalConImpuestos", fact.TotalFactura.ToString)
-                .WriteElementString("efectivo", fact.Efectivo.ToString)
-                .WriteElementString("tarjetaCredito", fact.TarjetaCredito.ToString)
-                .WriteElementString("dineroElectronico", fact.DineroElectronico.ToString)
-                .WriteElementString("cambio", fact.Cambio.ToString)
-                .WriteElementString("valorDevuelto", fact.AhorroFactura.ToString)
-                .WriteEndElement()
+    '            .WriteStartElement("infoFactura")
+    '            .WriteElementString("fechaEmision", fact.FechaEmision.ToString)
+    '            .WriteElementString("provEstablecimiento", fact.Empresa.Provincia.ToString)
+    '            .WriteElementString("dirEstablecimiento", fact.Empresa.DireccionEmpresa.ToString)
+    '            .WriteElementString("cliente", fact.Cliente.Nombre.ToString)
+    '            .WriteElementString("totalSinImpuestos", fact.Subtotal.ToString)
+    '            .WriteElementString("impuesto", fact.Impuesto.ToString)
+    '            .WriteElementString("totalConImpuestos", fact.TotalFactura.ToString)
+    '            .WriteElementString("efectivo", fact.Efectivo.ToString)
+    '            .WriteElementString("tarjetaCredito", fact.TarjetaCredito.ToString)
+    '            .WriteElementString("dineroElectronico", fact.DineroElectronico.ToString)
+    '            .WriteElementString("cambio", fact.Cambio.ToString)
+    '            .WriteElementString("valorDevuelto", fact.AhorroFactura.ToString)
+    '            .WriteEndElement()
 
-                For Each detalle As Detalle In fact.DetalleArray
-                    .WriteStartElement("detalle")
-                    .WriteElementString("descripcion", detalle.Descripcion.ToString)
-                    .WriteElementString("cantidad", detalle.Cantidad.ToString)
-                    .WriteElementString("precioUnitario", detalle.PrecioUnitario.ToString)
-                    .WriteElementString("precioTotalSinImpuesto", detalle.PrecioTotal.ToString)
-                    .WriteEndElement()
-                Next
-            Next
-            .Close()
-        End With
+    '            For Each detalle As Detalle In fact.DetalleArray
+    '                .WriteStartElement("detalle")
+    '                .WriteElementString("descripcion", detalle.Descripcion.ToString)
+    '                .WriteElementString("cantidad", detalle.Cantidad.ToString)
+    '                .WriteElementString("precioUnitario", detalle.PrecioUnitario.ToString)
+    '                .WriteElementString("precioTotalSinImpuesto", detalle.PrecioTotal.ToString)
+    '                .WriteEndElement()
+    '            Next
+    '        Next
+    '        .Close()
+    '    End With
 
-        xmlDoc.Save(_ruta)
+    '    xmlDoc.Save(_ruta)
 
-    End Sub
+    'End Sub
 
     Public Sub XmlProductos()
         Dim settings As XmlWriterSettings = New XmlWriterSettings()
@@ -1271,29 +1476,29 @@ Public Class MenuPrincipal
     End Sub
 
 
-    Public Sub GuardarProductos()
-        Dim xmlDoc As XmlDocument = New XmlDocument()
-        xmlDoc.Load(rutaProductos)
+    'Public Sub GuardarProductos()
+    '    Dim xmlDoc As XmlDocument = New XmlDocument()
+    '    xmlDoc.Load(rutaProductos)
 
-        'Dim newXMLNode As XmlNode = xmlDoc.SelectSingleNode("factura")
-        With xmlDoc.SelectSingleNode("productos").CreateNavigator().AppendChild()
-            .WriteStartElement("producto")
-            For Each cat As Categoria In Categorias
-                For Each pro As Producto In cat.Productos
-                    .WriteElementString("nombre", pro.Nombre.ToString)
-                    .WriteElementString("stock", pro.CantidadStock.ToString)
-                    .WriteElementString("precio", pro.Precio.ToString)
-                    .WriteElementString("categoria", pro.Categoria.ToString)
-                    .WriteElementString("rating", pro.Rating.ToString)
-                    .WriteElementString("consola", pro.Consola.ToString)
-                    '.WriteEndElement()
-                Next
-            Next
-            .Close()
-        End With
+    '    'Dim newXMLNode As XmlNode = xmlDoc.SelectSingleNode("factura")
+    '    With xmlDoc.SelectSingleNode("productos").CreateNavigator().AppendChild()
+    '        .WriteStartElement("producto")
+    '        For Each cat As Categoria In Categorias
+    '            For Each pro As Producto In cat.Productos
+    '                .WriteElementString("nombre", pro.Nombre.ToString)
+    '                .WriteElementString("stock", pro.CantidadStock.ToString)
+    '                .WriteElementString("precio", pro.Precio.ToString)
+    '                .WriteElementString("categoria", pro.Categoria.ToString)
+    '                .WriteElementString("rating", pro.Rating.ToString)
+    '                .WriteElementString("consola", pro.Consola.ToString)
+    '                '.WriteEndElement()
+    '            Next
+    '        Next
+    '        .Close()
+    '    End With
 
-        xmlDoc.Save(rutaProductos)
-    End Sub
+    '    xmlDoc.Save(rutaProductos)
+    'End Sub
 
 
     Public Sub XmlCategorias()
@@ -1317,31 +1522,31 @@ Public Class MenuPrincipal
     End Sub
 
 
-    Public Sub GuardarCategorias()
-        Dim xmlDoc As XmlDocument = New XmlDocument()
-        xmlDoc.Load(rutaCategorias)
+    'Public Sub GuardarCategorias()
+    '    Dim xmlDoc As XmlDocument = New XmlDocument()
+    '    xmlDoc.Load(rutaCategorias)
 
-        'Dim newXMLNode As XmlNode = xmlDoc.SelectSingleNode("factura")
-        With xmlDoc.SelectSingleNode("categorias").CreateNavigator().AppendChild()
-            .WriteStartElement("categoria")
-            For Each cat As Categoria In Categorias
-                .WriteElementString("nombre", cat.Nombre.ToString)
-                'For Each pro As Producto In cat.Productos
-                '    .WriteElementString("nombre", pro.Nombre.ToString)
-                '    .WriteElementString("stock", pro.CantidadStock.ToString)
-                '    .WriteElementString("precio", pro.Precio.ToString)
-                '    .WriteElementString("categoria", pro.Categoria.ToString)
-                '    .WriteElementString("rating", pro.Rating.ToString)
-                '    .WriteElementString("consola", pro.Consola.ToString)
+    '    'Dim newXMLNode As XmlNode = xmlDoc.SelectSingleNode("factura")
+    '    With xmlDoc.SelectSingleNode("categorias").CreateNavigator().AppendChild()
+    '        .WriteStartElement("categoria")
+    '        For Each cat As Categoria In Categorias
+    '            .WriteElementString("nombre", cat.Nombre.ToString)
+    '            'For Each pro As Producto In cat.Productos
+    '            '    .WriteElementString("nombre", pro.Nombre.ToString)
+    '            '    .WriteElementString("stock", pro.CantidadStock.ToString)
+    '            '    .WriteElementString("precio", pro.Precio.ToString)
+    '            '    .WriteElementString("categoria", pro.Categoria.ToString)
+    '            '    .WriteElementString("rating", pro.Rating.ToString)
+    '            '    .WriteElementString("consola", pro.Consola.ToString)
 
-                'Next
-                '.WriteEndElement()
-            Next
-            .Close()
-        End With
+    '            'Next
+    '            '.WriteEndElement()
+    '        Next
+    '        .Close()
+    '    End With
 
-        xmlDoc.Save(rutaCategorias)
-    End Sub
+    '    xmlDoc.Save(rutaCategorias)
+    'End Sub
 
 
     Public Sub New(arreglo As ArrayList, path As String)
