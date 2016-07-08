@@ -458,10 +458,12 @@ Public Class MenuPrincipal
 
                 Case "6"
 
-                    GuardarCategorias()
-                    GuardarProductos()
+                    ''GuardarCategorias()
+                    'GuardarProductos()
+                    XmlCategorias()
+                    XmlProductos()
                     Console.Clear()
-                    Console.WriteLine("Las Facturas se han guardado...")
+                    Console.WriteLine("Los Datos se han guardado...")
                     Console.ReadLine()
                     MenuAdministrador(user, pass, idAux)
 
@@ -501,8 +503,8 @@ Public Class MenuPrincipal
 
             Case "2"
 
-                'EstructurarXML()
-                GuardarFacturas()
+                EstructurarXML()
+                'GuardarFacturas()
                 Console.Clear()
                 Console.WriteLine("Las Facturas se han guardado...")
                 Console.ReadLine()
@@ -1284,7 +1286,7 @@ Public Class MenuPrincipal
                     .WriteElementString("categoria", pro.Categoria.ToString)
                     .WriteElementString("rating", pro.Rating.ToString)
                     .WriteElementString("consola", pro.Consola.ToString)
-                    .WriteEndElement()
+                    '.WriteEndElement()
                 Next
             Next
             .Close()
@@ -1323,15 +1325,17 @@ Public Class MenuPrincipal
         With xmlDoc.SelectSingleNode("categorias").CreateNavigator().AppendChild()
             .WriteStartElement("categoria")
             For Each cat As Categoria In Categorias
-                For Each pro As Producto In cat.Productos
-                    .WriteElementString("nombre", pro.Nombre.ToString)
-                    .WriteElementString("stock", pro.CantidadStock.ToString)
-                    .WriteElementString("precio", pro.Precio.ToString)
-                    .WriteElementString("categoria", pro.Categoria.ToString)
-                    .WriteElementString("rating", pro.Rating.ToString)
-                    .WriteElementString("consola", pro.Consola.ToString)
-                    .WriteEndElement()
-                Next
+                .WriteElementString("nombre", cat.Nombre.ToString)
+                'For Each pro As Producto In cat.Productos
+                '    .WriteElementString("nombre", pro.Nombre.ToString)
+                '    .WriteElementString("stock", pro.CantidadStock.ToString)
+                '    .WriteElementString("precio", pro.Precio.ToString)
+                '    .WriteElementString("categoria", pro.Categoria.ToString)
+                '    .WriteElementString("rating", pro.Rating.ToString)
+                '    .WriteElementString("consola", pro.Consola.ToString)
+
+                'Next
+                '.WriteEndElement()
             Next
             .Close()
         End With
