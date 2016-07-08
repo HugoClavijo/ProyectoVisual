@@ -7,8 +7,8 @@ Public Class MenuPrincipal
     Protected arregloUsuarios As New ArrayList()
     Protected _empresa As Empresa
     Protected _ruta As String
-    Dim rutaCategorias As String = "C:\Users\user\Desktop\categorias.xml"
-    Dim rutaProductos As String = "C:\Users\user\Desktop\productos.xml"
+    Dim rutaCategorias As String
+    Dim rutaProductos As String
     Dim auxImpuesto As Double = 0.14
     Dim auxEfectivo As Double = 0
     Dim auxTarjeta As Double = 0.01
@@ -801,7 +801,7 @@ Public Class MenuPrincipal
                         posy += 1
                         Console.SetCursorPosition(posx, posy)
                         iva = iva * subtotal
-                        Console.Write(" IVA 14%: $" & iva)
+                        Console.Write(" IVA: $" & iva)
                         posy += 1
                         Console.SetCursorPosition(posx, posy)
                         totalFactura = iva + subtotal
@@ -1064,7 +1064,7 @@ Public Class MenuPrincipal
                 posy += 1
                 Console.SetCursorPosition(posx, posy)
                 iva = iva * subtotal
-                Console.Write(" IVA 14%: $" & iva)
+                Console.Write(" IVA: $" & iva)
                 posy += 1
                 Console.SetCursorPosition(posx, posy)
                 totalFactura = iva + subtotal
@@ -1286,42 +1286,6 @@ Public Class MenuPrincipal
                 End If
             Next
         Next
-
-        'Dim prod1 As Producto = New Producto(100, "counter strike", 40.0, "accion", "pg", "playstation 4")
-        'Dim prod2 As Producto = New Producto(200, "call of duty 4 modern warfare", 35.5, "accion", "pg", "playstation 4")
-        'Dim prod3 As Producto = New Producto(300, "call of duty 3", 25.5, "accion", "pg", "Xbox One")
-
-        'For Each cat As Categoria In arregloCategorias
-        '    If cat.Nombre = "accion" Then
-        '        cat.Productos.Add(prod1)
-        '        cat.Productos.Add(prod2)
-        '        cat.Productos.Add(prod3)
-        '    End If
-        'Next
-
-        'Dim prod4 As Producto = New Producto(400, "pokemon gold", 20.5, "aventura", "pg", "game boy")
-        'Dim prod5 As Producto = New Producto(500, "pokemon silver", 20.6, "aventura", "pg", "game boy")
-        'Dim prod6 As Producto = New Producto(600, "pokemon go", 30.5, "aventura", "pg", "pc")
-
-        'For Each cat As Categoria In arregloCategorias
-        '    If cat.Nombre = "aventura" Then
-        '        cat.Productos.Add(prod4)
-        '        cat.Productos.Add(prod5)
-        '        cat.Productos.Add(prod6)
-        '    End If
-        'Next
-
-        'Dim prod7 As Producto = New Producto(700, "silent hill", 32.3, "terror", "pg", "playstation 3")
-        'Dim prod8 As Producto = New Producto(800, "silent hill: 2", 42.3, "terror", "r", "playstation 4")
-        'Dim prod9 As Producto = New Producto(900, "silent hill: 3", 120.0, "terror", "r", "playstation 4")
-
-        'For Each cat As Categoria In arregloCategorias
-        '    If cat.Nombre = "terror" Then
-        '        cat.Productos.Add(prod7)
-        '        cat.Productos.Add(prod8)
-        '        cat.Productos.Add(prod9)
-        '    End If
-        'Next
 
     End Sub
 
@@ -1549,10 +1513,12 @@ Public Class MenuPrincipal
     'End Sub
 
 
-    Public Sub New(arreglo As ArrayList, path As String)
+    Public Sub New(arreglo As ArrayList, path As String, pathcategorias As String, pathProductos As String)
         Me.Usuarios = arreglo
         Me.Categorias = New ArrayList
         Me.Ruta = path
+        rutaCategorias = pathcategorias
+        rutaProductos = pathProductos
         CargarEmpresa()
         ValidarImpuesto()
         CargarCategorias()
