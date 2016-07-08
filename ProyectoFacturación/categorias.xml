@@ -1,12 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<categorias>
-  <categoria>
-    <nombre>accion</nombre>
-  </categoria>
-  <categoria>
-    <nombre>aventura</nombre>
-  </categoria>
-  <categoria>
-    <nombre>terror</nombre>
-  </categoria>
-</categorias>
+<usuarios>
+  <usuario>
+    <nombre>Hugo Clavijo</nombre>
+    <contraseña>batman</contraseña>
+    <tipo>administrador</tipo>
+  </usuario>
+  <usuario>
+    <nombre>Juan Carlos Carrera</nombre>
+    <contraseña>spiderman</contraseña>
+    <tipo>vendedor</tipo>
+  </usuario>
+</usuarios>

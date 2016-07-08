@@ -7,6 +7,7 @@ Public Class MenuPrincipal
     Protected arregloUsuarios As New ArrayList()
     Protected _empresa As Empresa
     Protected _ruta As String
+    Dim rutaUsuarios As String
     Dim rutaCategorias As String
     Dim rutaProductos As String
     Dim auxImpuesto As Double = 0.14
@@ -712,6 +713,7 @@ Public Class MenuPrincipal
 
                             Usuarios.Add(New Administrador(CStr(auxAdmin), auxName, auxUsua, auxcontra))
                             Console.ReadLine()
+                            guardarUsuarios()
                             MenuAdministrador(user, pass, idAux)
                         Case "2"
                             Console.Clear()
@@ -723,6 +725,7 @@ Public Class MenuPrincipal
                             Dim auxcontra As String = Console.ReadLine()
                             Usuarios.Add(New Vendedor(CStr(auxVende), auxName, auxUsua, auxcontra))
                             Console.ReadLine()
+                            guardarUsuarios()
                             MenuAdministrador(user, pass, idAux)
                     End Select
 
@@ -1569,18 +1572,58 @@ Public Class MenuPrincipal
     '    xmlDoc.Save(rutaCategorias)
     'End Sub
 
+    Public Sub cargarUsuarios()
+        Dim xmlDoc As New XmlDocument()
+        xmlDoc.Load(rutaUsuarios)
 
-    Public Sub New(arreglo As ArrayList, path As String, pathcategorias As String, pathProductos As String)
+        Dim nodoUsuario As XmlNodeList = xmlDoc.GetElementsByTagName("usuario")
+        For Each usuar As XmlNode In nodoUsuario
+            If usuar.ChildNodes(2).InnerText = "administrador" Then
+                Usuarios.Add(New Administrador("0", usuar.ChildNodes(0).InnerText, usuar.ChildNodes(0).InnerText, usuar.ChildNodes(2).InnerText))
+            End If
+
+            If usuar.ChildNodes(2).InnerText = "vendedor" Then
+                Usuarios.Add(New Administrador("0", usuar.ChildNodes(0).InnerText, usuar.ChildNodes(0).InnerText, usuar.ChildNodes(2).InnerText))
+            End If
+
+            arregloCategorias.Add(New Categoria(usuar.ChildNodes(0).InnerText))
+        Next
+    End Sub
+
+
+    Public Sub guardarUsuarios()
+        Dim settings As XmlWriterSettings = New XmlWriterSettings()
+        settings.Indent = True
+
+        Using writer As XmlWriter = XmlWriter.Create(rutaUsuarios, settings)
+            writer.WriteStartDocument()
+            writer.WriteStartElement("usuarios")
+
+            For Each user As Usuario In Usuarios
+                writer.WriteStartElement("usuario")
+                writer.WriteElementString("nombre", user.Usuario.ToString)
+                writer.WriteElementString("contraseña", user.Password.ToString)
+                writer.WriteElementString("tipo", user.TipoUser.ToString)
+                writer.WriteEndElement()
+            Next
+        End Using
+    End Sub
+
+
+    Public Sub New(arreglo As ArrayList, path As String, pathcategorias As String, pathProductos As String, pathUsuarios As String)
         Me.Usuarios = arreglo
         Me.Categorias = New ArrayList
         Me.Ruta = path
         rutaCategorias = pathcategorias
         rutaProductos = pathProductos
+        rutaUsuarios = pathUsuarios
         CargarEmpresa()
         ValidarImpuesto()
         CargarCategorias()
         CargarProductos()
         Me.vectorFacturas = New VectorFacturas
+        'cargarUsuarios()
+        'guardarUsuarios()
         'EstructurarXML()
         'XmlCategorias()
         'XmlProductos()
