@@ -503,7 +503,6 @@
         Dim tarjeta As Double = 0
         Dim dineroElect As Double = 0
         Dim cambio As Double = 0
-
         Dim formaPago As Integer = 0
 
         Dim cliente As Cliente
@@ -541,12 +540,12 @@
             Do While siono = "S" Or siono = "s"
                 posx = 2
                 posy += 1
+
                 Console.SetCursorPosition(posx, posy)
-
-
                 cantidads = Console.ReadLine()
+
                 If cantidads = "" Then
-                    Exit Do
+                    Facturar()
 
                 Else
                     cantidad = CInt(cantidads)
@@ -555,42 +554,55 @@
                 posx += 19
 
 
-
-
                 Console.WriteLine("")
+
 
                 Console.SetCursorPosition(posx, posy)
                 descripcion = Console.ReadLine()
                 Console.WriteLine("")
 
-
-
+                'validación stock
+                For Each cat As Categoria In arregloCategorias
+                    For Each product As Producto In cat.Productos
+                        If descripcion = product.Nombre And cantidad > product.CantidadStock Then
+                            Console.Clear()
+                            Console.WriteLine("Error, no se puede facturar " & cantidad & " Items de " & descripcion)
+                            Console.WriteLine("El Stock de " & descripcion & " es " & product.CantidadStock & " Items ")
+                            Console.ReadLine()
+                            Facturar()
+                        End If
+                    Next
+                Next
+                '------------------------
                 producto = ValidarProducto(cantidad, descripcion)
                 posx += 16
-                Console.SetCursorPosition(posx, posy)
-                vunitario = producto.Precio
-                Console.WriteLine(vunitario)
-                Console.WriteLine("")
-                posx += 14
-                Console.SetCursorPosition(posx, posy)
-                vtotal = producto.Precio * cantidad
-                Console.WriteLine("$" & vtotal)
-
-                Dim detalle As New Detalle(cantidad, descripcion, vunitario, vtotal) 'esto debe ir a factura
-                detallesArray.Add(detalle)
 
 
+                If Not descripcion = producto.Nombre Then
+                    vunitario = 0
+                    vtotal = 0
+                Else
 
-                Console.WriteLine("")
-                Console.Write("")
+                    Console.SetCursorPosition(posx, posy)
+                    vunitario = producto.Precio
+                    Console.WriteLine(vunitario)
+                    Console.WriteLine("")
+                    posx += 14
+                    Console.SetCursorPosition(posx, posy)
+                    vtotal = producto.Precio * cantidad
+                    Console.WriteLine("$" & vtotal)
 
+                    Dim detalle As New Detalle(cantidad, descripcion, vunitario, vtotal) 'esto debe ir a factura
+                    detallesArray.Add(detalle)
 
+                    Console.WriteLine("")
+                    Console.Write("")
 
-
+                End If
 
             Loop
 
-            If cantidads = "" Then
+                If cantidads = "" Then
                 posx = 40
                 posy += 1
                 Console.SetCursorPosition(posx, posy)
@@ -719,30 +731,46 @@
                 descripcion = Console.ReadLine()
                 Console.WriteLine("")
 
-
+                'validación stock
+                For Each cat As Categoria In arregloCategorias
+                    For Each product As Producto In cat.Productos
+                        If descripcion = product.Nombre And cantidad > product.CantidadStock Then
+                            Console.Clear()
+                            Console.WriteLine("Error, no se puede facturar " & cantidad & " Items de " & descripcion)
+                            Console.WriteLine("El Stock de " & descripcion & " es " & product.CantidadStock & " Items ")
+                            Console.ReadLine()
+                            Facturar()
+                        End If
+                    Next
+                Next
+                '------------------------
 
                 producto = ValidarProducto(cantidad, descripcion)
                 posx += 16
-                Console.SetCursorPosition(posx, posy)
-                vunitario = producto.Precio
-                Console.WriteLine(vunitario)
-                Console.WriteLine("")
-                posx += 14
-                Console.SetCursorPosition(posx, posy)
-                vtotal = producto.Precio * cantidad
-                Console.WriteLine("$" & vtotal)
-
-                Dim detalle As New Detalle(cantidad, descripcion, vunitario, vtotal) 'esto debe ir a factura
-                detallesArray.Add(detalle)
 
 
+                If Not descripcion = producto.Nombre Then
+                    vunitario = 0
+                    vtotal = 0
+                Else
+                    Console.SetCursorPosition(posx, posy)
+                    vunitario = producto.Precio
+                    Console.WriteLine(vunitario)
+                    Console.WriteLine("")
+                    posx += 14
+                    Console.SetCursorPosition(posx, posy)
+                    vtotal = producto.Precio * cantidad
+                    Console.WriteLine("$" & vtotal)
 
-                Console.WriteLine("")
-                Console.Write("")
+                    Dim detalle As New Detalle(cantidad, descripcion, vunitario, vtotal) 'esto debe ir a factura
+                    detallesArray.Add(detalle)
 
 
 
+                    Console.WriteLine("")
+                    Console.Write("")
 
+                End If
 
             Loop
 
@@ -856,11 +884,6 @@
             Console.ReadLine()
         End If
 
-        'If id <> "No existe" Then
-        '    Console.WriteLine("Usuario Logeado... " & nombre & " - " & tipo)
-        'End If
-
-
         Return id
 
     End Function
@@ -894,8 +917,8 @@
     Public Function ValidarProducto(cantidad As Integer, nombProd As String)
         Dim stock As Integer = 0
         Dim name As String = nombProd
-        Dim prod As Producto
-
+        Dim prod As Producto = New Producto(" ", 0)
+        Dim auxName As String = " "
 
         For Each cat As Categoria In arregloCategorias
             Dim aux As Integer = 0
@@ -905,48 +928,21 @@
 
                 producto = cat.obtenerProducto(aux)
                 If name = producto.Nombre And producto.CantidadStock > cantidad Then
-
+                    auxName = producto.Nombre
                     prod = producto
                     producto.CantidadStock -= cantidad
-                    'Console.WriteLine("Ahora tenemos:  " & producto.CantidadStock)
 
                 ElseIf (producto.CantidadStock < cantidad And nombProd = producto.Nombre) Then
                     'Console.WriteLine("*Lo sentimos*")
                     'Console.WriteLine("Tenemos un stock de: " & producto.CantidadStock)
 
-                ElseIf nombProd IsNot producto.Nombre Then
-                    'Console.WriteLine(vectorProductos.ArrayProductos.Count)'obtengo la cantidad de  productos
-
-
                 End If
                 aux += 1
             Next
-
         Next
 
-
-
-
-
-        'For Each producto As Producto In vectorProductos.ArrayProductos
-        '    If name = producto.Nombre And producto.CantidadStock > cantidad Then
-
-        '        prod = producto
-        '        producto.CantidadStock -= cantidad
-        '        'Console.WriteLine("Ahora tenemos:  " & producto.CantidadStock)
-
-        '    ElseIf (producto.CantidadStock < cantidad And nombProd = producto.Nombre) Then
-        '        'Console.WriteLine("*Lo sentimos*")
-        '        'Console.WriteLine("Tenemos un stock de: " & producto.CantidadStock)
-
-        '    ElseIf nombProd IsNot producto.Nombre Then
-        '        'Console.WriteLine(vectorProductos.ArrayProductos.Count)'obtengo la cantidad de  productos
-
-
-        '    End If
-        'Next
-
         Return prod
+
     End Function
 
 

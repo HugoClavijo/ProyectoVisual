@@ -115,8 +115,8 @@
     Public Sub New(nombre As String, precio As Double)
         Me._nombre = nombre
         Me._precio = precio
-
     End Sub
+
 
     Public Sub MostrarProducto()
         Console.WriteLine("----------------------------------------")
