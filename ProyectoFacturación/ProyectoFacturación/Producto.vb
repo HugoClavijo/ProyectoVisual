@@ -3,6 +3,8 @@
 
     Private _cantidadStock As Integer
     Protected _id As String
+    Private _pagaiva As Boolean
+
     Protected _nombre As String
     Protected _precio As Double
     Protected _categoria As String
@@ -129,4 +131,12 @@
          " Costo :" & Me._precio
     End Function
 
+    Public Property Pagaiva() As Boolean
+        Get
+            Return _pagaiva
+        End Get
+        Set(ByVal value As Boolean)
+            _pagaiva = value
+        End Set
+    End Property
 End Class
