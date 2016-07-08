@@ -15,6 +15,7 @@
 
         arregloUsers.Add(vendedor)
 
+
         Dim menu As MenuPrincipal = New MenuPrincipal(arregloUsers, path, pathCategorias, pathProductos)
         menu.Iniciar()
 
