@@ -56,6 +56,30 @@ Public Class Factura
         _fechaEmision = Format(Now(), "Long Date")
     End Sub
 
+    Public Sub New(numSecuencial As Long, Cliente As Cliente, arraydetalles As ArrayList, subtotal As Double, iva As Double, totalFactura As Double,
+                   efectivo As Double, tarjeta As Double, dineroElectronico As Double, cambio As Double, ahorro As Double)
+        informacionEmpresa()
+
+        Me._empresa = Empresa
+        'Me._ivaIngresado = ivaUsado
+        Me._secuencial = numSecuencial
+        Me._cliente = Cliente
+        _detalleArray = New ArrayList
+        _detalleArray = arraydetalles
+        Me._subtotal = subtotal
+        Me._impuesto = iva
+        Me._totalFactura = totalFactura
+        Me._efectivo = efectivo
+        Me._tarjetaCredito = tarjeta
+        Me._dineroElectronico = dineroElectronico
+        Me._cambio = cambio
+        Me._ahorroFactura = ahorro
+
+        '_fechaEmision = DateTime.Now().ToShortDateString()
+        _fechaEmision = Format(Now(), "Long Date")
+    End Sub
+
+
 
 
     Public Property IvaIngresado() As Double
