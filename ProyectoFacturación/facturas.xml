@@ -29,4 +29,52 @@
       <precioTotalSinImpuesto>80</precioTotalSinImpuesto>
     </detalle>
   </factura>
+  <factura>
+    <infoTributaria>
+      <razonSocial>Proyecto Visual S.A.</razonSocial>
+      <nombreComercial>Proyecto</nombreComercial>
+      <ruc>1235846958001</ruc>
+      <dirMatriz>Campus Espol, EDCOM - Guayaquil,Ecuador</dirMatriz>
+    </infoTributaria>
+    <infoFactura>
+      <fechaEmision>viernes, 8 de julio de 2016</fechaEmision>
+      <provEstablecimiento>Guayas</provEstablecimiento>
+      <dirEstablecimiento>Campus Espol, EDCOM - Guayaquil,Ecuador</dirEstablecimiento>
+      <cliente>Juan</cliente>
+      <totalSinImpuestos>80</totalSinImpuestos>
+      <impuesto>11,2</impuesto>
+      <totalConImpuestos>91,2</totalConImpuestos>
+      <efectivo>91,2</efectivo>
+      <tarjetaCredito>0</tarjetaCredito>
+      <dineroElectronico>0</dineroElectronico>
+      <cambio>0</cambio>
+      <valorDevuelto>0</valorDevuelto>
+    </infoFactura>
+    <detalle>
+      <descripcion>Counter Strike</descripcion>
+      <cantidad>2</cantidad>
+      <precioUnitario>40</precioUnitario>
+      <precioTotalSinImpuesto>80</precioTotalSinImpuesto>
+    </detalle>
+    <infoTributaria>
+      <razonSocial>Proyecto Visual S.A.</razonSocial>
+      <nombreComercial>Proyecto</nombreComercial>
+      <ruc>1235846958001</ruc>
+      <dirMatriz>Campus Espol, EDCOM - Guayaquil,Ecuador</dirMatriz>
+    </infoTributaria>
+    <infoFactura>
+      <fechaEmision>viernes, 8 de julio de 2016</fechaEmision>
+      <provEstablecimiento>Guayas</provEstablecimiento>
+      <dirEstablecimiento>Campus Espol, EDCOM - Guayaquil,Ecuador</dirEstablecimiento>
+      <cliente>alberto suarez segundo</cliente>
+      <totalSinImpuestos>152,5</totalSinImpuestos>
+      <impuesto>21,35</impuesto>
+      <totalConImpuestos>173,85</totalConImpuestos>
+      <efectivo>173,85</efectivo>
+      <tarjetaCredito>0</tarjetaCredito>
+      <dineroElectronico>0</dineroElectronico>
+      <cambio>0</cambio>
+      <valorDevuelto>0</valorDevuelto>
+    </infoFactura>
+  </factura>
 </facturas>

@@ -14,7 +14,7 @@ Public Class MenuPrincipal
     Dim auxTarjeta As Double = 0.01
     Dim auxElectronico As Double = 0.04
     Dim auxResta As Double = 0
-    Dim detallesArray As New ArrayList
+    Dim detallesArray As ArrayList
     Protected arregloCategorias As ArrayList
 
 
@@ -694,8 +694,9 @@ Public Class MenuPrincipal
         Console.WriteLine("Usuario Vendedor " & idAux & " Logeado... " & user & vbNewLine)
         Console.WriteLine("1.- Facturar")
         Console.WriteLine("2.- Guardar Facturas")
-        Console.WriteLine("3.- Salir de la sesión")
-        Console.WriteLine("4.- Salir del sistema")
+        Console.WriteLine("3.- Mostrar reporte")
+        Console.WriteLine("4.- Salir de la sesión")
+        Console.WriteLine("5.- Salir del sistema")
         Console.Write("Ingrese una opción: ")
         opcionVendedor = Console.ReadLine()
 
@@ -713,12 +714,30 @@ Public Class MenuPrincipal
                 Console.WriteLine("Las Facturas se han guardado...")
                 Console.ReadLine()
                 MenuVendedor(user, pass, idAux)
-
             Case "3"
+                Console.Clear()
+                Dim auxTotalFact As Integer = 0
+                Dim auxTotalImpuestos As Double = 0
+                For Each f As Factura In vectorFacturas.ArrayFacturas
+                    auxTotalFact += 1
+                    auxTotalImpuestos += f.Impuesto
+                    f.mostrarFactura()
+
+                Next
+                Console.ReadLine()
+                Console.WriteLine("------------------------------------")
+                Console.WriteLine("Total de ventas           : " & auxTotalFact)
+                Console.WriteLine("Total de impuestos ganados: " & auxTotalImpuestos)
+                Console.WriteLine("------------------------------------")
+                Console.ReadLine()
+                Iniciar()
+
+
+            Case "4"
 
                 Iniciar()
 
-            Case "4"
+            Case "5"
 
                 Environment.Exit(0)
 
@@ -761,7 +780,7 @@ Public Class MenuPrincipal
         siono = Console.ReadLine
 
         If siono = "s" Or siono = "S" Then
-
+            detallesArray = New ArrayList
             Console.Clear()
             Console.Write("Sr(es): ")
             nombre = Console.ReadLine()
@@ -887,9 +906,9 @@ Public Class MenuPrincipal
                         Dim factura As New Factura(auxSecuencial, cliente, detallesArray, subtotal, iva, totalFactura, efectivo, tarjeta, dineroElect, cambio, auxResta)
                         vectorFacturas.ArrayFacturas.Add(factura)
 
-                        For Each fact As Factura In vectorFacturas.ArrayFacturas
-                            fact.mostrarFactura()
-                        Next
+                        'For Each fact As Factura In vectorFacturas.ArrayFacturas
+                        '    fact.mostrarFactura()
+                        'Next
 
 
 
@@ -965,7 +984,7 @@ Public Class MenuPrincipal
 
         ElseIf siono = "n" Or siono = "N" Then
             'Console.WriteLine("Sr(es): Usuario final")
-
+             detallesArray = New  ArrayList
             Console.Clear()
             Console.WriteLine("Sr(es):  Usuario final")
             nombre = "Usuario final"

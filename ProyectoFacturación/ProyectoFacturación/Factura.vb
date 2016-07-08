@@ -320,7 +320,7 @@ Public Class Factura
         Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "SUBTOTAL " & IvaIngresado & "%: $" & _subtotal)
         Console.WriteLine(vbTab & vbTab & vbTab & vbTab & " SUBTOTAL 0%: $0.00")
         Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "   DESCUENTO: $0.00")
-        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "     IVA" & IvaIngresado & "%: $" & _impuesto)
+        Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "         IVA: $" & _impuesto)
         Console.WriteLine(vbTab & vbTab & vbTab & vbTab & " VALOR TOTAL: $" & _totalFactura)
 
         Console.WriteLine(vbTab & vbTab & vbTab & vbTab & "    EFECTIVO: $" & _efectivo)
