@@ -14,6 +14,7 @@ Public Class MenuPrincipal
     Dim auxTarjeta As Double = 0.01
     Dim auxElectronico As Double = 0.04
     Dim auxResta As Double = 0
+
     Dim detallesArray As New ArrayList
 
     Protected arregloCategorias As ArrayList
