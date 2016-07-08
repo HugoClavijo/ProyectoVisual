@@ -1,9 +1,12 @@
-﻿Public Class MenuPrincipal
+﻿Imports System.Xml
+
+Public Class MenuPrincipal
 
 
     Protected vectorFacturas As VectorFacturas
     Protected arregloUsuarios As New ArrayList()
     Protected _empresa As Empresa
+    Protected _ruta As String
     Dim auxImpuesto As Double = 0.14
     Dim auxEfectivo As Double = 0
     Dim auxTarjeta As Double = 0.01
@@ -39,6 +42,16 @@
         End Get
         Set(ByVal value As Empresa)
             _empresa = value
+        End Set
+    End Property
+
+
+    Public Property Ruta() As String
+        Get
+            Return _ruta
+        End Get
+        Set(ByVal value As String)
+            _ruta = value
         End Set
     End Property
 
@@ -1094,6 +1107,49 @@
     End Sub
 
     Public Sub EstructurarXML()
+        Dim settings As XmlWriterSettings = New XmlWriterSettings()
+        settings.Indent = True
+
+        Using writer As XmlWriter = XmlWriter.Create(_ruta, settings)
+            writer.WriteStartDocument()
+            writer.WriteStartElement("factura")
+
+            For Each fact As Factura In vectorFacturas.ArrayFacturas
+                writer.WriteStartElement("infoTributaria")
+                writer.WriteElementString("razonSocial", fact.Empresa.Razonsocial.ToString)
+                writer.WriteElementString("nombreComercial", fact.Empresa.NombreComercial.ToString)
+                writer.WriteElementString("ruc", fact.Empresa.Ruc.ToString)
+                'writer.WriteElementString("provEmpresa", fact.Empresa.Provincia.ToString)
+                writer.WriteElementString("dirMatriz", fact.Empresa.DireccionEmpresa.ToString)
+                writer.WriteEndElement()
+
+                writer.WriteStartElement("infoFactura")
+                writer.WriteElementString("fechaEmision", fact.FechaEmision.ToString)
+                writer.WriteElementString("provEstablecimiento", fact.Empresa.Provincia.ToString)
+                writer.WriteElementString("dirEstablecimiento", fact.Empresa.DireccionEmpresa.ToString)
+                writer.WriteElementString("cliente", fact.Cliente.Nombre.ToString)
+                writer.WriteElementString("totalSinImpuestos", fact.Subtotal.ToString)
+                writer.WriteElementString("impuesto", fact.Impuesto.ToString)
+                writer.WriteElementString("totalConImpuestos", fact.TotalFactura.ToString)
+                writer.WriteElementString("efectivo", fact.Efectivo.ToString)
+                writer.WriteElementString("tarjetaCredito", fact.TarjetaCredito.ToString)
+                writer.WriteElementString("dineroElectronico", fact.DineroElectronico.ToString)
+                writer.WriteElementString("cambio", fact.Cambio.ToString)
+                writer.WriteElementString("valorDevuelto", fact.AhorroFactura.ToString)
+                writer.WriteEndElement()
+
+                For Each detalle As Detalle In fact.DetalleArray
+                    writer.WriteStartElement("detalle")
+                    writer.WriteElementString("descripcion", detalle.Descripcion.ToString)
+                    writer.WriteElementString("cantidad", detalle.Cantidad.ToString)
+                    writer.WriteElementString("precioUnitario", detalle.PrecioUnitario.ToString)
+                    writer.WriteElementString("precioTotalSinImpuesto", detalle.PrecioTotal.ToString)
+                    writer.WriteEndElement()
+                Next
+
+            Next
+
+        End Using
 
     End Sub
 
@@ -1104,14 +1160,16 @@
     End Sub
 
 
-    Public Sub New(arreglo As ArrayList)
+    Public Sub New(arreglo As ArrayList, path As String)
         Me.Usuarios = arreglo
         Me.Categorias = New ArrayList
+        Me.Ruta = path
         CargarEmpresa()
         ValidarImpuesto()
         CargarCategorias()
         CargarProductos()
         Me.vectorFacturas = New VectorFacturas
+        EstructurarXML()
     End Sub
 
 End Class
