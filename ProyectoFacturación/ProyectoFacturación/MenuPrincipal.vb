@@ -545,7 +545,118 @@
                 cantidads = Console.ReadLine()
 
                 If cantidads = "" Then
-                    Facturar()
+                    If cantidads = "" Then
+                        posx = 40
+                        posy += 1
+                        Console.SetCursorPosition(posx, posy)
+                        Console.Write("-----------------------")
+                        posy += 1
+                        Console.SetCursorPosition(posx, posy)
+                        For Each d As Detalle In detallesArray
+                            subtotal += d.PrecioTotal
+                        Next
+
+                        Console.Write("SUBTOTAL: $" & subtotal)
+                        posy += 1
+                        Console.SetCursorPosition(posx, posy)
+                        iva = iva * subtotal
+                        Console.Write(" IVA 14%: $" & iva)
+                        posy += 1
+                        Console.SetCursorPosition(posx, posy)
+                        totalFactura = iva + subtotal
+                        Console.Write("   TOTAL: $" & totalFactura)
+
+
+
+
+                        posy += 1
+                        Console.SetCursorPosition(posx, posy)
+                        Console.Write("EFECTIVO: $")
+
+                        Dim efectivoString As String = Console.ReadLine()
+
+                        If String.IsNullOrEmpty(efectivoString) Then
+                            Console.Clear()
+                            Console.Write("Error, EFECTIVO: VACIO")
+                            Console.ReadLine()
+                            Facturar()
+                        End If
+
+                        efectivo = CDbl(efectivoString)
+
+                        posy += 1
+                        Console.SetCursorPosition(posx, posy)
+                        Console.Write("TCREDITO: $")
+
+                        Dim tarjetaString As String = Console.ReadLine()
+
+                        If String.IsNullOrEmpty(tarjetaString) Then
+                            Console.Clear()
+                            Console.Write("Error, TCREDITO: VACIO")
+                            Console.ReadLine()
+                            Facturar()
+                        End If
+
+                        tarjeta = CDbl(tarjetaString)
+
+                        Dim auxta As Double = 0
+                        If tarjeta > 0 Then
+                            auxta = auxTarjeta * totalFactura
+
+                        End If
+                        posy += 1
+                        Console.SetCursorPosition(posx, posy)
+                        Console.Write("D.ELECTR: $")
+
+                        Dim elecString As String = Console.ReadLine()
+
+                        If String.IsNullOrEmpty(elecString) Then
+                            Console.Clear()
+                            Console.Write("Error, D.ELECTR: VACIO")
+                            Console.ReadLine()
+                            Facturar()
+                        End If
+
+                        dineroElect = CDbl(elecString)
+
+                        Dim auxel As Double = 0
+                        If dineroElect > 0 Then
+                            auxel = auxElectronico * subtotal
+                        End If
+                        posy += 1
+                        Console.SetCursorPosition(posx, posy)
+                        'operacion(14%      -   4%    -      1%)
+                        cambio = ((efectivo + tarjeta + dineroElect) - totalFactura)
+                        'cambiar formato de cambio
+                        Console.Write("CAMBIO  : $" & cambio)
+                        posy += 1
+                        Console.SetCursorPosition(posx, posy)
+                        Console.Write("--------------------")
+                        posy += 1
+
+                        auxResta = ((efectivo + tarjeta + dineroElect) - totalFactura) - auxel - auxta
+                        Console.SetCursorPosition(posx, posy)
+                        If efectivo > totalFactura Then
+                            auxResta = 0
+                        End If
+                        Console.Write("Te ahorras: $" & auxResta)
+
+
+
+                        Dim factura As New Factura(auxSecuencial, cliente, detallesArray, subtotal, iva, totalFactura, efectivo, tarjeta, dineroElect, cambio, auxResta)
+                        vectorFacturas.ArrayFacturas.Add(factura)
+
+                        For Each fact As Factura In vectorFacturas.ArrayFacturas
+                            fact.mostrarFactura()
+                        Next
+
+
+
+                        'factura.mostrarFactura()
+                        detallesArray.Clear()
+                        Console.ReadLine()
+                        Iniciar()
+                    End If
 
                 Else
                     cantidad = CInt(cantidads)
@@ -602,85 +713,7 @@
 
             Loop
 
-                If cantidads = "" Then
-                posx = 40
-                posy += 1
-                Console.SetCursorPosition(posx, posy)
-                Console.Write("-----------------------")
-                posy += 1
-                Console.SetCursorPosition(posx, posy)
-                For Each d As Detalle In detallesArray
-                    subtotal += d.PrecioTotal
-                Next
 
-                Console.Write("SUBTOTAL: $" & subtotal)
-                posy += 1
-                Console.SetCursorPosition(posx, posy)
-                iva = iva * subtotal
-                Console.Write(" IVA 14%: $" & iva)
-                posy += 1
-                Console.SetCursorPosition(posx, posy)
-                totalFactura = iva + subtotal
-                Console.Write("   TOTAL: $" & totalFactura)
-
-
-
-
-                posy += 1
-                Console.SetCursorPosition(posx, posy)
-                Console.Write("EFECTIVO: $")
-                efectivo = Console.ReadLine()
-                posy += 1
-                Console.SetCursorPosition(posx, posy)
-                Console.Write("TCREDITO: $")
-                tarjeta = Console.ReadLine()
-                Dim auxta As Double = 0
-                If tarjeta > 0 Then
-                    auxta = auxTarjeta * totalFactura
-
-                End If
-                posy += 1
-                Console.SetCursorPosition(posx, posy)
-                Console.Write("D.ELECTR: $")
-                dineroElect = Console.ReadLine()
-                Dim auxel As Double = 0
-                If dineroElect > 0 Then
-                    auxel = auxElectronico * subtotal
-                End If
-                posy += 1
-                Console.SetCursorPosition(posx, posy)
-                'operacion(14%      -   4%    -      1%)
-                cambio = ((efectivo + tarjeta + dineroElect) - totalFactura)
-                'cambiar formato de cambio
-                Console.Write("CAMBIO  : $" & cambio)
-                posy += 1
-                Console.SetCursorPosition(posx, posy)
-                Console.Write("--------------------")
-                posy += 1
-
-                auxResta = ((efectivo + tarjeta + dineroElect) - totalFactura) - auxel - auxta
-                Console.SetCursorPosition(posx, posy)
-                If efectivo > totalFactura Then
-                    auxResta = 0
-                End If
-                Console.Write("Te ahorras: $" & auxResta)
-
-
-
-                Dim factura As New Factura(auxSecuencial, cliente, detallesArray, subtotal, iva, totalFactura, efectivo, tarjeta, dineroElect, cambio, auxResta)
-                vectorFacturas.ArrayFacturas.Add(factura)
-
-                For Each fact As Factura In vectorFacturas.ArrayFacturas
-                    fact.mostrarFactura()
-                Next
-
-
-
-                'factura.mostrarFactura()
-                detallesArray.Clear()
-                Console.ReadLine()
-                Iniciar()
-            End If
 
 
 
@@ -801,11 +834,33 @@
                 posy += 1
                 Console.SetCursorPosition(posx, posy)
                 Console.Write("EFECTIVO: $")
-                efectivo = Console.ReadLine()
+                Dim efectivoString As String = Console.ReadLine()
+
+                If String.IsNullOrEmpty(efectivoString) Then
+                    Console.Clear()
+                    Console.Write("Error, EFECTIVO: VACIO")
+                    Console.ReadLine()
+                    Facturar()
+                End If
+
+                efectivo = CDbl(efectivoString)
+
                 posy += 1
                 Console.SetCursorPosition(posx, posy)
                 Console.Write("TCREDITO: $")
-                tarjeta = Console.ReadLine()
+
+                Dim tarjetaString As String = Console.ReadLine()
+
+
+                If String.IsNullOrEmpty(tarjetaString) Then
+                    Console.Clear()
+                    Console.Write("Error, TCREDITO: VACIO")
+                    Console.ReadLine()
+                    Facturar()
+                End If
+
+                tarjeta = CDbl(tarjetaString)
+
                 Dim auxta As Double = 0
                 If tarjeta > 0 Then
                     auxta = auxTarjeta * totalFactura
@@ -814,7 +869,18 @@
                 posy += 1
                 Console.SetCursorPosition(posx, posy)
                 Console.Write("D.ELECTR: $")
-                dineroElect = Console.ReadLine()
+                Dim dineroElectString As String = Console.ReadLine()
+
+                If String.IsNullOrEmpty(dineroElectString) Then
+                    Console.Clear()
+                    Console.Write("Error, TCREDITO: VACIO")
+                    Console.ReadLine()
+                    Facturar()
+                End If
+
+                dineroElect = CDbl(dineroElectString)
+
+
                 Dim auxel As Double = 0
                 If dineroElect > 0 Then
                     auxel = auxElectronico * subtotal
