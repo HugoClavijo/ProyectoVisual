@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<categorias>
+  <categoria>
+    <nombre>accion</nombre>
+  </categoria>
+  <categoria>
+    <nombre>aventura</nombre>
+  </categoria>
+  <categoria>
+    <nombre>terror</nombre>
+  </categoria>
+</categorias>

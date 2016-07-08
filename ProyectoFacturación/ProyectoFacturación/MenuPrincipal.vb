@@ -7,6 +7,8 @@ Public Class MenuPrincipal
     Protected arregloUsuarios As New ArrayList()
     Protected _empresa As Empresa
     Protected _ruta As String
+    Dim rutaCategorias As String = "C:\Users\user\Desktop\categorias.xml"
+    Dim rutaProductos As String = "C:\Users\user\Desktop\productos.xml"
     Dim auxImpuesto As Double = 0.14
     Dim auxEfectivo As Double = 0
     Dim auxTarjeta As Double = 0.01
@@ -114,8 +116,9 @@ Public Class MenuPrincipal
             Console.WriteLine("3.- Productos")
             Console.WriteLine("4.- IVA")
             Console.WriteLine("5.- Buscar Factura")
-            Console.WriteLine("6.- Salir de la sesión")
-            Console.WriteLine("7.- Salir del sistema")
+            Console.WriteLine("6.- Guardar Cambios")
+            Console.WriteLine("7.- Salir de la sesión")
+            Console.WriteLine("8.- Salir del sistema")
             Console.Write("Ingrese una opción: ")
             opcionAdmin = Console.ReadLine()
 
@@ -455,15 +458,24 @@ Public Class MenuPrincipal
 
                 Case "6"
 
-                    Iniciar()
+                    GuardarCategorias()
+                    GuardarProductos()
+                    Console.Clear()
+                    Console.WriteLine("Las Facturas se han guardado...")
+                    Console.ReadLine()
+                    MenuAdministrador(user, pass, idAux)
 
                 Case "7"
+
+                    Iniciar()
+
+                Case "8"
 
                     Environment.Exit(0)
 
             End Select
 
-        Loop Until (opcionAdmin = "7")
+        Loop Until (opcionAdmin = "8")
 
     End Sub
 
@@ -485,11 +497,16 @@ Public Class MenuPrincipal
 
             Case "1"
 
-                Facturar()
+                Facturar(user, pass, idAux)
 
             Case "2"
 
-                GuardarXML()
+                'EstructurarXML()
+                GuardarFacturas()
+                Console.Clear()
+                Console.WriteLine("Las Facturas se han guardado...")
+                Console.ReadLine()
+                MenuVendedor(user, pass, idAux)
 
             Case "3"
 
@@ -504,7 +521,7 @@ Public Class MenuPrincipal
     End Sub
 
 
-    Public Sub Facturar()
+    Public Sub Facturar(user As String, pass As String, idAux As String)
         Dim siono As String
         Dim nombre As String
         Dim ruc_ci As String
@@ -597,7 +614,7 @@ Public Class MenuPrincipal
                             Console.Clear()
                             Console.Write("Error, EFECTIVO: VACIO")
                             Console.ReadLine()
-                            Facturar()
+                            Facturar(user, pass, idAux)
                         End If
 
                         efectivo = CDbl(efectivoString)
@@ -612,7 +629,7 @@ Public Class MenuPrincipal
                             Console.Clear()
                             Console.Write("Error, TCREDITO: VACIO")
                             Console.ReadLine()
-                            Facturar()
+                            Facturar(user, pass, idAux)
                         End If
 
                         tarjeta = CDbl(tarjetaString)
@@ -632,7 +649,7 @@ Public Class MenuPrincipal
                             Console.Clear()
                             Console.Write("Error, D.ELECTR: VACIO")
                             Console.ReadLine()
-                            Facturar()
+                            Facturar(user, pass, idAux)
                         End If
 
                         dineroElect = CDbl(elecString)
@@ -673,7 +690,8 @@ Public Class MenuPrincipal
                         'factura.mostrarFactura()
                         detallesArray.Clear()
                         Console.ReadLine()
-                        Iniciar()
+                        'Iniciar()
+                        MenuVendedor(user, pass, idAux)
                     End If
 
                 Else
@@ -698,7 +716,7 @@ Public Class MenuPrincipal
                             Console.WriteLine("Error, no se puede facturar " & cantidad & " Items de " & descripcion)
                             Console.WriteLine("El Stock de " & descripcion & " es " & product.CantidadStock & " Items ")
                             Console.ReadLine()
-                            Facturar()
+                            Facturar(user, pass, idAux)
                         End If
                     Next
                 Next
@@ -790,7 +808,7 @@ Public Class MenuPrincipal
                             Console.WriteLine("Error, no se puede facturar " & cantidad & " Items de " & descripcion)
                             Console.WriteLine("El Stock de " & descripcion & " es " & product.CantidadStock & " Items ")
                             Console.ReadLine()
-                            Facturar()
+                            Facturar(user, pass, idAux)
                         End If
                     Next
                 Next
@@ -858,7 +876,7 @@ Public Class MenuPrincipal
                     Console.Clear()
                     Console.Write("Error, EFECTIVO: VACIO")
                     Console.ReadLine()
-                    Facturar()
+                    Facturar(user, pass, idAux)
                 End If
 
                 efectivo = CDbl(efectivoString)
@@ -874,7 +892,7 @@ Public Class MenuPrincipal
                     Console.Clear()
                     Console.Write("Error, TCREDITO: VACIO")
                     Console.ReadLine()
-                    Facturar()
+                    Facturar(user, pass, idAux)
                 End If
 
                 tarjeta = CDbl(tarjetaString)
@@ -893,7 +911,7 @@ Public Class MenuPrincipal
                     Console.Clear()
                     Console.Write("Error, TCREDITO: VACIO")
                     Console.ReadLine()
-                    Facturar()
+                    Facturar(user, pass, idAux)
                 End If
 
                 dineroElect = CDbl(dineroElectString)
@@ -935,7 +953,8 @@ Public Class MenuPrincipal
                 'factura.mostrarFactura()
                 detallesArray.Clear()
                 Console.ReadLine()
-                Iniciar()
+                'Iniciar()
+                MenuVendedor(user, pass, idAux)
             End If
 
 
@@ -983,14 +1002,14 @@ Public Class MenuPrincipal
     End Function
 
 
-    Public Sub CargarCategorias()
-        Dim accion As Categoria = New Categoria("accion")
-        Dim aventura As Categoria = New Categoria("aventura")
-        Dim terror As Categoria = New Categoria("terror")
-        Categorias.Add(accion)
-        Categorias.Add(aventura)
-        Categorias.Add(terror)
-    End Sub
+    'Public Sub CargarCategorias()
+    '    Dim accion As Categoria = New Categoria("accion")
+    '    Dim aventura As Categoria = New Categoria("aventura")
+    '    Dim terror As Categoria = New Categoria("terror")
+    '    Categorias.Add(accion)
+    '    Categorias.Add(aventura)
+    '    Categorias.Add(terror)
+    'End Sub
 
 
     Public Sub AñadirCategoria(categoria As Categoria)
@@ -1038,43 +1057,65 @@ Public Class MenuPrincipal
         Next
     End Sub
 
+    Public Sub CargarCategorias()
+        Dim xmlDoc As New XmlDocument()
+        xmlDoc.Load(rutaCategorias)
+
+        Dim nodoCategoria As XmlNodeList = xmlDoc.GetElementsByTagName("categoria")
+        For Each categoria As XmlNode In nodoCategoria
+            arregloCategorias.Add(New Categoria(categoria.ChildNodes(0).InnerText))
+        Next
+    End Sub
 
     Public Sub CargarProductos()
-        Dim prod1 As Producto = New Producto(100, "Counter Strike", 40.0, "accion", "pg", "playstation 4")
-        Dim prod2 As Producto = New Producto(200, "Call of duty 4 Modern Warfare", 35.5, "accion", "pg", "playstation 4")
-        Dim prod3 As Producto = New Producto(300, "Call of duty 3", 25.5, "accion", "pg", "Xbox One")
 
-        For Each cat As Categoria In arregloCategorias
-            If cat.Nombre = "accion" Then
-                cat.Productos.Add(prod1)
-                cat.Productos.Add(prod2)
-                cat.Productos.Add(prod3)
-            End If
+        Dim xmlDoc As New XmlDocument()
+        xmlDoc.Load(rutaProductos)
+
+        Dim nodoProduct As XmlNodeList = xmlDoc.GetElementsByTagName("producto")
+        For Each product As XmlNode In nodoProduct
+            For Each cat As Categoria In arregloCategorias
+                If cat.Nombre = product.ChildNodes(3).InnerText Then
+                    cat.Productos.Add(New Producto(product.ChildNodes(1).InnerText, product.ChildNodes(0).InnerText, product.ChildNodes(2).InnerText, product.ChildNodes(3).InnerText, product.ChildNodes(4).InnerText, product.ChildNodes(5).InnerText))
+                End If
+            Next
         Next
 
-        Dim prod4 As Producto = New Producto(400, "Pokemon Gold", 20.5, "aventura", "pg", "game boy")
-        Dim prod5 As Producto = New Producto(500, "Pokemon Silver", 20.6, "aventura", "pg", "game boy")
-        Dim prod6 As Producto = New Producto(600, "Pokemon GO", 30.5, "aventura", "pg", "pc")
+        'Dim prod1 As Producto = New Producto(100, "counter strike", 40.0, "accion", "pg", "playstation 4")
+        'Dim prod2 As Producto = New Producto(200, "call of duty 4 modern warfare", 35.5, "accion", "pg", "playstation 4")
+        'Dim prod3 As Producto = New Producto(300, "call of duty 3", 25.5, "accion", "pg", "Xbox One")
 
-        For Each cat As Categoria In arregloCategorias
-            If cat.Nombre = "aventura" Then
-                cat.Productos.Add(prod4)
-                cat.Productos.Add(prod5)
-                cat.Productos.Add(prod6)
-            End If
-        Next
+        'For Each cat As Categoria In arregloCategorias
+        '    If cat.Nombre = "accion" Then
+        '        cat.Productos.Add(prod1)
+        '        cat.Productos.Add(prod2)
+        '        cat.Productos.Add(prod3)
+        '    End If
+        'Next
 
-        Dim prod7 As Producto = New Producto(700, "Silent hill", 32.3, "terror", "pg", "playstation 3")
-        Dim prod8 As Producto = New Producto(800, "Silent hill: 2", 42.3, "terror", "r", "playstation 4")
-        Dim prod9 As Producto = New Producto(900, "Silent hill: 3", 120.0, "terror", "r", "playstation 4")
+        'Dim prod4 As Producto = New Producto(400, "pokemon gold", 20.5, "aventura", "pg", "game boy")
+        'Dim prod5 As Producto = New Producto(500, "pokemon silver", 20.6, "aventura", "pg", "game boy")
+        'Dim prod6 As Producto = New Producto(600, "pokemon go", 30.5, "aventura", "pg", "pc")
 
-        For Each cat As Categoria In arregloCategorias
-            If cat.Nombre = "terror" Then
-                cat.Productos.Add(prod7)
-                cat.Productos.Add(prod8)
-                cat.Productos.Add(prod9)
-            End If
-        Next
+        'For Each cat As Categoria In arregloCategorias
+        '    If cat.Nombre = "aventura" Then
+        '        cat.Productos.Add(prod4)
+        '        cat.Productos.Add(prod5)
+        '        cat.Productos.Add(prod6)
+        '    End If
+        'Next
+
+        'Dim prod7 As Producto = New Producto(700, "silent hill", 32.3, "terror", "pg", "playstation 3")
+        'Dim prod8 As Producto = New Producto(800, "silent hill: 2", 42.3, "terror", "r", "playstation 4")
+        'Dim prod9 As Producto = New Producto(900, "silent hill: 3", 120.0, "terror", "r", "playstation 4")
+
+        'For Each cat As Categoria In arregloCategorias
+        '    If cat.Nombre = "terror" Then
+        '        cat.Productos.Add(prod7)
+        '        cat.Productos.Add(prod8)
+        '        cat.Productos.Add(prod9)
+        '    End If
+        'Next
 
     End Sub
 
@@ -1106,15 +1147,17 @@ Public Class MenuPrincipal
         End If
     End Sub
 
+
     Public Sub EstructurarXML()
         Dim settings As XmlWriterSettings = New XmlWriterSettings()
         settings.Indent = True
 
         Using writer As XmlWriter = XmlWriter.Create(_ruta, settings)
             writer.WriteStartDocument()
-            writer.WriteStartElement("factura")
+            writer.WriteStartElement("facturas")
 
             For Each fact As Factura In vectorFacturas.ArrayFacturas
+                writer.WriteStartElement("factura")
                 writer.WriteStartElement("infoTributaria")
                 writer.WriteElementString("razonSocial", fact.Empresa.Razonsocial.ToString)
                 writer.WriteElementString("nombreComercial", fact.Empresa.NombreComercial.ToString)
@@ -1154,9 +1197,146 @@ Public Class MenuPrincipal
     End Sub
 
 
-    Public Sub GuardarXML()
+    Public Sub GuardarFacturas()
+        Dim xmlDoc As XmlDocument = New XmlDocument()
+        xmlDoc.Load(_ruta)
+
+        'Dim newXMLNode As XmlNode = xmlDoc.SelectSingleNode("factura")
+        With xmlDoc.SelectSingleNode("facturas").CreateNavigator().AppendChild()
+            .WriteStartElement("factura")
+            For Each fact As Factura In vectorFacturas.ArrayFacturas
+                .WriteStartElement("infoTributaria")
+                .WriteElementString("razonSocial", fact.Empresa.Razonsocial.ToString)
+                .WriteElementString("nombreComercial", fact.Empresa.NombreComercial.ToString)
+                .WriteElementString("ruc", fact.Empresa.Ruc.ToString)
+                .WriteElementString("dirMatriz", fact.Empresa.DireccionEmpresa.ToString)
+                .WriteEndElement()
 
 
+                .WriteStartElement("infoFactura")
+                .WriteElementString("fechaEmision", fact.FechaEmision.ToString)
+                .WriteElementString("provEstablecimiento", fact.Empresa.Provincia.ToString)
+                .WriteElementString("dirEstablecimiento", fact.Empresa.DireccionEmpresa.ToString)
+                .WriteElementString("cliente", fact.Cliente.Nombre.ToString)
+                .WriteElementString("totalSinImpuestos", fact.Subtotal.ToString)
+                .WriteElementString("impuesto", fact.Impuesto.ToString)
+                .WriteElementString("totalConImpuestos", fact.TotalFactura.ToString)
+                .WriteElementString("efectivo", fact.Efectivo.ToString)
+                .WriteElementString("tarjetaCredito", fact.TarjetaCredito.ToString)
+                .WriteElementString("dineroElectronico", fact.DineroElectronico.ToString)
+                .WriteElementString("cambio", fact.Cambio.ToString)
+                .WriteElementString("valorDevuelto", fact.AhorroFactura.ToString)
+                .WriteEndElement()
+
+                For Each detalle As Detalle In fact.DetalleArray
+                    .WriteStartElement("detalle")
+                    .WriteElementString("descripcion", detalle.Descripcion.ToString)
+                    .WriteElementString("cantidad", detalle.Cantidad.ToString)
+                    .WriteElementString("precioUnitario", detalle.PrecioUnitario.ToString)
+                    .WriteElementString("precioTotalSinImpuesto", detalle.PrecioTotal.ToString)
+                    .WriteEndElement()
+                Next
+            Next
+            .Close()
+        End With
+
+        xmlDoc.Save(_ruta)
+
+    End Sub
+
+    Public Sub XmlProductos()
+        Dim settings As XmlWriterSettings = New XmlWriterSettings()
+        settings.Indent = True
+
+        Using writer As XmlWriter = XmlWriter.Create(rutaProductos, settings)
+            writer.WriteStartDocument()
+            writer.WriteStartElement("productos")
+
+            For Each cat As Categoria In Categorias
+                For Each pro As Producto In cat.Productos
+                    writer.WriteStartElement("producto")
+                    writer.WriteElementString("nombre", pro.Nombre.ToString)
+                    writer.WriteElementString("stock", pro.CantidadStock.ToString)
+                    writer.WriteElementString("precio", pro.Precio.ToString)
+                    writer.WriteElementString("categoria", pro.Categoria.ToString)
+                    writer.WriteElementString("rating", pro.Rating.ToString)
+                    writer.WriteElementString("consola", pro.Consola.ToString)
+                    writer.WriteEndElement()
+                Next
+            Next
+        End Using
+
+    End Sub
+
+
+    Public Sub GuardarProductos()
+        Dim xmlDoc As XmlDocument = New XmlDocument()
+        xmlDoc.Load(rutaProductos)
+
+        'Dim newXMLNode As XmlNode = xmlDoc.SelectSingleNode("factura")
+        With xmlDoc.SelectSingleNode("productos").CreateNavigator().AppendChild()
+            .WriteStartElement("producto")
+            For Each cat As Categoria In Categorias
+                For Each pro As Producto In cat.Productos
+                    .WriteElementString("nombre", pro.Nombre.ToString)
+                    .WriteElementString("stock", pro.CantidadStock.ToString)
+                    .WriteElementString("precio", pro.Precio.ToString)
+                    .WriteElementString("categoria", pro.Categoria.ToString)
+                    .WriteElementString("rating", pro.Rating.ToString)
+                    .WriteElementString("consola", pro.Consola.ToString)
+                    .WriteEndElement()
+                Next
+            Next
+            .Close()
+        End With
+
+        xmlDoc.Save(rutaProductos)
+    End Sub
+
+
+    Public Sub XmlCategorias()
+        Dim settings As XmlWriterSettings = New XmlWriterSettings()
+        settings.Indent = True
+
+        Using writer As XmlWriter = XmlWriter.Create(rutaCategorias, settings)
+            writer.WriteStartDocument()
+            writer.WriteStartElement("categorias")
+
+            For Each cat As Categoria In Categorias
+                writer.WriteStartElement("categoria")
+                writer.WriteElementString("nombre", cat.Nombre.ToString)
+                'For Each pro As Producto In cat.Productos
+                '    writer.WriteStartElement("producto", pro.Nombre.ToString)
+                '    writer.WriteEndElement()
+                'Next
+                writer.WriteEndElement()
+            Next
+        End Using
+    End Sub
+
+
+    Public Sub GuardarCategorias()
+        Dim xmlDoc As XmlDocument = New XmlDocument()
+        xmlDoc.Load(rutaCategorias)
+
+        'Dim newXMLNode As XmlNode = xmlDoc.SelectSingleNode("factura")
+        With xmlDoc.SelectSingleNode("categorias").CreateNavigator().AppendChild()
+            .WriteStartElement("categoria")
+            For Each cat As Categoria In Categorias
+                For Each pro As Producto In cat.Productos
+                    .WriteElementString("nombre", pro.Nombre.ToString)
+                    .WriteElementString("stock", pro.CantidadStock.ToString)
+                    .WriteElementString("precio", pro.Precio.ToString)
+                    .WriteElementString("categoria", pro.Categoria.ToString)
+                    .WriteElementString("rating", pro.Rating.ToString)
+                    .WriteElementString("consola", pro.Consola.ToString)
+                    .WriteEndElement()
+                Next
+            Next
+            .Close()
+        End With
+
+        xmlDoc.Save(rutaCategorias)
     End Sub
 
 
@@ -1170,6 +1350,8 @@ Public Class MenuPrincipal
         CargarProductos()
         Me.vectorFacturas = New VectorFacturas
         EstructurarXML()
+        'XmlCategorias()
+        'XmlProductos()
     End Sub
 
 End Class

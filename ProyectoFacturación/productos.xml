@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<productos>
+  <producto>
+    <nombre>counter strike</nombre>
+    <stock>100</stock>
+    <precio>40</precio>
+    <categoria>accion</categoria>
+    <rating>pg</rating>
+    <consola>playstation 4</consola>
+  </producto>
+  <producto>
+    <nombre>call of duty 4 modern warfare</nombre>
+    <stock>200</stock>
+    <precio>35,5</precio>
+    <categoria>accion</categoria>
+    <rating>pg</rating>
+    <consola>playstation 4</consola>
+  </producto>
+  <producto>
+    <nombre>call of duty 3</nombre>
+    <stock>300</stock>
+    <precio>25,5</precio>
+    <categoria>accion</categoria>
+    <rating>pg</rating>
+    <consola>Xbox One</consola>
+  </producto>
+  <producto>
+    <nombre>pokemon gold</nombre>
+    <stock>400</stock>
+    <precio>20,5</precio>
+    <categoria>aventura</categoria>
+    <rating>pg</rating>
+    <consola>game boy</consola>
+  </producto>
+  <producto>
+    <nombre>pokemon silver</nombre>
+    <stock>500</stock>
+    <precio>20,6</precio>
+    <categoria>aventura</categoria>
+    <rating>pg</rating>
+    <consola>game boy</consola>
+  </producto>
+  <producto>
+    <nombre>pokemon go</nombre>
+    <stock>600</stock>
+    <precio>30,5</precio>
+    <categoria>aventura</categoria>
+    <rating>pg</rating>
+    <consola>pc</consola>
+  </producto>
+  <producto>
+    <nombre>silent hill</nombre>
+    <stock>700</stock>
+    <precio>32,3</precio>
+    <categoria>terror</categoria>
+    <rating>pg</rating>
+    <consola>playstation 3</consola>
+  </producto>
+  <producto>
+    <nombre>silent hill: 2</nombre>
+    <stock>800</stock>
+    <precio>42,3</precio>
+    <categoria>terror</categoria>
+    <rating>r</rating>
+    <consola>playstation 4</consola>
+  </producto>
+  <producto>
+    <nombre>silent hill: 3</nombre>
+    <stock>900</stock>
+    <precio>120</precio>
+    <categoria>terror</categoria>
+    <rating>r</rating>
+    <consola>playstation 4</consola>
+  </producto>
+</productos>
