@@ -1353,7 +1353,7 @@ Public Class MenuPrincipal
         CargarCategorias()
         CargarProductos()
         Me.vectorFacturas = New VectorFacturas
-        EstructurarXML()
+        'EstructurarXML()
         'XmlCategorias()
         'XmlProductos()
     End Sub
