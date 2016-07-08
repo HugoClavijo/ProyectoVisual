@@ -462,8 +462,9 @@
         Console.Clear()
         Console.WriteLine("Usuario Vendedor " & idAux & " Logeado... " & user & vbNewLine)
         Console.WriteLine("1.- Facturar")
-        Console.WriteLine("2.- Salir de la sesión")
-        Console.WriteLine("3.- Salir del sistema")
+        Console.WriteLine("2.- Guardar Facturas")
+        Console.WriteLine("3.- Salir de la sesión")
+        Console.WriteLine("4.- Salir del sistema")
         Console.Write("Ingrese una opción: ")
         opcionVendedor = Console.ReadLine()
 
@@ -475,9 +476,13 @@
 
             Case "2"
 
-                Iniciar()
+                GuardarXML()
 
             Case "3"
+
+                Iniciar()
+
+            Case "4"
 
                 Environment.Exit(0)
 
@@ -1086,6 +1091,16 @@
         Else
             auxImpuesto = 0.14
         End If
+    End Sub
+
+    Public Sub EstructurarXML()
+
+    End Sub
+
+
+    Public Sub GuardarXML()
+
+
     End Sub
 
 
