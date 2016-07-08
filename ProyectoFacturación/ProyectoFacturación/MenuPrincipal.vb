@@ -707,8 +707,8 @@ Public Class MenuPrincipal
 
             Case "2"
 
-                EstructurarXML()
-                'GuardarFacturas()
+                'EstructurarXML()
+                GuardarFacturas()
                 Console.Clear()
                 Console.WriteLine("Las Facturas se han guardado...")
                 Console.ReadLine()
@@ -738,7 +738,7 @@ Public Class MenuPrincipal
         Dim vunitario As Double = 0
         Dim vtotal As Double = 0
         Dim subtotal As Double = 0
-        Dim iva As Double = 0.14
+        Dim iva As Double = auxImpuesto
         Dim totalFactura As Double = 0
         Dim efectivo As Double = 0
         Dim tarjeta As Double = 0
@@ -1352,6 +1352,7 @@ Public Class MenuPrincipal
                 writer.WriteElementString("valorDevuelto", fact.AhorroFactura.ToString)
                 writer.WriteEndElement()
 
+
                 For Each detalle As Detalle In fact.DetalleArray
                     writer.WriteStartElement("detalle")
                     writer.WriteElementString("descripcion", detalle.Descripcion.ToString)
@@ -1368,52 +1369,52 @@ Public Class MenuPrincipal
     End Sub
 
 
-    'Public Sub GuardarFacturas()
-    '    Dim xmlDoc As XmlDocument = New XmlDocument()
-    '    xmlDoc.Load(_ruta)
+    Public Sub GuardarFacturas()
+        Dim xmlDoc As XmlDocument = New XmlDocument()
+        xmlDoc.Load(_ruta)
 
-    '    'Dim newXMLNode As XmlNode = xmlDoc.SelectSingleNode("factura")
-    '    With xmlDoc.SelectSingleNode("facturas").CreateNavigator().AppendChild()
-    '        .WriteStartElement("factura")
-    '        For Each fact As Factura In vectorFacturas.ArrayFacturas
-    '            .WriteStartElement("infoTributaria")
-    '            .WriteElementString("razonSocial", fact.Empresa.Razonsocial.ToString)
-    '            .WriteElementString("nombreComercial", fact.Empresa.NombreComercial.ToString)
-    '            .WriteElementString("ruc", fact.Empresa.Ruc.ToString)
-    '            .WriteElementString("dirMatriz", fact.Empresa.DireccionEmpresa.ToString)
-    '            .WriteEndElement()
+        'Dim newXMLNode As XmlNode = xmlDoc.SelectSingleNode("factura")
+        With xmlDoc.SelectSingleNode("facturas").CreateNavigator().AppendChild()
+            .WriteStartElement("factura")
+            For Each fact As Factura In vectorFacturas.ArrayFacturas
+                .WriteStartElement("infoTributaria")
+                .WriteElementString("razonSocial", fact.Empresa.Razonsocial.ToString)
+                .WriteElementString("nombreComercial", fact.Empresa.NombreComercial.ToString)
+                .WriteElementString("ruc", fact.Empresa.Ruc.ToString)
+                .WriteElementString("dirMatriz", fact.Empresa.DireccionEmpresa.ToString)
+                .WriteEndElement()
 
 
-    '            .WriteStartElement("infoFactura")
-    '            .WriteElementString("fechaEmision", fact.FechaEmision.ToString)
-    '            .WriteElementString("provEstablecimiento", fact.Empresa.Provincia.ToString)
-    '            .WriteElementString("dirEstablecimiento", fact.Empresa.DireccionEmpresa.ToString)
-    '            .WriteElementString("cliente", fact.Cliente.Nombre.ToString)
-    '            .WriteElementString("totalSinImpuestos", fact.Subtotal.ToString)
-    '            .WriteElementString("impuesto", fact.Impuesto.ToString)
-    '            .WriteElementString("totalConImpuestos", fact.TotalFactura.ToString)
-    '            .WriteElementString("efectivo", fact.Efectivo.ToString)
-    '            .WriteElementString("tarjetaCredito", fact.TarjetaCredito.ToString)
-    '            .WriteElementString("dineroElectronico", fact.DineroElectronico.ToString)
-    '            .WriteElementString("cambio", fact.Cambio.ToString)
-    '            .WriteElementString("valorDevuelto", fact.AhorroFactura.ToString)
-    '            .WriteEndElement()
+                .WriteStartElement("infoFactura")
+                .WriteElementString("fechaEmision", fact.FechaEmision.ToString)
+                .WriteElementString("provEstablecimiento", fact.Empresa.Provincia.ToString)
+                .WriteElementString("dirEstablecimiento", fact.Empresa.DireccionEmpresa.ToString)
+                .WriteElementString("cliente", fact.Cliente.Nombre.ToString)
+                .WriteElementString("totalSinImpuestos", fact.Subtotal.ToString)
+                .WriteElementString("impuesto", fact.Impuesto.ToString)
+                .WriteElementString("totalConImpuestos", fact.TotalFactura.ToString)
+                .WriteElementString("efectivo", fact.Efectivo.ToString)
+                .WriteElementString("tarjetaCredito", fact.TarjetaCredito.ToString)
+                .WriteElementString("dineroElectronico", fact.DineroElectronico.ToString)
+                .WriteElementString("cambio", fact.Cambio.ToString)
+                .WriteElementString("valorDevuelto", fact.AhorroFactura.ToString)
+                .WriteEndElement()
 
-    '            For Each detalle As Detalle In fact.DetalleArray
-    '                .WriteStartElement("detalle")
-    '                .WriteElementString("descripcion", detalle.Descripcion.ToString)
-    '                .WriteElementString("cantidad", detalle.Cantidad.ToString)
-    '                .WriteElementString("precioUnitario", detalle.PrecioUnitario.ToString)
-    '                .WriteElementString("precioTotalSinImpuesto", detalle.PrecioTotal.ToString)
-    '                .WriteEndElement()
-    '            Next
-    '        Next
-    '        .Close()
-    '    End With
+                For Each detalle As Detalle In fact.DetalleArray
+                    .WriteStartElement("detalle")
+                    .WriteElementString("descripcion", detalle.Descripcion.ToString)
+                    .WriteElementString("cantidad", detalle.Cantidad.ToString)
+                    .WriteElementString("precioUnitario", detalle.PrecioUnitario.ToString)
+                    .WriteElementString("precioTotalSinImpuesto", detalle.PrecioTotal.ToString)
+                    .WriteEndElement()
+                Next
+            Next
+            .Close()
+        End With
 
-    '    xmlDoc.Save(_ruta)
+        xmlDoc.Save(_ruta)
 
-    'End Sub
+    End Sub
 
     Public Sub XmlProductos()
         Dim settings As XmlWriterSettings = New XmlWriterSettings()
