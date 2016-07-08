@@ -121,6 +121,7 @@ Public Class MenuPrincipal
             Console.WriteLine("6.- Guardar Cambios")
             Console.WriteLine("7.- Salir de la sesión")
             Console.WriteLine("8.- Salir del sistema")
+            Console.WriteLine("9.- Agregar Usuario (sustentación):")
             Console.Write("Ingrese una opción: ")
             opcionAdmin = Console.ReadLine()
 
@@ -681,9 +682,33 @@ Public Class MenuPrincipal
 
                     Environment.Exit(0)
 
+                Case "9"
+                    Dim auxAdmin, auxVende As Integer
+
+                    Console.Clear()
+                    Console.WriteLine("Seleccione el tipo de usuario que desea crear..." & vbNewLine)
+                    Console.WriteLine("1.- Administrador")
+                    Console.WriteLine("2.- Vendedor")
+                    Dim auxUsuario As String = Console.ReadLine()
+
+                    For Each admin As Administrador In Usuarios
+                        auxAdmin += CInt(admin.Id)
+                    Next
+
+                    For Each vendedor As Vendedor In Usuarios
+                        auxVende += CInt(vendedor.Id)
+                    Next
+
+                    If auxUsuario = "1" Then
+                        Usuarios.Add(New Administrador(CStr(auxAdmin), "Hugo Clavijo", "hugo", "batman"))
+                    Else
+                        Usuarios.Add(New Vendedor(CStr(auxVende), "Hugo Clavijo", "hugo", "batman"))
+                    End If
+
+
             End Select
 
-        Loop Until (opcionAdmin = "8")
+        Loop Until (opcionAdmin = "9")
 
     End Sub
 
