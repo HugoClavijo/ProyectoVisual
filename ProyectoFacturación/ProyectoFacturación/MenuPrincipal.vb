@@ -683,7 +683,7 @@ Public Class MenuPrincipal
                     Environment.Exit(0)
 
                 Case "9"
-                    Dim auxAdmin, auxVende As Integer
+                    Dim auxAdmin, auxVende As String
 
                     Console.Clear()
                     Console.WriteLine("Seleccione el tipo de usuario que desea crear..." & vbNewLine)
@@ -691,19 +691,48 @@ Public Class MenuPrincipal
                     Console.WriteLine("2.- Vendedor")
                     Dim auxUsuario As String = Console.ReadLine()
 
-                    For Each admin As Administrador In Usuarios
-                        auxAdmin += CInt(admin.Id)
-                    Next
 
-                    For Each vendedor As Vendedor In Usuarios
-                        auxVende += CInt(vendedor.Id)
-                    Next
+                    'For Each admin As Administrador In Usuarios
+                    '    auxAdmin = admin.Id
+                    'Next
 
-                    If auxUsuario = "1" Then
-                        Usuarios.Add(New Administrador(CStr(auxAdmin), "Hugo Clavijo", "hugo", "batman"))
-                    Else
-                        Usuarios.Add(New Vendedor(CStr(auxVende), "Hugo Clavijo", "hugo", "batman"))
-                    End If
+                    'For Each vendedor As Vendedor In Usuarios
+                    '    auxVende = vendedor.Id
+                    'Next
+
+                    Select Case auxUsuario
+                        Case "1"
+                            Console.Clear()
+                            Console.WriteLine("Ingrese Nombre:")
+                            Dim auxName As String = Console.ReadLine()
+                            Console.WriteLine("Nombre de Usuario:")
+                            Dim auxUsua As String = Console.ReadLine()
+                            Console.WriteLine("Contraseña:")
+                            Dim auxcontra As String = Console.ReadLine()
+
+                            Usuarios.Add(New Administrador(CStr(auxAdmin), auxName, auxUsua, auxcontra))
+                            Console.ReadLine()
+                            MenuAdministrador(user, pass, idAux)
+                        Case "2"
+                            Console.Clear()
+                            Console.WriteLine("Ingrese Nombre:")
+                            Dim auxName As String = Console.ReadLine()
+                            Console.WriteLine("Nombre de Usuario:")
+                            Dim auxUsua As String = Console.ReadLine()
+                            Console.WriteLine("Contraseña:")
+                            Dim auxcontra As String = Console.ReadLine()
+                            Usuarios.Add(New Vendedor(CStr(auxVende), auxName, auxUsua, auxcontra))
+                            Console.ReadLine()
+                            MenuAdministrador(user, pass, idAux)
+                    End Select
+
+
+                    'If auxUsuario = "1" Then
+
+                    '    Usuarios.Add(New Administrador(CStr(auxAdmin), "Hugo Clavijo", "hugo", "batman"))
+                    'Else
+                    '    Usuarios.Add(New Vendedor(CStr(auxVende), "Hugo Clavijo", "hugo", "batman"))
+                    'End If
 
 
             End Select
