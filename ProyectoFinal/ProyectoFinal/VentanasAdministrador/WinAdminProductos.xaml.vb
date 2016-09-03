@@ -1,0 +1,76 @@
+﻿Imports System.Data
+Imports System.Data.OleDb
+
+Public Class WinAdminProductos
+    Private dbPath As String = "..\..\sample.mdb"
+    Public strConexion As String = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & dbPath
+    Dim dsProductos As DataSet
+    Dim dsCategoria As DataSet
+
+    Private Sub DataProductos_Loaded(sender As Object, e As RoutedEventArgs) Handles DataProductos.Loaded
+
+        Using conexion As New OleDbConnection(strConexion)
+            Dim consulta As String = "Select * FROM producto;"
+            Dim adapter As New OleDbDataAdapter(New OleDbCommand(consulta, conexion))
+            Me.dsProductos = New DataSet("Tienda")
+            adapter.Fill(dsProductos, "producto")
+
+            dataGrid.DataContext = dsProductos
+
+        End Using
+
+        CargarCategorias()
+
+    End Sub
+
+    Private Sub DataWindow_Closing(sender As Object, e As ComponentModel.CancelEventArgs)
+        'Me.Hide()
+        Dim admin As WinAdmin
+        admin = Me.Owner
+        admin.Show()
+    End Sub
+
+    Private Sub BtnUevo_Click(sender As Object, e As RoutedEventArgs) Handles btnAdd.Click
+        Dim product As New WinAddProducto
+        product.Owner = Me
+        'Me.Hide()
+        product.Show()
+    End Sub
+
+    Private Sub dtgProductos_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles dataGrid.SelectionChanged
+        Dim aux As String = ""
+        Dim fila As DataRowView = sender.SelectedItem
+        If Not (fila Is Nothing) Then
+
+            For Each cat As DataRow In dsCategoria.Tables("categoria").Rows
+                If cat(0) = fila(5) Then
+                    aux = cat(1)
+                End If
+            Next
+
+            Dim nuevoProducto As New Producto(fila(0), fila(1), fila(2), fila(3), fila(4), aux, fila(6), fila(7))
+            Dim winProduct As New WinAddProducto
+            winProduct.Owner = Me
+            winProduct.DataContext = nuevoProducto
+            winProduct.Show()
+            Me.Hide()
+        End If
+    End Sub
+
+
+    Private Sub CargarCategorias()
+        Using conexion As New OleDbConnection(strConexion)
+
+            Dim consulta As String = "Select * FROM categoria;"
+
+            Dim adapter As New OleDbDataAdapter(New OleDbCommand(consulta, conexion))
+            Me.dsCategoria = New DataSet("Tienda")
+            adapter.Fill(dsCategoria, "categoria")
+        End Using
+    End Sub
+
+    Public Sub UpdateDataGrid()
+        Me.DataProductos_Loaded(Nothing, Nothing)
+    End Sub
+
+End Class
