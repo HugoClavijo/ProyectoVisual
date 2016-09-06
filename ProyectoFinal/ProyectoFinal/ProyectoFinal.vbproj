@@ -104,6 +104,12 @@
     <Compile Include="VentanasAdministrador\WinPagos.xaml.vb">
       <DependentUpon>WinPagos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VentanasVendedor\WinAddDetalle.xaml.vb">
+      <DependentUpon>WinAddDetalle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VentanasVendedor\WinFacturar.xaml.vb">
+      <DependentUpon>WinFacturar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VentanasVendedor\WinUser.xaml.vb">
       <DependentUpon>WinUser.xaml</DependentUpon>
     </Compile>
@@ -163,6 +169,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VentanasAdministrador\WinPagos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasVendedor\WinAddDetalle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasVendedor\WinFacturar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

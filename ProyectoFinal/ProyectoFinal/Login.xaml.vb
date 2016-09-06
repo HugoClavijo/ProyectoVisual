@@ -17,10 +17,10 @@ Public Class Login
             Dim consulta As String = "Select * FROM usuario;"
             Dim adapter As New OleDbDataAdapter(New OleDbCommand(consulta, conexion))
             Dim dsUsuarios = New DataSet("Tienda")
-            adapter.Fill(dsUsuarios, "usuarios")
+            adapter.Fill(dsUsuarios, "usuario")
 
             Me.loggedIn = False
-            For Each u As DataRow In dsUsuarios.Tables("usuarios").Rows
+            For Each u As DataRow In dsUsuarios.Tables("usuario").Rows
                 Me.usuarios.Add(New Usuario(u))
             Next
 
