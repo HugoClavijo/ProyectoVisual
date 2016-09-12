@@ -21,7 +21,12 @@
         winUsers.Show()
     End Sub
 
-
+    Private Sub MenuClientes_Click(sender As Object, e As RoutedEventArgs) Handles addCliente.Click
+        Dim winClients As New WinAdminClientes
+        winClients.Owner = Me
+        Me.Hide()
+        winClients.Show()
+    End Sub
 
     Private Sub MenuAddCategoria_Click(sender As Object, e As RoutedEventArgs) Handles addCategoria.Click
         Dim winAddCate As New WinAdminCategorias
@@ -43,6 +48,7 @@
         Me.Hide()
         winAdFact.Show()
     End Sub
+
 
     Private Sub MenuAdminPagos_Click(sender As Object, e As RoutedEventArgs) Handles adminPago.Click
         Dim winPago As New WinPagos

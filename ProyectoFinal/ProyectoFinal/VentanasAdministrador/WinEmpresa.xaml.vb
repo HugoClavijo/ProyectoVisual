@@ -6,6 +6,7 @@ Public Class WinEmpresa
     Private dbPath As String = "..\..\sample.mdb"
     Public strConexion As String = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & dbPath
     Private dsEmpresa As DataSet
+    Private dsProducto As DataSet
 
 
     Private Sub DataEmpresa_Loaded(sender As Object, e As RoutedEventArgs) Handles DataEmpresa.Loaded
@@ -18,7 +19,7 @@ Public Class WinEmpresa
             txtNombre.Text = dsEmpresa.Tables(0).Rows(0).Item(1)
             txtProvincia.Text = dsEmpresa.Tables(0).Rows(0).Item(2)
             txtCiudad.Text = dsEmpresa.Tables(0).Rows(0).Item(3)
-
+            txtRuc.Text = dsEmpresa.Tables(0).Rows(0).Item(4)
         End Using
     End Sub
 
@@ -44,6 +45,7 @@ Public Class WinEmpresa
                 dsEmpresa.Tables(0).Rows(0).Item(1) = txtNombre.Text
                 dsEmpresa.Tables(0).Rows(0).Item(2) = txtProvincia.Text
                 dsEmpresa.Tables(0).Rows(0).Item(3) = txtCiudad.Text
+                dsEmpresa.Tables(0).Rows(0).Item(4) = txtRuc.Text
             End If
         Next
 

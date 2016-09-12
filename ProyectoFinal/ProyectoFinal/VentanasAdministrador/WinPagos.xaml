@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Icon="/ProyectoFinal;component/Imagenes/ico.png"
         WindowStartupLocation="CenterScreen"
+        ResizeMode= "NoResize"
         Closing="DataWindow_Closing"        
         Title="Tipos De Pagos + Iva"  Height="315.052" Width="445.68">
     <Grid>

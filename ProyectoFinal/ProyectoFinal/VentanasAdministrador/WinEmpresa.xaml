@@ -7,18 +7,21 @@
         mc:Ignorable="d"
         Icon="/ProyectoFinal;component/Imagenes/ico.png"
         WindowStartupLocation="CenterScreen"
+        ResizeMode= "NoResize"
         Closing="DataWindow_Closing" 
-        Title="Empresa" Height="300" Width="300">
+        Title="Empresa" Height="307.563" Width="300">
     <Grid>
         <Image Source="/ProyectoFinal;component/Imagenes/back.png" Stretch="UniformToFill" ></Image>
         <Label Content="Nombre" Margin="30,52,0,0" x:Name="label2" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" Foreground="White" />
-        <TextBox Margin="107,0,0,186" x:Name="txtNombre" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="157" FontFamily="FontAwesome" Background="#00000000" OpacityMask="White" BorderBrush="White" Foreground="White"/>
+        <TextBox Margin="107,0,0,195" x:Name="txtNombre" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="157" FontFamily="FontAwesome" Background="#00000000" OpacityMask="White" BorderBrush="White" Foreground="White"/>
         <Label Content="Provincia" x:Name="lblProvincia" Margin="30,97,0,0" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" Foreground="White" />
-        <TextBox Margin="107,0,0,141" x:Name="txtProvincia" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="157" FontFamily="FontAwesome" BorderBrush="White" Background="#00000000" OverridesDefaultStyle="False" SelectionBrush="#FFFFB14A" Height="30" VerticalAlignment="Bottom" Foreground="White"  />
+        <TextBox Margin="107,0,0,150" x:Name="txtProvincia" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="157" FontFamily="FontAwesome" BorderBrush="White" Background="#00000000" OverridesDefaultStyle="False" SelectionBrush="#FFFFB14A" Height="30" VerticalAlignment="Bottom" Foreground="White"  />
         <Label Content="Datos Empresa" Margin="107,17,0,0" x:Name="label4" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94" Foreground="White" />
-        <Button x:Name="btnGuardar" Content="Guardar" Margin="189,200,0,0" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" Cursor="Hand" FontFamily="FontAwesome" Background="#00000000" Foreground="White" BorderBrush="White" />
+        <Button x:Name="btnGuardar" Content="Guardar" Margin="189,238,0,0" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" Cursor="Hand" FontFamily="FontAwesome" Background="#00000000" Foreground="White" BorderBrush="White" />
         <Label Content="Ciudad" x:Name="lblCiudad" Margin="30,142,0,0" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" Foreground="White" />
-        <TextBox Margin="107,0,0,96" x:Name="txtCiudad" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="157" FontFamily="FontAwesome" BorderBrush="White" Background="#00000000" OverridesDefaultStyle="False" SelectionBrush="#FFFFB14A" Height="30" VerticalAlignment="Bottom" Foreground="White"  />
+        <TextBox Margin="107,0,0,105" x:Name="txtCiudad" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="157" FontFamily="FontAwesome" BorderBrush="White" Background="#00000000" OverridesDefaultStyle="False" SelectionBrush="#FFFFB14A" Height="30" VerticalAlignment="Bottom" Foreground="White"  />
+        <Label Content="Ruc" x:Name="lblRuc" Margin="30,188,0,0" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" Foreground="White" />
+        <TextBox Margin="107,0,0,60" x:Name="txtRuc" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="157" FontFamily="FontAwesome" BorderBrush="White" Background="#00000000" OverridesDefaultStyle="False" SelectionBrush="#FFFFB14A" Height="30" VerticalAlignment="Bottom" Foreground="White"  />
 
     </Grid>
 </Window>

@@ -5,33 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoFinal"
         mc:Ignorable="d"
-        Title="WinFacturar" Height="682" Width="457" Closing="Window_Closing" Loaded="Window_Loaded">
+        Closing="DataWindow_Closing" 
+        Icon="/ProyectoFinal;component/Imagenes/ico.png"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode= "NoResize"
+        Title="WinFacturar" Height="717" Width="457" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="63" Margin="298,46,0,0" Stroke="Black" VerticalAlignment="Top" Width="138"/>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="35" Margin="297,6,0,0" Stroke="Black" VerticalAlignment="Top" Width="138"/>
+        <Image Source="/ProyectoFinal;component/Imagenes/blanco.jpg" Stretch="UniformToFill"></Image>
+        <Rectangle Fill="Transparent" HorizontalAlignment="Left" Height="63" Margin="298,46,0,0" Stroke="Black" VerticalAlignment="Top" Width="138"/>
+        <Rectangle Fill="Transparent" HorizontalAlignment="Left" Height="35" Margin="257,6,0,0" Stroke="Black" VerticalAlignment="Top" Width="178" />
         <DataGrid x:Name="dataGrid"  ItemsSource="{Binding Path=detalle}"  HorizontalAlignment="Left" Height="165" Margin="8,220,0,0" VerticalAlignment="Top" Width="427"/>
-        <Label x:Name="label" Content="SUBTOTAL:" HorizontalAlignment="Left" Margin="274,415,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label x:Name="label_Copy" Content="IVA       % :" HorizontalAlignment="Left" Margin="275,441,0,0" VerticalAlignment="Top" Width="80" FontWeight="Bold" RenderTransformOrigin="0.5,0.5"/>
-        <Label x:Name="label_Copy1" Content="TOTAL:" HorizontalAlignment="Left" Margin="296,473,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="label" Content="SUBTOTAL:" HorizontalAlignment="Left" Margin="270,462,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="label_Copy" Content="IVA       % :" HorizontalAlignment="Left" Margin="269,487,0,0" VerticalAlignment="Top" Width="80" FontWeight="Bold" RenderTransformOrigin="0.5,0.5"/>
+        <Label x:Name="label_Copy1" Content="TOTAL:" HorizontalAlignment="Left" Margin="292,534,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label x:Name="label1" Content="CLIENTE :" HorizontalAlignment="Left" Margin="8,127,0,0" VerticalAlignment="Top" Width="77" FontWeight="Bold"/>
         <Label x:Name="label1_Copy" Content="DIRECCION:" HorizontalAlignment="Left" Margin="8,151,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label x:Name="label1_Copy1" Content="R.U.C./C.I.:" HorizontalAlignment="Left" Margin="243,122,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label x:Name="label2" Content="FORMAS DE PAGO: " HorizontalAlignment="Left" Margin="8,418,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label x:Name="label3" Content="0" HorizontalAlignment="Left" Margin="304,441,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label x:Name="label4" Content="CANTIDAD :" HorizontalAlignment="Left" Margin="268,502,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="90"/>
-        <TextBox x:Name="txtEfectivo" HorizontalAlignment="Left" Height="23" Margin="351,502,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84"/>
-        <Label x:Name="label4_Copy" Content="CAMBIO:" HorizontalAlignment="Left" Margin="284,528,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Button x:Name="btnVisa" Content="VISA" HorizontalAlignment="Left" Margin="17,443,0,0" VerticalAlignment="Top" Width="89"/>
-        <Button x:Name="btnMastercard" Content="MASTERCARD" HorizontalAlignment="Left" Margin="17,468,0,0" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.093,1.05"/>
-        <Button x:Name="btnElectronica" Content="ELECTRONICA" HorizontalAlignment="Left" Margin="17,493,0,0" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.093,1.05"/>
-        <Button x:Name="btnVisaDebito" Content="VISA DEBITO" HorizontalAlignment="Left" Margin="17,518,0,0" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.093,1.05"/>
-        <Button x:Name="btnAmerican" Content="AMERICAN" HorizontalAlignment="Left" Margin="111,444,0,0" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.093,1.05"/>
-        <Button x:Name="btnDiners" Content="DINERS CLUB" HorizontalAlignment="Left" Margin="111,469,0,0" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.093,1.05"/>
-        <Label x:Name="lblCambio" Content="$0.00" HorizontalAlignment="Left" Margin="346,528,0,0" VerticalAlignment="Top" Width="89"/>
-        <Button x:Name="btnDineroElectronico" Content="DINERO ELECT" HorizontalAlignment="Left" Margin="111,493,0,0" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.093,1.05" Height="20"/>
+        <Label x:Name="label2" Content="FORMAS DE PAGO: " HorizontalAlignment="Left" Margin="7,447,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="label4" Content="EFECTIVO :" HorizontalAlignment="Left" Margin="264,563,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="90"/>
+        <TextBox x:Name="txtEfectivo" HorizontalAlignment="Left" Height="23" Margin="344,563,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="84"/>
+        <Button x:Name="btnVisa" Content="VISA" HorizontalAlignment="Left" Margin="68,475,0,0" VerticalAlignment="Top" Width="89" Cursor="Hand" FontFamily="FontAwesome" Background="#00000000" Foreground="black" BorderBrush="black" Height="32"/>
+        <Label x:Name="lblCambio" Content="$0.00" HorizontalAlignment="Left" Margin="342,600,0,0" VerticalAlignment="Top" Width="89" Height="31"/>
+        <Button x:Name="btnDineroElectronico" Content="DINERO ELECT" HorizontalAlignment="Left" Margin="68,512,0,0" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.093,1.05" Height="31" Cursor="Hand" FontFamily="FontAwesome" Background="#00000000" Foreground="black" BorderBrush="black"/>
         <Label x:Name="label6" Content="FACTURA" HorizontalAlignment="Left" Margin="335,50,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label x:Name="label7" Content="Nº." HorizontalAlignment="Left" Margin="302,72,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label x:Name="label8" Content="100" HorizontalAlignment="Left" Margin="322,72,0,0" VerticalAlignment="Top"/>
@@ -39,26 +37,28 @@
         <Label x:Name="label8_Copy" Content="100" HorizontalAlignment="Left" Margin="354,72,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label9_Copy6" Content="-" HorizontalAlignment="Left" Margin="378,72,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblNumeroFactura" Content="" HorizontalAlignment="Left" Margin="389,72,0,0" VerticalAlignment="Top" Width="46"/>
-        <Label x:Name="label10" Content="R.U.C.:" HorizontalAlignment="Left" Margin="305,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label x:Name="lblRuc" Content="1234567890" HorizontalAlignment="Left" Margin="353,10,0,0" VerticalAlignment="Top" Width="78"/>
+        <Label x:Name="label10" Content="R.U.C.:" HorizontalAlignment="Left" Margin="271,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="lblRuc" Content="1234567890" HorizontalAlignment="Left" Margin="323,10,0,0" VerticalAlignment="Top" Width="108"/>
         <Label x:Name="lblMatriz" Content="Av. De las aguas junto a las sodas" HorizontalAlignment="Left" Margin="70,75,0,0" VerticalAlignment="Top" Width="235"/>
         <Label x:Name="label13_Copy" Content="MATRIZ:" HorizontalAlignment="Left" Margin="7,75,0,0" VerticalAlignment="Top" Width="63" FontWeight="Bold"/>
-        <TextBox x:Name="txtCliente" HorizontalAlignment="Left" Height="23" Margin="81,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" RenderTransformOrigin="0.615,2.043"/>
-        <TextBox x:Name="txtDireccion" HorizontalAlignment="Left" Height="23" Margin="81,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" RenderTransformOrigin="0.615,2.043"/>
-        <TextBox x:Name="txtCedulaRuc" HorizontalAlignment="Left" Height="23" Margin="316,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" RenderTransformOrigin="0.615,2.043"/>
-        <Label x:Name="label13_Copy1" Content="TIENDA DE VIDEOJUEGOS&#xD;&#xA;Y  MUCHAS  COSAS  MAS" HorizontalAlignment="Left" Margin="26,18,0,0" VerticalAlignment="Top" Width="186" FontWeight="Bold"/>
-        <Button x:Name="nuevo" Content="NUEVO" HorizontalAlignment="Left" Margin="94,614,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="guardar" Content="GUARDAR" HorizontalAlignment="Left" Margin="192,614,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="cancelar" Content="CANCELAR" HorizontalAlignment="Left" Margin="291,614,0,0" VerticalAlignment="Top" Width="75"/>
-        <Label x:Name="label12" Content="VENDEDOR:" HorizontalAlignment="Left" Margin="69,552,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblVendedor" Content="ej: Juan Carlos Carrera " HorizontalAlignment="Left" Margin="40,568,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label14" Content="CIUDAD: " HorizontalAlignment="Left" Margin="8,91,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label x:Name="label13_Copy2" Content="Ecuador - " HorizontalAlignment="Left" Margin="71,91,0,0" VerticalAlignment="Top" Width="69"/>
-        <Label x:Name="lblCiudad" Content="Guayaquil" HorizontalAlignment="Left" Margin="127,91,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnEfectivo" Content="EFECTIVO" HorizontalAlignment="Left" Margin="111,518,0,0" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.093,1.05" Height="20"/>
-        <Label x:Name="lblSubtotal" Content="" HorizontalAlignment="Left" Margin="351,414,0,0" VerticalAlignment="Top" Width="80"/>
-        <Label x:Name="lblIva" Content="" HorizontalAlignment="Left" Margin="351,441,0,0" VerticalAlignment="Top" Width="80"/>
-        <Label x:Name="lblTotal" Content="" HorizontalAlignment="Left" Margin="350,475,0,0" VerticalAlignment="Top" Width="80"/>
-        <Button x:Name="addDetalle" Content="Agregar Detalle" HorizontalAlignment="Left" Margin="335,390,0,0" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="txtCliente" Background="Transparent" BorderBrush="black" HorizontalAlignment="Left" Height="23" Margin="88,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.615,2.043"/>
+        <TextBox x:Name="txtDireccion" Background="Transparent" BorderBrush="black" HorizontalAlignment="Left" Height="23" Margin="88,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" RenderTransformOrigin="0.615,2.043"/>
+        <TextBox x:Name="txtCedulaRuc" Background="Transparent" BorderBrush="black" HorizontalAlignment="Left" Height="23" Margin="316,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" RenderTransformOrigin="0.615,2.043"/>
+        <Label x:Name="label13_Copy1" Content="TIENDA DE VIDEOJUEGOS" HorizontalAlignment="Left" Margin="26,18,0,0" VerticalAlignment="Top" Width="186" FontWeight="Bold"/>
+        <Button x:Name="guardar" Content="GUARDAR" HorizontalAlignment="Left" Margin="181,642,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.507,1.3" Cursor="Hand" FontFamily="FontAwesome" Background="#00000000" Foreground="black" BorderBrush="black" Height="31"/>
+        <Label x:Name="label12" Content="USUARIO:" HorizontalAlignment="Left" Margin="78,589,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblVendedor" Content="..." HorizontalAlignment="Left" Margin="81,605,0,0" VerticalAlignment="Top" Width="57"/>
+        <Label x:Name="label14" Content="PROVINCIA: " HorizontalAlignment="Left" Margin="8,91,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="lblProvincia" Content="Ecuador" HorizontalAlignment="Left" Margin="88,91,0,0" VerticalAlignment="Top" Width="69"/>
+        <Button x:Name="btnEfectivo" Content="EFECTIVO" HorizontalAlignment="Left" Margin="68,548,0,0" VerticalAlignment="Top" Width="89" RenderTransformOrigin="0.093,1.05" Height="33" Cursor="Hand" FontFamily="FontAwesome" Background="#00000000" Foreground="black" BorderBrush="black"/>
+        <Label x:Name="lblSubtotal" Content="" HorizontalAlignment="Left" Margin="347,461,0,0" VerticalAlignment="Top" Width="80"/>
+        <Label x:Name="lblIva" Content="" HorizontalAlignment="Left" Margin="345,487,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.512,0.577"/>
+        <Label x:Name="lblTotal" Content="" HorizontalAlignment="Left" Margin="346,536,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button x:Name="addDetalle" Content="Agregar Detalle" HorizontalAlignment="Left" Margin="335,390,0,0" VerticalAlignment="Top" Width="100" Cursor="Hand" FontFamily="FontAwesome" Background="#00000000" Foreground="black" BorderBrush="black" Height="29"/>
+        <Button x:Name="btnCalcular" Content="Calcular" HorizontalAlignment="Left" Margin="335,424,0,0" VerticalAlignment="Top" Width="100" Cursor="Hand" FontFamily="FontAwesome" Background="#00000000" Foreground="black" BorderBrush="black" Height="32"/>
+        <Label x:Name="label_Copy2" Content="DESCUENTO :" HorizontalAlignment="Left" Margin="257,510,0,0" VerticalAlignment="Top" Width="84" FontWeight="Bold" RenderTransformOrigin="0.5,0.5"/>
+        <Label x:Name="lblDescuento" Content="" HorizontalAlignment="Left" Margin="346,511,0,0" VerticalAlignment="Top" Width="80" RenderTransformOrigin="0.512,0.577"/>
+        <Button x:Name="btnCambio" Content="Cambio" HorizontalAlignment="Left" Margin="271,600,0,0" VerticalAlignment="Top" Width="66" Height="31" Cursor="Hand" FontFamily="FontAwesome" Background="#00000000" Foreground="black" BorderBrush="black"/>
+        <Button x:Name="btnBorrar" Content="Borrar" HorizontalAlignment="Left" Margin="218,390,0,0" VerticalAlignment="Top" Width="100" Cursor="Hand" FontFamily="FontAwesome" Background="#00000000" Foreground="black" BorderBrush="black" Height="30"/>
     </Grid>
 </Window>

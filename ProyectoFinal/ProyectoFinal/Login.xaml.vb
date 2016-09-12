@@ -6,7 +6,7 @@ Public Class Login
     Public usuarios As ArrayList
     Private dbPath As String = "..\..\sample.mdb"
     Public strConexion As String = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & dbPath
-
+    Dim usuario As String
 
 
     Private Sub winLogin_Loaded(sender As Object, e As RoutedEventArgs) Handles MyBase.Loaded, MyBase.Loaded
@@ -33,8 +33,10 @@ Public Class Login
         Me.loggedIn = nuevoUsuario.Login(usuarios)
         If Me.loggedIn Then
             MessageBox.Show("Bienvenido")
+            Me.usuario = nuevoUsuario.User
         Else
             MessageBox.Show("Usuario o contraseña no coinciden")
+            'Me.usuario = nuevoUsuario.Name
         End If
 
         If nuevoUsuario.Roles(usuarios) = "administrador" Then
@@ -42,9 +44,10 @@ Public Class Login
             winAdministrador.Owner = Me
             Me.Hide()
             winAdministrador.Show()
-        Else
+        ElseIf nuevoUsuario.Roles(usuarios) = "vendedor" Then
             Dim winVendedor As New WinUser
             winVendedor.Owner = Me
+            winVendedor.CargarUsuario(Me.usuario)
             Me.Hide()
             winVendedor.Show()
         End If

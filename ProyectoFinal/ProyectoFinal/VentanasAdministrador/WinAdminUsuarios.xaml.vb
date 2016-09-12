@@ -30,6 +30,7 @@ Public Class WinAdminUsuarios
     Private Sub BtnAdd_Click(sender As Object, e As RoutedEventArgs) Handles btnAdd.Click
         Dim winUser As New WinAddUsuarios
         winUser.Owner = Me
+        winUser.btnBorrar.Visibility = 1
         Me.Hide()
         winUser.Show()
     End Sub
@@ -37,7 +38,7 @@ Public Class WinAdminUsuarios
     Private Sub dtgUsuarios_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles dataGrid.SelectionChanged
         Dim fila As DataRowView = sender.SelectedItem
         If Not (fila Is Nothing) Then
-            Dim nuevoUsuario As New Usuario(fila(0), fila(1), fila(2), fila(3), fila(4), fila(5), fila(6))
+            Dim nuevoUsuario As New Usuario(fila(0), fila(1), fila(2), fila(3), fila(4), fila(5), fila(6), fila(7))
             Dim winUser As New WinAddUsuarios
             winUser.Owner = Me
             winUser.DataContext = nuevoUsuario

@@ -21,7 +21,7 @@
         _lastName = apellido
     End Sub
 
-    Sub New(di As Integer, usuario As String, clave As String, nombre As String, apellido As String, contactox As String, rr As String)
+    Sub New(di As Integer, usuario As String, clave As String, nombre As String, apellido As String, contactox As String, rr As String, provin As String)
         _id = di
         _user = usuario
         _pass = clave
@@ -29,6 +29,7 @@
         _contacto = contactox
         _rol = rr
         _lastName = apellido
+        _provincia = provin
     End Sub
 
 
@@ -113,6 +114,18 @@
         End Set
     End Property
 
+
+    Private _provincia As String
+    Public Property Provincia() As String
+        Get
+            Return _provincia
+        End Get
+        Set(ByVal value As String)
+            _provincia = value
+        End Set
+    End Property
+
+
     Public Function Login(usuarios As ArrayList)
 
         For Each u As Usuario In usuarios
@@ -159,6 +172,7 @@
         Me.LastName = usuario("apellido")
         Me.Contact = usuario("contacto")
         Me.Rol = usuario("rol")
+        Me.Provincia = usuario("provincia")
     End Sub
 
 

@@ -5,26 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoFinal"
         mc:Ignorable="d"
-        Title="WinAddDetalle" Height="330.481" Width="473.989" Closed="Window_Closed" Loaded="Window_Loaded">
-    <Grid Margin="0,0,2,-21">
+        Closing="DataWindow_Closing"
+        Icon="/ProyectoFinal;component/Imagenes/ico.png"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode= "NoResize"
+        Title="WinAddDetalle" Height="342.63" Width="473.989" Loaded="Window_Loaded">
+    <Grid Margin="0,0,2,-45">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Image Source="/ProyectoFinal;component/Imagenes/back.png" Stretch="UniformToFill" />
-        <Label x:Name="label" Content="cantidad" HorizontalAlignment="Left" Margin="38,55,0,0" VerticalAlignment="Top" Foreground="#FFFBF7F7"/>
-        <Label x:Name="label_Copy" Content="codigo:" HorizontalAlignment="Left" Margin="45,101,0,0" VerticalAlignment="Top" Foreground="#FFFBF7F7"/>
-        <Label x:Name="label_Copy1" Content="producto:" HorizontalAlignment="Left" Margin="38,147,0,0" VerticalAlignment="Top" Foreground="#FFFBF7F7"/>
-        <TextBox Margin="118,0,0,230" x:Name="txtCantidad" Text="{Binding cantidad}" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="157" FontFamily="FontAwesome" Background="#00000000" OpacityMask="White" BorderBrush="White" Foreground="White"/>
-        <Label x:Name="label_Copy2" Content="stock:" HorizontalAlignment="Left" Margin="290,55,0,0" VerticalAlignment="Top" Foreground="#FFFBF7F7"/>
-        <TextBox Margin="118,0,0,189" x:Name="txtCodigo" Text="{Binding id_producto}" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="157" FontFamily="FontAwesome" Background="#00000000" OpacityMask="White" BorderBrush="White" Foreground="White"/>
-        <TextBox Margin="118,0,0,143" x:Name="txtProducto" Text="{Binding nombre}" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="157" FontFamily="FontAwesome" Background="#00000000" OpacityMask="White" BorderBrush="White" Foreground="White"/>
-        <TextBox Margin="335,0,0,239" x:Name="txtStock" Text="{Binding stock}" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="91" FontFamily="FontAwesome" Background="#00000000" OpacityMask="White" BorderBrush="White" Foreground="White"/>
-        <Button x:Name="btnGuardar" Content="Guardar" Margin="335,205,0,0" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" Cursor="Hand" FontFamily="FontAwesome" Background="#00000000" Foreground="White" BorderBrush="White" />
-        <Label x:Name="label_Copy3" Content="V.Unitario:" HorizontalAlignment="Left" Margin="38,194,0,0" VerticalAlignment="Top" Foreground="#FFFBF7F7"/>
-        <TextBox Margin="118,0,0,96" x:Name="txtPrecioUnitario" Text="{Binding precio_unitario}" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="157" FontFamily="FontAwesome" Background="#00000000" OpacityMask="White" BorderBrush="White" Foreground="White"/>
-        <TextBox Margin="118,0,0,54" x:Name="txtPrecioTotal" Text="{Binding precio_total}" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="157" FontFamily="FontAwesome" Background="#00000000" OpacityMask="White" BorderBrush="White" Foreground="White"/>
-        <Label x:Name="label_Copy4" Content="V.Total:" HorizontalAlignment="Left" Margin="38,236,0,0" VerticalAlignment="Top" Foreground="#FFFBF7F7"/>
-
-
+        <Image Source="/ProyectoFinal;component/Imagenes/back.png" Stretch="UniformToFill" Margin="0,0,0,42" />
+        <Label x:Name="label" Content="Ingrese Cantidad:" HorizontalAlignment="Left" Margin="38,214,0,0" VerticalAlignment="Top" Foreground="#FFFBF7F7" RenderTransformOrigin="0.552,5.22"/>
+        <Label x:Name="label_Copy1" Content="producto:" HorizontalAlignment="Left" Margin="42,89,0,0" VerticalAlignment="Top" Foreground="#FFFBF7F7"/>
+        <TextBox Margin="152,0,0,115" x:Name="txtCantidad" Text="{Binding cantidad}" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="116" FontFamily="FontAwesome" Background="#00000000" OpacityMask="White" BorderBrush="White" Foreground="White"/>
+        <Label x:Name="label_Copy2" Content="stock:" HorizontalAlignment="Left" Margin="317,155,0,0" VerticalAlignment="Top" Foreground="#FFFBF7F7"/>
+        <TextBox Margin="362,0,0,174" x:Name="txtStock" Text="{Binding stock}" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="75" FontFamily="FontAwesome" Background="#00000000" OpacityMask="White" BorderBrush="White" Foreground="White"/>
+        <Button x:Name="btnGuardar" Content="Guardar" Margin="362,265,0,0" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" Cursor="Hand" FontFamily="FontAwesome" Background="#00000000" Foreground="White" BorderBrush="White" RenderTransformOrigin="0.508,1.433" />
+        <Label x:Name="label_Copy3" Content="Precio:" HorizontalAlignment="Left" Margin="38,155,0,0" VerticalAlignment="Top" Foreground="#FFFBF7F7" RenderTransformOrigin="0.508,0.447"/>
+        <TextBox Margin="111,0,0,174" x:Name="txtPrecioUnitario" Text="{Binding precio_unitario}" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="157" FontFamily="FontAwesome" Background="#00000000" OpacityMask="White" BorderBrush="White" Foreground="White"/>
+        <TextBox Margin="152,0,0,64" x:Name="txtPrecioTotal" Text="{Binding precio_total}" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="116" FontFamily="FontAwesome" Background="#00000000" OpacityMask="White" BorderBrush="White" Foreground="White"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="111,89,0,0" VerticalAlignment="Top" Width="157" Height="30"/>
+        <Button x:Name="btnCalcular" Content="Calcular Total" Margin="38,265,0,0" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="102" Cursor="Hand" FontFamily="FontAwesome" Background="#00000000" Foreground="White" BorderBrush="White" RenderTransformOrigin="0.524,2" />
+        <Label x:Name="label_Copy" Content="Id:" HorizontalAlignment="Left" Margin="42,34,0,0" VerticalAlignment="Top" Foreground="#FFFBF7F7"/>
+        <TextBox Margin="111,0,0,289" x:Name="txtId" Text="{Binding id}" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="75" FontFamily="FontAwesome" Background="#00000000" OpacityMask="White" BorderBrush="White" Foreground="White"/>
+        <Button x:Name="btnBuscar" Content="Buscar" Margin="193,31,0,0" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" Cursor="Hand" FontFamily="FontAwesome" Background="#00000000" Foreground="White" BorderBrush="White" RenderTransformOrigin="0.508,1.433" />
     </Grid>
 </Window>

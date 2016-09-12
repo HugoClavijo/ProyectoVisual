@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Icon="/ProyectoFinal;component/Imagenes/ico.png"
         WindowStartupLocation="CenterScreen"
+        ResizeMode= "NoResize"
         Title="Login" Height="200" Width="400">
 
     <Grid>

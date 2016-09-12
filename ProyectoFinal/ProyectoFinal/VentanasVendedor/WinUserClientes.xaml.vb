@@ -1,36 +1,39 @@
 ﻿Imports System.Data
 Imports System.Data.OleDb
 
-Public Class WinAdminCategorias
+Public Class WinUserClientes
     Private dbPath As String = "..\..\sample.mdb"
     Public strConexion As String = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & dbPath
-    Dim dsCategorias As DataSet
+    Dim dsClientes As DataSet
 
-    Private Sub DataCategorias_Loaded(sender As Object, e As RoutedEventArgs) Handles DataCategorias.Loaded
+    Private Sub DataClientes_Loaded(sender As Object, e As RoutedEventArgs) Handles userClientes.Loaded
         Using conexion As New OleDbConnection(strConexion)
-            Dim consulta As String = "Select * FROM categoria;"
+            Dim consulta As String = "Select * FROM cliente;"
             Dim adapter As New OleDbDataAdapter(New OleDbCommand(consulta, conexion))
-            Me.dsCategorias = New DataSet("Tienda")
-            adapter.Fill(dsCategorias, "categoria")
+            Me.dsClientes = New DataSet("Tienda")
+            adapter.Fill(dsClientes, "cliente")
 
-            dataGrid.DataContext = dsCategorias
+            dataGrid.DataContext = dsClientes
 
         End Using
     End Sub
 
     Private Sub DataWindow_Closing(sender As Object, e As ComponentModel.CancelEventArgs)
         'Me.Hide()
-        Dim admin As WinAdmin
-        admin = Me.Owner
-        admin.Show()
+        Dim user As WinUser
+        user = Me.Owner
+        user.Show()
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As RoutedEventArgs) Handles btnAdd.Click
-        Dim winCat As New WinAddCategoria
-        winCat.Owner = Me
-        winCat.btnBorrar.Visibility = 1
+        Dim winClientes As New WinUserCliente
+        winClientes.Owner = Me
         Me.Hide()
-        winCat.Show()
+        winClientes.Show()
+    End Sub
+
+    Public Sub UpdateDataGrid()
+        Me.DataClientes_Loaded(Nothing, Nothing)
     End Sub
 
     Private Sub dtgCategorias_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles dataGrid.SelectionChanged
@@ -41,18 +44,14 @@ Public Class WinAdminCategorias
         End If
 
         If Not (fila Is Nothing) Then
-            Dim nuevaCategoria As New Categoria(fila(0), fila(1), fila(2))
-            Dim winCate As New WinAddCategoria
-            winCate.Owner = Me
-            winCate.DataContext = nuevaCategoria
-            winCate.Show()
+            Dim nuevoCliente As New Cliente(fila(0), fila(1), fila(2))
+            Dim winClient As New WinUserCliente
+            winClient.Owner = Me
+            winClient.DataContext = nuevoCliente
+            winClient.Show()
             Me.Hide()
         End If
 
-    End Sub
-
-    Public Sub UpdateDataGrid()
-        Me.DataCategorias_Loaded(Nothing, Nothing)
     End Sub
 
 End Class

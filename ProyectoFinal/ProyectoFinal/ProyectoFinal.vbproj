@@ -77,6 +77,9 @@
     <Compile Include="VentanasAdministrador\WinAddCategoria.xaml.vb">
       <DependentUpon>WinAddCategoria.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VentanasAdministrador\WinAddCliente.xaml.vb">
+      <DependentUpon>WinAddCliente.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VentanasAdministrador\WinAddProducto.xaml.vb">
       <DependentUpon>WinAddProducto.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,9 @@
     </Compile>
     <Compile Include="VentanasAdministrador\WinAdminCategorias.xaml.vb">
       <DependentUpon>WinAdminCategorias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VentanasAdministrador\WinAdminClientes.xaml.vb">
+      <DependentUpon>WinAdminClientes.xaml</DependentUpon>
     </Compile>
     <Compile Include="VentanasAdministrador\WinAdminFacturas.xaml.vb">
       <DependentUpon>WinAdminFacturas.xaml</DependentUpon>
@@ -104,6 +110,9 @@
     <Compile Include="VentanasAdministrador\WinPagos.xaml.vb">
       <DependentUpon>WinPagos.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VentanasAdministrador\WinViewFactura.xaml.vb">
+      <DependentUpon>WinViewFactura.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VentanasVendedor\WinAddDetalle.xaml.vb">
       <DependentUpon>WinAddDetalle.xaml</DependentUpon>
     </Compile>
@@ -112,6 +121,24 @@
     </Compile>
     <Compile Include="VentanasVendedor\WinUser.xaml.vb">
       <DependentUpon>WinUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VentanasVendedor\WinUserBuscarFacturas.xaml.vb">
+      <DependentUpon>WinUserBuscarFacturas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VentanasVendedor\WinUserCliente.xaml.vb">
+      <DependentUpon>WinUserCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VentanasVendedor\WinUserClientes.xaml.vb">
+      <DependentUpon>WinUserClientes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VentanasVendedor\WinUserProductos.xaml.vb">
+      <DependentUpon>WinUserProductos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VentanasVendedor\WinUserViewFactura.xaml.vb">
+      <DependentUpon>WinUserViewFactura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VentanasVendedor\WinViewProducto.xaml.vb">
+      <DependentUpon>WinViewProducto.xaml</DependentUpon>
     </Compile>
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
@@ -136,6 +163,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="VentanasAdministrador\WinAddCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="VentanasAdministrador\WinAddProducto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -149,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VentanasAdministrador\WinAdminCategorias.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasAdministrador\WinAdminClientes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -172,6 +207,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="VentanasAdministrador\WinViewFactura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="VentanasVendedor\WinAddDetalle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -181,6 +220,30 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VentanasVendedor\WinUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasVendedor\WinUserBuscarFacturas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasVendedor\WinUserCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasVendedor\WinUserClientes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasVendedor\WinUserProductos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasVendedor\WinUserViewFactura.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasVendedor\WinViewProducto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -237,19 +300,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Imagenes\bmage.png" />
+    <Resource Include="Imagenes\back.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Imagenes\user.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Imagenes\back.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Imagenes\ico.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Imagenes\buttons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imagenes\blanco.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Icon="/ProyectoFinal;component/Imagenes/ico.png"
         WindowStartupLocation="CenterScreen"
+        ResizeMode= "NoResize"
         Closing="DataWindow_Closing" 
         Title="Administrador" Height="200.392" Width="423.625">
     <Grid>
@@ -17,7 +18,7 @@
             </Image.Effect>
         </Image>
 
-        <Menu Height="25" Name="menu1" Width="322" HorizontalAlignment="Left" VerticalAlignment="Top" Background="DarkSlateBlue" BorderThickness="2" Margin="46,19,0,0">
+        <Menu Height="25" Name="menu1" Width="306" HorizontalAlignment="Left" VerticalAlignment="Top" Background="DarkSlateBlue" BorderThickness="2" Margin="55,19,0,0">
             <Menu.BitmapEffect>
                 <DropShadowBitmapEffect />
             </Menu.BitmapEffect>
@@ -26,17 +27,15 @@
             <MenuItem Header="_Usuarios" Foreground="White">
                 <MenuItem Name="menuUsuarios"  Header="_Administrar Usuarios" IsCheckable="true" Foreground="Blue"/>
             </MenuItem>
-            <MenuItem Header="_Categorias" Foreground="White">
-                <MenuItem Name="addCategoria" Header="_Administrar Categorias" IsCheckable="true" Foreground="Blue"/>
+            <MenuItem Header="_Clientes" Foreground="White">
+                <MenuItem Name="addCliente" Header="_Administrar Clientes" IsCheckable="true" Foreground="Blue"/>
             </MenuItem>
             <MenuItem Header="_Productos" Foreground="White">
+                <MenuItem Name="addCategoria" Header="_Administrar Categorias" IsCheckable="true" Foreground="Blue"/>
                 <MenuItem Name="adminProductos" Header="_Administrar Productos" IsCheckable="true" Foreground="Blue"/>
-                <MenuItem Name="buscarProductos" Header="_Busqueda De Productos" IsCheckable="true" Foreground="Blue"/>
-                <Separator/>
-                <MenuItem Name="borrarProductos" Header="_Borrar Stock"  IsCheckable="true" Foreground="Blue"/>
             </MenuItem>
             <MenuItem Header="_Facturas" Foreground="White">
-                <MenuItem Name="adminFacturas" Header="_Facturas" IsCheckable="true" Foreground="Blue"/>
+                <MenuItem Name="adminFacturas" Header="_Administrar Facturas" IsCheckable="true" Foreground="Blue"/>
                 <MenuItem Name="adminPago" Header="_Tipos De Pago + Iva" IsCheckable="true" Foreground="Blue"/>
             </MenuItem>
 

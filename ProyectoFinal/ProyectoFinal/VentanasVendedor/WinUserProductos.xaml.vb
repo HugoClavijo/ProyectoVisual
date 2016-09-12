@@ -1,13 +1,14 @@
 ﻿Imports System.Data
 Imports System.Data.OleDb
 
-Public Class WinAdminProductos
+Public Class WinUserProductos
+
     Private dbPath As String = "..\..\sample.mdb"
     Public strConexion As String = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & dbPath
     Dim dsProductos As DataSet
     Dim dsCategoria As DataSet
 
-    Private Sub DataProductos_Loaded(sender As Object, e As RoutedEventArgs) Handles DataProductos.Loaded
+    Private Sub DataProductos_Loaded(sender As Object, e As RoutedEventArgs) Handles userProductos.Loaded
 
         Using conexion As New OleDbConnection(strConexion)
             Dim consulta As String = "Select * FROM producto;"
@@ -25,25 +26,18 @@ Public Class WinAdminProductos
 
     Private Sub DataWindow_Closing(sender As Object, e As ComponentModel.CancelEventArgs)
         'Me.Hide()
-        Dim admin As WinAdmin
-        admin = Me.Owner
-        admin.Show()
+        Dim user As WinUser
+        user = Me.Owner
+        user.Show()
     End Sub
 
-    Private Sub BtnUevo_Click(sender As Object, e As RoutedEventArgs) Handles btnAdd.Click
-        Dim product As New WinAddProducto
-        product.Owner = Me
-        product.btnBorrar.Visibility = 1
-        Me.Hide()
-        product.Show()
-    End Sub
 
     Private Sub dtgProductos_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles dataGrid.SelectionChanged
         Dim aux As String = ""
         Dim fila As DataRowView = sender.SelectedItem
         If Not (fila Is Nothing) Then
             Dim nuevoProducto As New Producto(fila(0), fila(1), fila(2), fila(3), fila(4), fila(5), fila(6), fila(7))
-            Dim winProduct As New WinAddProducto
+            Dim winProduct As New WinViewProducto
             winProduct.Owner = Me
             winProduct.DataContext = nuevoProducto
             winProduct.Show()
@@ -71,7 +65,6 @@ Public Class WinAdminProductos
             MessageBox.Show("Error, Ingrese letras en producto")
             Exit Sub
         End If
-
 
         Using conexion As New OleDbConnection(strConexion)
 

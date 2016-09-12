@@ -25,6 +25,19 @@ Public Class WinAddCategoria
 
     Private Sub BtnGuardar_Click(sender As Object, e As RoutedEventArgs) Handles btnGuardar.Click
 
+        Dim intValue As Integer
+
+        If Me.txtId.Text = Nothing Or Me.txtNombre.Text = Nothing Or Me.txtDescripcion.Text = Nothing Then
+            MessageBox.Show("Error, campos vacios.")
+            Exit Sub
+        End If
+
+        If Not Integer.TryParse(Me.txtId.Text, intValue) Then
+            MessageBox.Show("Error, ingrese número en Id ")
+            Exit Sub
+        End If
+
+
         Dim listCate As WinAdminCategorias = Me.Owner
         Using conexion As New OleDbConnection(listCate.strConexion)
 
@@ -64,4 +77,34 @@ Public Class WinAddCategoria
 
     End Sub
 
+    Private Sub BtnBorrar_Click(sender As Object, e As RoutedEventArgs) Handles btnBorrar.Click
+
+        Dim listCate As WinAdminCategorias = Me.Owner
+        Using conexion As New OleDbConnection(listCate.strConexion)
+
+            Dim consulta As String = "Delete * FROM categoria WHERE id =" & txtId.Text & ";"
+
+            Dim adapter As New OleDbDataAdapter(New OleDbCommand(consulta, conexion))
+            Dim personaCmdBuilder = New OleDbCommandBuilder(adapter)
+            Me.dsCategorias = New DataSet("Tienda")
+            adapter.Fill(dsCategorias, "categoria")
+            Dim found = False
+
+            If Not found Then
+                MessageBox.Show("Se borró la categoria")
+            End If
+            'Try
+            adapter.Update(dsCategorias.Tables("categoria"))
+                If found Then
+                MessageBox.Show("No se borró la categoria")
+            End If
+            'Catch es As Exception
+            '    MessageBox.Show("Error al actualizar")
+            'End Try
+            listCate.UpdateDataGrid()
+
+        End Using
+        Me.Close()
+
+    End Sub
 End Class

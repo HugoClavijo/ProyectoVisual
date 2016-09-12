@@ -1,20 +1,19 @@
-﻿<Window x:Name="AddProducto" x:Class="WinAddProducto"
+﻿<Window x:Name="viewProducto" x:Class="WinViewProducto"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProyectoFinal"
         mc:Ignorable="d"
-        Icon="/ProyectoFinal;component/Imagenes/ico.png"
+         Icon="/ProyectoFinal;component/Imagenes/ico.png"
         WindowStartupLocation="CenterScreen"
         ResizeMode= "NoResize"
         Closing="DataWindow_Closing" 
-        Title="Producto" Height="362.762" Width="665.272">
+        Title="WinViewProducto" Height="362.762" Width="665.272">
     <Grid>
         <Image Source="/ProyectoFinal;component/Imagenes/back.png" Stretch="UniformToFill" />
         <Label Content="Nombre" Margin="35,152,0,0" x:Name="lblNombre" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" Foreground="White" />
         <TextBox Margin="114,0,0,150" x:Name="txtNombre" Text="{Binding Nombre}" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="157" FontFamily="FontAwesome" Background="#00000000" OpacityMask="White" BorderBrush="White" Foreground="White"/>
-        <Button x:Name="btnGuardar" Content="Guardar" Margin="508,209,0,0" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" Cursor="Hand" FontFamily="FontAwesome" Background="#00000000" Foreground="White" BorderBrush="White" />
         <Label Content="Stock" Margin="35,197,0,0" x:Name="lblCantidad" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" Foreground="White" />
         <TextBox Margin="114,0,0,105" x:Name="txtCantidad" Text="{Binding CantidadStock}" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="157" FontFamily="FontAwesome" Background="#00000000" OpacityMask="White" BorderBrush="White" Foreground="White"/>
         <Label Content="descripción" Margin="35,245,0,0" x:Name="lblDescripcion" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" Foreground="White" />
@@ -29,6 +28,5 @@
         <TextBox Margin="114,0,0,247" x:Name="txtId" Text="{Binding Id}" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="157" FontFamily="FontAwesome" Background="#00000000" OpacityMask="White" BorderBrush="White" Foreground="White"/>
         <Label Content="Categoria" Margin="35,104,0,0" x:Name="lblCategoria" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" Foreground="White" />
         <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Margin="114,104,0,0" Height="29"/>
-        <Button x:Name="btnBorrar" Content="Borrar" Margin="508,246,0,0" Height="29" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" Cursor="Hand" FontFamily="FontAwesome" Background="#00000000" Foreground="White" BorderBrush="White" />
     </Grid>
 </Window>
